@@ -67,7 +67,7 @@ local C,L,varX,Y,i,p;
 end;
 
 CayleyTransform@:=function(u)
-local F,MA,d;
+local F,MA,d; #TODO: u needed as reference?
   d:=Length(u);
   F:=BaseRing(u);
   MA:=MatrixAlgebra(F,d);
@@ -151,7 +151,7 @@ local F,G,d;
 end;
 
 FixesUnitaryForm@:=function(x,form)
-local F,MA,e;
+local F,MA,e; # TODO: x needed as reference?
   F:=BaseRing(form);
   e:=QuoInt(Degree(F),2);
   MA:=MatrixAlgebra(F,Length(x));

@@ -247,7 +247,7 @@ local V,W,a,b,m;
 end;
 
 SpUnipotentCentraliserOrder_Odd@:=function(T,VBeta,q)
-local a,dim,m,s;
+local a,dim,m,s; # TODO: T needed as reference?
   s:=MultisetToSequence(T);
   m:=List(Set(s),x->[x,Size(Filtered(s,y->y=x))]);
   T:=SpConvertT@(T);
@@ -310,7 +310,7 @@ end;
 
 #   centraliser structure for element determined by T
 CentraliserStructure_Even@:=function(type,T,q)
-local A,L,M,Minus,S,T3,V,W,a,delta,i,name,power,sign,t;
+local A,L,M,Minus,S,T3,V,W,a,delta,i,name,power,sign,t; # TODO: T needed as reference?
   W:=Concatenation(T[1],T[3]);
   V:=Concatenation(T[2],T[4]);
   Sort(V); # actually TILDEV!!! TODO
