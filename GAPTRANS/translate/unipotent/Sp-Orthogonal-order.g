@@ -42,7 +42,7 @@ local C,M,V,W,a,beta,d,epsilon,ord,order,type,values_V;
   V:=T[2];
   V:=List(V,x->2*x+1);
   values_V:=List(Set(V),v->v);
-  Sort(TILDEvalues_V);
+  Sort(values_V); # actually TILDEvalues_V TODO!
   for a in values_V do
     beta:=List(Filtered(VBeta,b->b[1]=a),b->b[2]);
     M:=DiagonalMat(GF(q),beta);
@@ -57,9 +57,9 @@ local C,M,V,W,a,beta,d,epsilon,ord,order,type,values_V;
         fi;
         # rewritten select statement
         if type="plus" then
-          ord:=Size(GOPlus(Length(M),q));
+          ord:=Size(GO(1,Length(M),q));
         else
-          ord:=Size(GOMinus(Length(M),q));
+          ord:=Size(GO(-1,Length(M),q));
         fi;
       else
         ord:=Size(GO(Length(M),q));
@@ -76,7 +76,7 @@ GOCentraliserDimension_Odd@:=function(m)
 local a,b,c,d,dim,i,mult,x;
   dim:=List([1..Size(m)],i->m[i][1]);
   mult:=List([1..Size(m)],i->m[i][2]);
-  ParallelSort(TILDEdim,TILDEmult);
+  ParallelSort(dim,mult); # actually TILDEdim and TILDEmult!!! TODO
   a:=List(Filtered([1..Size(m)],i->IsOddInt(dim[i])),i->(dim[i]-1)*mult[i]^2);
   # rewritten select statement
   if Size(a) > 0 then
@@ -120,10 +120,10 @@ local V,W,a,b,m;
       W:=Concatenation(W,List([1..QuoInt(m,2)],i->a));
     fi;
   od;
-  Sort(TILDEV);
-  Reversed(TILDEV);
-  Sort(TILDEW);
-  Reversed(TILDEW);
+  Sort(V); # actually TILDEV!!! TODO
+  Reversed(V); # actually TILDEV!!! TODO
+  Sort(W); # actually TILDEW!!! TODO
+  Reversed(W); # actually TILDEW!!! TODO
   return [W,V];
 end;
 
@@ -161,7 +161,7 @@ local M,V,W,a,beta,d,epsilon,ord,order,type,values_V;
   od;
   V:=T[2];
   values_V:=List(Set(V),v->v);
-  Sort(TILDEvalues_V);
+  Sort(values_V); # actually values_V!!! TODO
   for a in values_V do
     beta:=List(Filtered(VBeta,b->b[1]=2*a),b->b[2]);
     M:=DiagonalMat(GF(q),beta);
@@ -178,9 +178,9 @@ local M,V,W,a,beta,d,epsilon,ord,order,type,values_V;
         fi;
         # rewritten select statement
         if type="plus" then
-          ord:=Size(GOPlus(Length(M),q));
+          ord:=Size(GO(1,Length(M),q));
         else
-          ord:=Size(GOMinus(Length(M),q));
+          ord:=Size(GO(-1,Length(M),q));
         fi;
       else
         ord:=Size(GO(Length(M),q));
@@ -196,7 +196,7 @@ SpCentraliserDimension_Odd@:=function(m)
 local a,b,c,d,dim,i,mult,x;
   dim:=List([1..Size(m)],i->m[i][1]);
   mult:=List([1..Size(m)],i->m[i][2]);
-  ParallelSort(TILDEdim,TILDEmult);
+  ParallelSort(dim,mult); # actually TILDEdim and TILDEmult!!! TODO
   a:=List(Filtered([1..Size(m)],i->IsOddInt(dim[i])),i->(dim[i]-1)*mult[i]^2);
   # rewritten select statement
   if Size(a) > 0 then
@@ -241,13 +241,13 @@ local V,W,a,b,m;
       W:=Concatenation(W,List([1..QuoInt(m,2)],i->QuoInt(a,2)));
     fi;
   od;
-  Sort(TILDEV);
-  Sort(TILDEW);
+  Sort(V); # actually TILDEV!!! TODO
+  Sort(W); # actually TILDEW!!! TODO
   return [W,V];
 end;
 
 SpUnipotentCentraliserOrder_Odd@:=function(T,VBeta,q)
-local T,a,dim,m,s;
+local a,dim,m,s;
   s:=MultisetToSequence(T);
   m:=List(Set(s),x->[x,Size(Filtered(s,y->y=x))]);
   T:=SpConvertT@(T);
@@ -260,8 +260,8 @@ end;
 CentraliserDimension_Even@:=function(type,T)
 local Chi,V,W,d,dim,i,pos,value;
   W:=Concatenation(T[1],T[1],T[3],T[3]);
-  Sort(TILDEW);
-  Reversed(TILDEW);
+  Sort(W); # actually TILDEW!!! TODO
+  Reversed(W); # actually TILDEW!!! TODO
   V:=Concatenation(T[2],T[4]);
   V:=List(V,v->2*v);
   dim:=0;
@@ -299,9 +299,9 @@ local Chi,V,W,d,dim,i,pos,value;
   od;
   V:=Concatenation(V,W);
   Assert(1,Size(Chi)=Size(V));
-  ParallelSort(TILDEV,TILDEChi);
-  Reversed(TILDEV);
-  Reversed(TILDEChi);
+  ParallelSort(V,Chi); # actually TILDEV....!!! TODO
+  Reversed(V); # actually TILDEV!!! TODO
+  Reversed(Chi); # actually TILDEChi!!! TODO
   dim:=Sum(List([1..Size(V)],i->i*V[i]-Chi[i]));
   return rec(val1:=dim,
     val2:=V,
@@ -310,10 +310,10 @@ end;
 
 #   centraliser structure for element determined by T
 CentraliserStructure_Even@:=function(type,T,q)
-local A,L,M,Minus,S,T,T3,V,W,a,delta,i,name,power,sign,t;
+local A,L,M,Minus,S,T3,V,W,a,delta,i,name,power,sign,t;
   W:=Concatenation(T[1],T[3]);
   V:=Concatenation(T[2],T[4]);
-  Sort(TILDEV);
+  Sort(V); # actually TILDEV!!! TODO
   M:=Multiset(W);
   A:=List(Filtered(Set(M),s->IsEvenInt(s)),s->Multiplicity(M,s));
   L:=List( # [*-list:
@@ -407,9 +407,9 @@ local ord,order,t,tup;
     if tup[1]=19 then
       ord:=tup[2];
     elif tup[1]="O-" then
-      ord:=Size(GOMinus(2*tup[2],tup[3]));
+      ord:=Size(GO(-1,2*tup[2],tup[3]));
     elif tup[1]="O+" then
-      ord:=Size(GOPlus(2*tup[2],tup[3]));
+      ord:=Size(GO(1,2*tup[2],tup[3]));
     else
       ord:=ChevalleyGroupOrder(tup[1],tup[2],tup[3]);
     fi;
@@ -506,9 +506,9 @@ local S,dim,ord,order,t,tup;
     if tup[1]=19 then
       ord:=tup[2];
     elif tup[1]="O-" then
-      ord:=Size(GOMinus(2*tup[2],tup[3]));
+      ord:=Size(GO(-1,2*tup[2],tup[3]));
     elif tup[1]="O+" then
-      ord:=Size(GOPlus(2*tup[2],tup[3]));
+      ord:=Size(GO(1,2*tup[2],tup[3]));
     else
       ord:=ChevalleyGroupOrder(tup[1],tup[2],tup[3]);
     fi;

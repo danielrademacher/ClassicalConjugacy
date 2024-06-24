@@ -36,11 +36,12 @@ return PrimitiveElement(K);
 end;
 
 ChooseAlpha@:=function(q)
-local P,x;
+local P,x,alpha;
   P:=PolynomialRing(GF(q));
   # Implicit generator Assg from previous line.
   x:=P.1;
-  Assert(1,alpha:=ForAny(GF(q),alpha->IsIrreducible(x^2+x+alpha)));
+  alpha:=ForAny(GF(q),alpha->IsIrreducible(x^2+x+alpha));
+  Assert(1,alpha);
   return alpha;
 end;
 
@@ -54,7 +55,7 @@ local C,L,varX,Y,i,p;
   return y[1]-x[1];
   end;
 
-  Sort(TILDEm,C,TILDEp);
+  Sort(m,C,p); # tilde missing
   p:=Eltseq(p);
   L:=[];
   for i in [1..Size(p)] do
@@ -66,7 +67,7 @@ local C,L,varX,Y,i,p;
 end;
 
 CayleyTransform@:=function(u)
-local F,MA,d,u;
+local F,MA,d;
   d:=Length(u);
   F:=BaseRing(u);
   MA:=MatrixAlgebra(F,d);
@@ -75,9 +76,7 @@ local F,MA,d,u;
 end;
 
 MyCommutatorSpace@:=function(V,U,gens)
-return SubStructure(V,Concatenation(List(Basis(U),
-    v->List(gens,
-      g->v-v*g)));
+    return SubStructure(V,Concatenation(List(Basis(U), v->List(gens,g->v-v*g))));
 end;
 
 CentralisedSpace@:=function(g)
@@ -86,7 +85,7 @@ local A,F,G,N,a;
   F:=CoefficientRing(G);
   A:=MatrixAlgebra(F,Degree(G));
   a:=g*FORCEOne(A);
-  N:=NullSpace(a-Identity(A));
+  N:=NullspaceMat(a-Identity(A));
   #   vprint Except: "Nullspace has dimension ", Dimension (N);
   return N;
 end;
@@ -102,7 +101,7 @@ local F,L,W,d,r;
   L:=List(Basis(W),w->Eltseq(w));
   W:=Concatenation(List([1..d],j->List([1..r],i->L[i][j])))
    *FORCEOne(KMatrixSpace(F,d,r));
-  return Intersection(NullSpace(Form*W),Space);
+  return Intersection(NullspaceMat(Form*W),Space);
 end;
 
 #   perp space for S
@@ -116,7 +115,7 @@ local K,L,N,V,W,d,r;
   #   if r eq 0 then return sub<V| >; end if;
   W:=Concatenation(List([1..d],j->List([1..r],i->L[i][j])))
    *FORCEOne(KMatrixSpace(K,d,r));
-  N:=NullSpace(form*W);
+  N:=NullspaceMat(form*W);
   N:=SubStructure(V,List([1..DimensionOfMatrixGroup(N)],i->N.i));
   return N;
 end;
@@ -152,7 +151,7 @@ local F,G,d;
 end;
 
 FixesUnitaryForm@:=function(x,form)
-local F,MA,e,x;
+local F,MA,e;
   F:=BaseRing(form);
   e:=QuoInt(Degree(F),2);
   MA:=MatrixAlgebra(F,Length(x));

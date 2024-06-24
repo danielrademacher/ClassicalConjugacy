@@ -1,4 +1,5 @@
 #ENTER_NAMESPACE(Classiconj)
+Read("Placeholderfunctions.g");
 Read("semisimple/card.g");
 Read("unipotent/Sp-Orthogonal-order.g");
 Read("unipotent/util.g");

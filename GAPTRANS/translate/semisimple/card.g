@@ -11,7 +11,7 @@ DeclareGlobalFunction("CardinalityOfClassicalGroup@");
 #   order of classical group
 InstallGlobalFunction(CardinalityOfClassicalGroup@,
 function(type,n,q)
-local C,_,e,forgetvar1,i,m,p,type;
+local C,_,e,forgetvar1,i,m,p;
   # =v= MULTIASSIGN =v=
   e:=IsPrimePower(q);
   forgetvar1:=e.val1;
