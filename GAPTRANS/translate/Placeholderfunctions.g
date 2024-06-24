@@ -100,3 +100,75 @@ end;
 FrobeniusImage := function(x,e)
 
 end;
+
+XGCD := function(x,e)
+
+end;
+
+Generic := function(G)
+
+end;
+
+Generators := function(G)
+    return GeneratorsOfGroup(G);
+end;
+
+FactoredOrder := function(G)
+
+end;
+
+IntegerRing := function(q)
+
+end;
+
+IsDivisibleBy := function(a,b)
+
+end;
+
+ExtStructure := function(F,g)
+
+end;
+
+IsSymplecticGroup := function(G)
+
+end;
+
+IsUnitaryGroup := function(G)
+
+end;
+
+IsOrthogonalGroup := function(G)
+
+end;
+
+GroupType := function(G)
+
+end;
+
+ReciprocalPolynomial := function(G)
+
+end;
+
+WriteMatrixOverSmallerField := function(A,F)
+
+end;
+
+Ngens := function(G)
+    return Size(GeneratorsOfGroup(G));
+end;
+
+StandardQuadraticForm := function(n,F)
+
+end;
+
+StandardSymmetricForm := function(n,F)
+
+end;
+
+TransformForm := function(n,F)
+
+end;
+
+UnipotentCentraliserOrder := function(type,G,g,list)
+
+end;

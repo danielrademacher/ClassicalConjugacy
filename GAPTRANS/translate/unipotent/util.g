@@ -3,7 +3,7 @@
 
 #  Global Variables used: BaseRing, Basis, CoefficientRing, Degree,
 #  Determinant, DiagonalJoin, Dimension, Eltseq, FrobeniusImage, GF, Generic,
-#  Identity, IsIrreducible, KMatrixSpace, Matrix, MatrixAlgebra, Ncols, Ngens,
+#  Identity, IsIrreducible, KMatrixSpace, Matrix, MatrixAlgebra, NumberColumns, Ngens,
 #  NormaliseQuadForm, Nrows, NullSpace, NumberOfColumns, NumberOfRows, Parent,
 #  PolynomialRing, PrimitiveElement, Sort, SpinorNorm, Transpose, VectorSpace,
 #  XGCD, ZeroMatrix
@@ -163,7 +163,7 @@ end;
 NormaliseQuadForm@:=function(form)
 local i,j,n,newForm;
   n:=Length(form);
-  Assert(1,NumberOfColumns(form)=n);
+  Assert(1,NumberColumns(form)=n);
   newForm:=ZeroMatrix(CoefficientRing(form),n,n);
   for i in [1..n] do
     for j in [i..n] do
@@ -198,7 +198,7 @@ end;
 MyInsert@:=function(M,N,a,b)
 local i,j;
   for i in [1..Length(N)] do
-    for j in [1..Ncols(N)] do
+    for j in [1..NumberColumns(N)] do
       M[a[i]][b[j]]:=N[i][j];
     od;
   od;
@@ -223,13 +223,12 @@ local H,K,a,g,n;
   n:=a.val1;
   a:=a.val2;
   # =^= MULTIASSIGN =^=
-  g:=Product(List([1..Ngens(G)],i->G.i^a[i]));
+  g:=Product(List([1..Size(GeneratorsOfGroup(G))],i->G.i^a[i]));
   #   generators of kernel as normal subgroup
-  H:=List([1..Ngens(G)],i->G.i*g^(QuoInt(-image[i],n)));
+  H:=List([1..Size(GeneratorsOfGroup(G))],i->G.i*g^(QuoInt(-image[i],n)));
   #   add in conjugates to generate kernel as subgroup
   K:=Concatenation([g^(QuoInt(Size(C),n))],Concatenation(List([0..Size(C)-1],
-    u->List([1..Size(H)],
-      i->H[i]^(g^u))));
+    u->List([1..Size(H)], i->H[i]^(g^u)))));
   return SubStructure(Generic(G),K);
 end;
 

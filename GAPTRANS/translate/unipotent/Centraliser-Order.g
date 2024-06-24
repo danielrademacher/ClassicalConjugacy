@@ -172,7 +172,6 @@ local Array,F,JF,L,P,T,W,_,c,card,e,exp,forgetvar1,forgetvar2,i,j,p,q,split;
   return card;
 end);
 
-InstallGlobalFunction(UnipotentCentralizerOrder@,
-UnipotentCentraliserOrder@);
+DeclareSynonym(UnipotentCentralizerOrder,UnipotentCentraliserOrder); #TODO: actually we have DeclareSynonym(UnipotentCentralizerOrder@,UnipotentCentraliserOrder@);
 
 
