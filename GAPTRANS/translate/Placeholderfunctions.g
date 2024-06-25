@@ -1,238 +1,110 @@
-IsPrimePower := function(q)
-   # TODO
-   
-end;
-
-
-SequenceToFactorization := function(list)
-
-end;
-
-
-ChevalleyGroup := function(a,b,c)
-
-end;
-
-
-IsSquare := function(a)
-
-
-end;
-
-MyUnipotentClassLabel := function(G,g)
-
-end;
-
-
-WeightsToLabel := function(w)
-
-end;
-
-
-BaseRing := function(w)
-
-end;
-
-IsUnipotent := function(a)
-
-end;
-
-JordanForm := function(g)
-
-end;
-
-InternalUnipotentCentralizer := function(G,g)
-
-end;
-
-MatrixByEntries := function(a,b,c,d)
-
-end;
-
-FORCEOne := function(R)
-
-end;
-
-SetToSequence := function(set)
-
-end;
-
-ParallelSort := function(A,B)
-
-end;
-
-MultisetToSequence := function(T)
-
-end;
-
-ChevalleyGroupOrder := function(type,d,q)
-
-end;
-
-IsIntegral := function(a)
-
-end;
-
-Multiset := function(set)
-
-end;
-
-Abs := function(v)
-
-end;
-
-Eltseq := function(p)
-
-end;
-
-SubStructure := function(V,list)
-
-end;
-
-CoefficientRing := function(G)
-
-end;
-
-KMatrixSpace := function(F,d,r)
-
-end;
-
-FrobeniusImage := function(x,e)
-
-end;
-
-XGCD := function(x,e)
-
-end;
-
-Generic := function(G)
-
-end;
-
+IsPrimePower := function(q) end;
+SequenceToFactorization := function(list) end;
+ChevalleyGroup := function(a,b,c) end;
+IsSquare := function(a) end;
+MyUnipotentClassLabel := function(G,g) end;
+WeightsToLabel := function(w) end;
+BaseRing := function(w) end;
+IsUnipotent := function(a) end;
+JordanForm := function(g) end;
+InternalUnipotentCentralizer := function(G,g) end;
+MatrixByEntries := function(a,b,c,d) end;
+FORCEOne := function(R) end;
+SetToSequence := function(set) end;
+ParallelSort := function(A,B) end;
+MultisetToSequence := function(T) end;
+ChevalleyGroupOrder := function(type,d,q) end;
+IsIntegral := function(a) end;
+Multiset := function(set) end;
+Abs := function(v) end;
+Eltseq := function(p) end;
+SubStructure := function(V,list) end;
+CoefficientRing := function(G) end;
+KMatrixSpace := function(F,d,r) end;
+FrobeniusImage := function(x,e) end;
+XGCD := function(x,e) end;
+Generic := function(G) end;
 Generators := function(G)
     return GeneratorsOfGroup(G);
 end;
-
-FactoredOrder := function(G)
-
-end;
-
-IntegerRing := function(q)
-
-end;
-
-IsDivisibleBy := function(a,b)
-
-end;
-
-ExtStructure := function(F,g)
-
-end;
-
-IsSymplecticGroup := function(G)
-
-end;
-
-IsUnitaryGroup := function(G)
-
-end;
-
-IsOrthogonalGroup := function(G)
-
-end;
-
-GroupType := function(G)
-
-end;
-
-ReciprocalPolynomial := function(G)
-
-end;
-
-WriteMatrixOverSmallerField := function(A,F)
-
-end;
-
+FactoredOrder := function(G) end;
+IntegerRing := function(q) end;
+IsDivisibleBy := function(a,b) end;
+ExtStructure := function(F,g) end;
+IsSymplecticGroup := function(G) end;
+IsUnitaryGroup := function(G) end;
+IsOrthogonalGroup := function(G) end;
+ReciprocalPolynomial := function(G) end;
+WriteMatrixOverSmallerField := function(A,F) end;
 Ngens := function(G)
     return Size(GeneratorsOfGroup(G));
 end;
-
-StandardQuadraticForm := function(n,F)
-
-end;
-
-StandardSymmetricForm := function(n,F)
-
-end;
-
-TransformForm := function(n,F)
-
-end;
-
-UnipotentCentraliserOrder := function(type,G,g,list)
-
-end;
-
-InsertBlock := function(A,b,c,d)
-
-end;
-
-Submatrix := function(A,i,j,k,l)
-
-end;
-
-Max := function(a,b)
-
-end;
-
-Min := function(a,b)
-
-end;
-
-ScalarMat := function(A,n,m,F)
-
-end;
-
-QuadraticSpace := function(Q)
-
-end;
-
-GModule := function(G)
-
-end;
-
-SemilinearDual := function(M,mu)
-
-end;
-
-AHom := function(M,D)
-
-end;
-
-ConjugateTranspose := function(x, mu)
-
-end;
-
-UpperTriangularMatrix := function(F,d)
-
-end;
-
-ConstantCoefficient := function(f)
-
-end;
-
-ChangeClassLabel := function(l,f,pr)
-
-end;
-
-StandardAlternatingForm := function(n,F)
-
-end;
-
-StandardHermitianForm := function(n,F)
-
-end;
-
-GenIsConjugate := function(G,x,list)
-
-end;
+StandardQuadraticForm := function(n,F) end;
+StandardSymmetricForm := function(n,F) end;
+TransformForm := function(n,F) end;
+UnipotentCentraliserOrder := function(type,G,g,list) end;
+InsertBlock := function(A,b,c,d) end;
+Submatrix := function(A,i,j,k,l) end;
+Max := function(a,b) end;
+Min := function(a,b) end;
+ScalarMat := function(A,n,m,F) end;
+QuadraticSpace := function(Q) end;
+GModule := function(G) end;
+SemilinearDual := function(M,mu) end;
+AHom := function(M,D) end;
+ConjugateTranspose := function(x, mu) end;
+UpperTriangularMatrix := function(F,d) end;
+ConstantCoefficient := function(f) end;
+ChangeClassLabel := function(l,f,pr) end;
+StandardAlternatingForm := function(n,F) end;
+StandardHermitianForm := function(n,F) end;
+GenIsConjugate := function(G,x,list) end;
+Multiplicity := function(a, b) end;
+FactoredOrder := function(a) end;
+SymmetricMatrix := function(a, b) end;
+Diagonal := function(a) end;
+FormsReducibleCase := function(a, b) end;
+QuadraticForm := function(a) end;
+UnitaryForm := function(a) end;
+InvariantQuadraticForms := function(a) end;
+StdEm := function(a, b) end;
+ScalarMat := function(a, b, c) end;
+InternalUnipotentCentralizer := function(a, b) end;
+GOPlus := function(a, b) end;
+GOMinus := function(a, b) end;
+NGens := function(a) end;
+SpinN := function(a, b, c) end;
+SSIsConjugate := function(a, b) end;
+PGOPlus := function(a, b) end;
+PSOPlus := function(a, b) end;
+PSOMinus := function(a, b) end;
+POmegaPlus := function(a, b) end;
+POmegaMinus := function(a, b) end;
+MaxDeterminant := function(a, b) end;
+GOElement := function(a, b) end;
+SOElement := function(a, b) end;
+SLCentralizer := function(a, b) end;
+GroupType := function(a) end;
+Type := function(a) end;
+ClassicalGroupType := function(a) end;
+ChangeClassLabel := function(a, b, c) end;
+UnipotentLabel := function(a, b) end;
+GenIsConjugate := function(a, b, c) end;
+WittIndex := function(V) end;
+SymplecticForm := function(G) end;
+FormsReducibleCase := function(G, type) end;
+ScalarMat := function(varE, arg1, arg2) end;
+SpinN := function(arg1, Form, p) end;
+QuadraticSpace := function(B1) end;
+InternalUnipotentCentralizer := function(MyH, arg) end;
+FORCEOne := function(arg) end;
+InternalUnipotentIsConjugate := function(G, g, arg) end;
+MultiplicativeGroup := function(GF) end;
+OrthogonalForm := function(G) end;
+PGOMinus := function(n, q) end;
+ChangeClassLabel := function(l, F, pr) end;
+Prune := function(c) end;
+IndicateType := function(B) end;
+IsSemisimple := function(g) end;
+Rep := function(T) end;
+GroupGeneralMappingByFunction := function(a,b,c) end;

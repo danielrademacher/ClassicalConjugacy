@@ -20,7 +20,7 @@ local F,flag,l,label,two,type;
   fi;
   if type=false then
     # =v= MULTIASSIGN =v=
-    type:=GroupType@(G);
+    type:=GroupType(G); # there was an @!!! TODO
     flag:=type.val1;
     type:=type.val2;
     # =^= MULTIASSIGN =^=
@@ -77,7 +77,7 @@ local Valid,flag,label,type;
   fi;
   #   what groups do we accept?
   # =v= MULTIASSIGN =v=
-  type:=GroupType@(G);
+  type:=GroupType(G); # there was an @!!! TODO
   flag:=type.val1;
   type:=type.val2;
   # =^= MULTIASSIGN =^=
@@ -97,7 +97,7 @@ end;
 #   return index of conjugacy class containing element g
 UnipotentClassIndex@:=function(G,g,U,L,type,F)
 #  /out: two cases coincide
-local found,index,j,label,two,type;
+local found,index,j,label,two,Tup; # Tup is a type in magma!!! TODO
   if type in ["GL","SL"] and Size(F)=2 then
     # rewritten select statement
     if Type(Rep(L))=Tup then
@@ -118,10 +118,10 @@ local found,index,j,label,two,type;
       #   "SU must decide conjugacy";
       #   "index is ", #index;
       for j in index do
-        if InternalUnipotentIsConjugate@(G,g,U[j][3]) then
+        if InternalUnipotentIsConjugate(G,g,U[j][3]) then # there was an @!!! TODO
           two:=L[j][2];
           found:=true;
-          break j;
+          break;
         fi;
       od;
       Assert(1,found);
@@ -139,10 +139,10 @@ local found,index,j,label,two,type;
       #   "Omega / SO here must decide conjugacy", type;
       #   "index is ", #index;
       for j in index do
-        if InternalUnipotentIsConjugate@(G,g,U[j][3]) then
+        if InternalUnipotentIsConjugate(G,g,U[j][3]) then # there was an @!!! TODO
           two:=L[j][2];
           found:=true;
-          break j;
+          break;
         fi;
       od;
       Assert(1,found);
@@ -197,7 +197,7 @@ local F,ValidTypes@,flag,type;
     G.ClassicalType:=type;
   else
     # =v= MULTIASSIGN =v=
-    type:=GroupType@(G);
+    type:=GroupType(G); # there was an @!!! TODO
     flag:=type.val1;
     type:=type.val2;
     # =^= MULTIASSIGN =^=

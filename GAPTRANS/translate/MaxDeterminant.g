@@ -9,9 +9,9 @@
 
 #  Defines: ElementOfMaxDeterminant, ElementOfSpinorNorm1
 
-DeclareGlobalFunction("ElementOfMaxDeterminant@");
+DeclareGlobalFunction("ElementOfMaxDeterminant");
 
-DeclareGlobalFunction("ElementOfSpinorNorm1@");
+DeclareGlobalFunction("ElementOfSpinorNorm1");
 
 #   This code is needed for GenCentralizer.m.
 #   We assume that input x is unipotent with a unique el.div.
@@ -27,7 +27,7 @@ DeclareGlobalFunction("ElementOfSpinorNorm1@");
 #   return an element of the centralizer of x in G with determinant of maximal
 #  order;
 #   returns also GCD, which saves later computations
-InstallGlobalFunction(ElementOfMaxDeterminant@,
+InstallGlobalFunction(ElementOfMaxDeterminant,  # there was an @!!! TODO
 function(x,B,m,type)
 local A,C,F,GCD,MyH,R,SetDet,SetGen,SetLog,W,_,d,forgetvar1,i,j,n,pos,q,v,w,y;
   Assert(1,IsUnipotent(x));
@@ -65,7 +65,7 @@ local A,C,F,GCD,MyH,R,SetDet,SetGen,SetLog,W,_,d,forgetvar1,i,j,n,pos,q,v,w,y;
     R:=(Integers mod (q+1));
     MyH:=GU(n,F);
     MyH.ClassicalType:="GU";
-    C:=InternalUnipotentCentralizer@(MyH,(m^-1*x*m)*FORCEOne(Generic(MyH)));
+    C:=InternalUnipotentCentralizer(MyH,(m^-1*x*m)*FORCEOne(Generic(MyH))); # there was an @!!! TODO
     w:=PrimitiveElement(F);
     SetGen:=SetToSequence(Generators(C));
     d:=Size(SetGen);
@@ -86,11 +86,11 @@ local A,C,F,GCD,MyH,R,SetDet,SetGen,SetLog,W,_,d,forgetvar1,i,j,n,pos,q,v,w,y;
     if type="orthogonalplus" then
       MyH:=GOPlus(n,q);
       MyH.ClassicalType:="GO+";
-      C:=InternalUnipotentCentralizer@(MyH,(m^-1*x*m)*FORCEOne(GL(n,q)));
+      C:=InternalUnipotentCentralizer(MyH,(m^-1*x*m)*FORCEOne(GL(n,q))); # there was an @!!! TODO
     else
       MyH:=GOMinus(n,q);
       MyH.ClassicalType:="GO-";
-      C:=InternalUnipotentCentralizer@(MyH,(m^-1*x*m)*FORCEOne(GL(n,q)));
+      C:=InternalUnipotentCentralizer(MyH,(m^-1*x*m)*FORCEOne(GL(n,q))); # there was an @!!! TODO
     fi;
     i:=First([1..Ngens(C)],i->DeterminantMat(C.i)=-1);
     if i<>fail then
@@ -115,9 +115,9 @@ end);
 #   If C is not [], then it is the centralizer of x in GO.
 #   If m is not [], then it is result of TransformForm (x, type)
 #   so we avoid recomputing it
-InstallGlobalFunction(ElementOfSpinorNorm1@,
+InstallGlobalFunction(ElementOfSpinorNorm1,  # there was an @!!! TODO
 function(x,B)
-local C,Cent,F,Form,G,varX,det,done,i,m,n,p,s,special,type,y,z;
+local C,Cent,F,Form,G,varX,det,done,i,m,n,p,s,special,type,y,z,index, SeqEnum; # SeqEnum is a type in magma, TODO
   special:=ValueOption("special");
   if special=fail then
     special:=false;
@@ -134,7 +134,7 @@ local C,Cent,F,Form,G,varX,det,done,i,m,n,p,s,special,type,y,z;
   F:=BaseRing(x);
   p:=Characteristic(F);
   n:=Length(x);
-  type:=IndicateType@(B);
+  type:=IndicateType(B);  # there was an @!!! TODO
   if Type(m)=SeqEnum then
     m:=TransformForm(B,type:Restore:=false);
   fi;
@@ -177,12 +177,13 @@ local C,Cent,F,Form,G,varX,det,done,i,m,n,p,s,special,type,y,z;
     if n=1 then
       Cent:=SubStructure(GL(1,F),-IdentityMatrix(F,1));
     else
-      Cent:=InternalUnipotentCentralizer@(G,varX*FORCEOne(Generic(G)));
+      Cent:=InternalUnipotentCentralizer(G,varX*FORCEOne(Generic(G)));  # there was an @!!! TODO
     fi;
   else
     Cent:=C;
   fi;
-  done:=index:=ForAny([1..Ngens(Cent)],i->SpinN@(Cent.i,Form,p)=1);
+  index := First([1..Ngens(Cent)],i->SpinN(Cent.i,Form,p)=1); # modified # there was an @!!! TODO
+  done := index <> fail;
   if done then
     y:=Cent.index;
   fi;
@@ -192,7 +193,8 @@ local C,Cent,F,Form,G,varX,det,done,i,m,n,p,s,special,type,y,z;
       return rec(val1:=y,
         val2:=false);
     fi;
-    done:=i:=ForAny([1..Ngens(Cent)],i->DeterminantMat(Cent.i)=-1);
+    i := First([1..Ngens(Cent)],i->DeterminantMat(Cent.i)=-1); # modified
+    done := i <> fail;
     if done then
       y:=Cent.i;
     fi;
@@ -205,22 +207,22 @@ local C,Cent,F,Form,G,varX,det,done,i,m,n,p,s,special,type,y,z;
       if DeterminantMat(Cent.i)=-1 then
         y:=y*Cent.i;
         done:=true;
-        break i;
+        break;
       fi;
     od;
     if not done then
       for i in [index+1..Ngens(Cent)] do
         z:=Cent.i;
         det:=DeterminantMat(z);
-        s:=SpinN@(z,Form,p);
+        s:=SpinN(z,Form,p);  # there was an @!!! TODO
         if det=-1 and s=0 then
           y:=y*z;
           done:=true;
-          break i;
+          break;
         elif det=1 and s=1 then
           y:=z;
           done:=true;
-          break i;
+          break;
         fi;
       od;
     fi;

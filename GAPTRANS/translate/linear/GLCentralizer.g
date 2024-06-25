@@ -20,7 +20,7 @@ InstallGlobalFunction(GLCentralizer@,
 function(G,x)
 #  /out:need StdEm
 local 
-   B,C,varE,F,Gen,Gr,H,Set,_,a,b,c,forgetvar1,forgetvar3,gl,h,i,j,k,li,lj,m,mu,
+   B,C,varE,F,Gen,Gr,H,lvarSet,_,a,b,c,forgetvar1,forgetvar3,gl,h,i,j,k,li,lj,m,mu,
    n,order,pos,r,u;
   gl:=Generic(G);
   F:=CoefficientRing(G);
@@ -45,8 +45,8 @@ local
     for k in [1..Ngens(Gr)] do
       r:=BlockMatrix(m,m,Concatenation(List([1..m],
         l1->List([1..m],
-          l2->StdEm@(ScalarMat(varE,lvarSet[j][2],(Gr.k)[l1][l2]),F))));
-      UniteSet(Gen,InsertBlock(IdentityMatrix(F,n),r,pos+1,pos+1) # actually TildeGen!!! TODO
+          l2->StdEm(ScalarMat(varE,lvarSet[j][2],(Gr.k)[l1][l2]),F))))); # there was an @!!! TODO
+      UniteSet(Gen,InsertBlock(IdentityMatrix(F,n),r,pos+1,pos+1 )# actually TildeGen!!! TODO
        *FORCEOne(gl));
     od;
   od;

@@ -398,7 +398,7 @@ end);
 #   determine form and check that x is in G
 InstallGlobalFunction(DetermineForm@,
 function(G,x)
-local B,F,IsAbelian,IsOmega,Q,_,e,flag,forgetvar1,n,p,q,sgn,special,type;
+local B,F,lvarIsAbelian,IsOmega,Q,_,e,flag,forgetvar1,n,p,q,sgn,special,type;
   lvarIsAbelian:=false;
   F:=BaseRing(G);
   q:=Size(F);
@@ -443,7 +443,7 @@ local B,F,IsAbelian,IsOmega,Q,_,e,flag,forgetvar1,n,p,q,sgn,special,type;
     type:=MyClassicalType@(G);
     if not IsTrivial(G) and Degree(G)=2 and IsIrreducible(G)=false then
       # =v= MULTIASSIGN =v=
-      Q:=FormsReducibleCase@(G,type);
+      Q:=FormsReducibleCase(G,type); # there was an @, TODO
       flag:=Q.val1;
       Q:=Q.val2;
       # =^= MULTIASSIGN =^=

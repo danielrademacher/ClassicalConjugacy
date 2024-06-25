@@ -342,7 +342,7 @@ local
           suss:=suss^l;
           y:=BlockMatrix(d,d,Concatenation(List([1..d],
             j1->List([1..d],
-              j2->Sum(List([1..deg],k->C^(k-1)*Eltseq(suss[j1][j2],F)[k])))));
+              j2->Sum(List([1..deg],k->C^(k-1)*Eltseq(suss[j1][j2],F)[k]))))));
         fi;
         InsertBlock(Y,y,1,1); # actually TildeY!!! TODO
         Y:=d1^-1*Y*d1;
@@ -526,7 +526,7 @@ local
           y:=BlockMatrix(d,d,Concatenation(List([1..d],
             j1->List([1..d],
               j2->Sum(List([1..Degree(f)],k->C^(k-1)*Eltseq(suss[j1][j2],F)[k]))
-           )));
+           ))));
         fi;
         InsertBlock(Y,y,pos,pos); # actually TildeY!!! TODO
         Y:=d1^-1*Y*d1;

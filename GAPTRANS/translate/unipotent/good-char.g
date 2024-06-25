@@ -19,23 +19,23 @@
 
 DeclareGlobalFunction("GUUnipotentBlock@");
 
-SLUnipotentClassSize@:=function(G,g)
-return QuoInt(Size(G),Int(UnipotentCentraliserOrder@("SL",G,g,[])));
+SLUnipotentClassSize:=function(G,g)
+return QuoInt(Size(G),Int(UnipotentCentraliserOrder("SL",G,g,[]))); # there was an @!!! TODO
 end;
 
-SpUnipotentClassSize_Odd@:=function(G,T,VBeta,q)
-return QuoInt(Size(G),SpUnipotentCentraliserOrder@(T,VBeta,q));
+SpUnipotentClassSize_Odd:=function(G,T,VBeta,q)
+return QuoInt(Size(G),SpUnipotentCentraliserOrder(T,VBeta,q)); # there was an @!!! TODO
 end;
 
-SUUnipotentClassSize@:=function(type,G,g)
-return QuoInt(Size(G),Int(UnipotentCentraliserOrder@(type,G,g,[])));
+SUUnipotentClassSize:=function(type,G,g)
+return QuoInt(Size(G),Int(UnipotentCentraliserOrder(type,G,g,[]))); # there was an @!!! TODO
 end;
 
 #   unipotent reps for GL, SL, GU, SU in all characteristics;
 #   and for Sp in odd characteristic
 #   all integer sequences whose i-th entry is in the
 #   range [1..M[i] by 1] for i in [1..#M]
-BackTrack@:=function(M)
+BackTrack:=function(M)
 local IndexList,Solns,index,len,m,min,n,offset,original;
   if Set(M)=Set([1]) then
     return [M];
@@ -64,7 +64,7 @@ local IndexList,Solns,index,len,m,min,n,offset,original;
 end;
 
 #   building blocks
-MyJordanBlock@:=function(d,q,beta)
+MyJordanBlock:=function(d,q,beta)
 local A,M,i,sgn;
   sgn:=ValueOption("sgn");
   if sgn=fail then
@@ -83,7 +83,7 @@ end;
 
 #   given rank and field size, write down unipotent class reps
 #   as elements of corresponding SL (n, q)
-SLUnipotentReps@:=function(n,q)
+SLUnipotentReps:=function(n,q)
 local 
    A,B,C,F,G,L,M,MA,N,P,Q,Reps,S,T,beta,e,i,m,n1,parameters,phi,reps,s,size,t,
    tau,three,two,w;
@@ -107,7 +107,7 @@ local
     Q:=tau.val1;
     tau:=tau.val2;
     # =^= MULTIASSIGN =^=
-    reps:=List(Q,x->(x@@tau)@phi);
+    reps:=List(Q,x->Image(PreImage(tau,x)));
     Add(L,reps);
   od;
   parameters:=Concatenation((L));
@@ -127,19 +127,19 @@ local
       if t=n1 then
         m:=Multiplicity(s,n1);
         if m > 1 then
-          two:=MyJordanBlock@(n1,q,1);
+          two:=MyJordanBlock(n1,q,1); # there was an @!!! TODO
           A:=DirectSumMat(List([1..m-1],i->two));
         fi;
       else
         m:=Multiplicity(s,t);
-        three:=MyJordanBlock@(t,q,1);
+        three:=MyJordanBlock(t,q,1); # there was an @!!! TODO
         three:=DirectSumMat(List([1..m],i->three));
         B:=DirectSumMat(B,three);
       fi;
     od;
     reps:=L[i];
     for beta in reps do
-      C:=MyJordanBlock@(n1,q,beta);
+      C:=MyJordanBlock(n1,q,beta); # there was an @!!! TODO
       C:=DirectSumMat(C,A);
       C:=DirectSumMat(C,B);
       Add(Reps,[C,s]);
@@ -149,7 +149,7 @@ local
   Reps:=List(Reps,r->r[1]*FORCEOne(GL(n,q)));
   C:=[];
   for i in [1..Size(Reps)] do
-    size:=SLUnipotentClassSize@(G,Reps[i]);
+    size:=SLUnipotentClassSize(G,Reps[i]); # there was an @!!! TODO
     C[i]:=[Order(Reps[i]),size,Reps[i]];
   od;
   T:=List( # {@-list:
@@ -158,7 +158,7 @@ local
     val2:=T);
 end;
 
-GLUnipotentReps@:=function(n,q)
+GLUnipotentReps:=function(n,q)
 local C,Card,F,G,P,P1,Partition,T,Y,card,i,j,ord,p,pos;
   lvarPartition:=ValueOption("lvarPartition");
   if lvarPartition=fail then
@@ -186,7 +186,7 @@ local C,Card,F,G,P,P1,Partition,T,Y,card,i,j,ord,p,pos;
       od;
       pos:=pos+1;
     od;
-    card:=UnipotentCentraliserOrder@("GL",G,Y,Y:JF:=P1);
+    card:=UnipotentCentraliserOrder("GL",G,Y,Y:JF:=P1); # there was an @!!! TODO
     card:=Int((Card/card));
     Add(C,[ord,card,Y*FORCEOne(G)]);
     Add(T,Multiset(P1));
@@ -196,7 +196,7 @@ local C,Card,F,G,P,P1,Partition,T,Y,card,i,j,ord,p,pos;
     T,t->t));
 end;
 
-A_beta_even@:=function(k,q,beta,type)
+A_beta_even:=function(k,q,beta,type)
 local F,I,J,M,MA,R,i,j;
   # rewritten select statement
   if type="SU" then
@@ -221,7 +221,7 @@ local F,I,J,M,MA,R,i,j;
       od;
     od;
     InsertBlock(R,I,1,1); # actually TildeR!!! TODO
-    J:=MyJordanBlock@(k,Size(F),-1:sgn:=-1);
+    J:=MyJordanBlock(k,Size(F),-1:sgn:=-1); # there was an @!!! TODO
     InsertBlock(R,J,k+1,k+1); # actually TildeR!!! TODO
     for i in [1..k] do
       R[i][k+1]:=beta;
@@ -230,7 +230,7 @@ local F,I,J,M,MA,R,i,j;
   return R*FORCEOne(GL(2*k,F));
 end;
 
-A_beta_odd@:=function(k,q,gamma,delta,type)
+A_beta_odd:=function(k,q,gamma,delta,type)
 local F,I,J,M,MA,R,i,j;
   # rewritten select statement
   if type="SU" then
@@ -255,7 +255,7 @@ local F,I,J,M,MA,R,i,j;
       od;
     od;
     InsertBlock(R,I,1,1); # actually TildeR!!! TODO
-    J:=MyJordanBlock@(k,Size(F),-1:sgn:=-1);
+    J:=MyJordanBlock(k,Size(F),-1:sgn:=-1); # there was an @!!! TODO
     InsertBlock(R,J,k+2,k+2); # actually TildeR!!! TODO
     for i in [1..k] do
       R[i][k+1]:=1;
@@ -267,15 +267,15 @@ local F,I,J,M,MA,R,i,j;
   return R*FORCEOne(GL(2*k+1,F));
 end;
 
-A_beta@:=function(k,q,beta,gamma,delta,type)
+A_beta:=function(k,q,beta,gamma,delta,type)
 if IsEvenInt(k) then
-    return A_beta_even@(k,q,beta,type);
+    return A_beta_even(k,q,beta,type); # there was an @!!! TODO
   else
-    return A_beta_odd@(k,q,gamma,delta,type);
+    return A_beta_odd(k,q,gamma,delta,type); # there was an @!!! TODO
   fi;
 end;
 
-A_beta_even_form@:=function(k,q,type)
+A_beta_even_form:=function(k,q,type)
 local F,MA,e,form,i,sign;
   # rewritten select statement
   if type="SU" then
@@ -301,7 +301,7 @@ local F,MA,e,form,i,sign;
   return form;
 end;
 
-A_beta_odd_form@:=function(k,q,beta,type)
+A_beta_odd_form:=function(k,q,beta,type)
 local F,MA,e,form,i,sign;
   # rewritten select statement
   if type="SU" then
@@ -328,7 +328,7 @@ local F,MA,e,form,i,sign;
   return form;
 end;
 
-D_rep@:=function(n,q,alpha)
+D_rep:=function(n,q,alpha)
 local D,F,MA,f,lambda;
   F:=GF(q^2);
   # =v= MULTIASSIGN =v=
@@ -345,7 +345,7 @@ local D,F,MA,f,lambda;
 end;
 
 #   return element in standard copy of GU(n,F) with single Jordan block J_n
-InstallGlobalFunction(GUUnipotentBlock@,
+InstallGlobalFunction(GUUnipotentBlock,
 function(n,F)
 local Y,b,d,i,j,m,q,w;
   q:=RootInt(Size(F));
@@ -397,7 +397,7 @@ local Y,b,d,i,j,m,q,w;
 end);
 
 #   unipotent classes in GU(n, q)
-GUUnipotentReps@:=function(n,q)
+GUUnipotentReps:=function(n,q)
 local B,C,D,F,Forms,G,Orig,P,Partition,Reps,Rewrite,T,VectorForms,Y,i,m,p,size;
   Rewrite:=ValueOption("Rewrite");
   if Rewrite=fail then
@@ -422,7 +422,7 @@ local B,C,D,F,Forms,G,Orig,P,Partition,Reps,Rewrite,T,VectorForms,Y,i,m,p,size;
   fi;
   for p in P do
     Y:=DirectSumMat(List( # <-list:
-      p,i->GUUnipotentBlock@(i,F)));
+      p,i->GUUnipotentBlock(i,F)));
     B:=DirectSumMat(List( # <-list:
       p,i->VectorForms[i]));
     Add(Orig,Y*FORCEOne(G));
@@ -436,7 +436,7 @@ local B,C,D,F,Forms,G,Orig,P,Partition,Reps,Rewrite,T,VectorForms,Y,i,m,p,size;
   C:=[];
   D:=[];
   for i in [1..Size(Orig)] do
-    size:=SUUnipotentClassSize@("GU",GU(n,q),Orig[i]);
+    size:=SUUnipotentClassSize("GU",GU(n,q),Orig[i]);
     D[i]:=[Order(Orig[i]),size,Orig[i]];
     if Rewrite then
       C[i]:=[Order(Reps[i]),size,Reps[i]];
@@ -451,7 +451,7 @@ end;
 
 #   given type, rank and field size, write down unipotent class reps
 #   as elements of corresponding SU (n, q)
-SUUnipotentReps@:=function(n,q)
+SUUnipotentReps:=function(n,q)
 local 
    A,B,C,D,F,FixedRoot,Forms,G,JF,L,M,N,Orig,P,Params,Q,Reps,Rewrite,S,T,Verify,
    varZ,_,beta,conj,delta,e,forgetvar1,form,form_A,form_B,forms,i,k,m,nmr,one,
@@ -498,7 +498,7 @@ local
     Q:=tau.val1;
     tau:=tau.val2;
     # =^= MULTIASSIGN =^=
-    reps:=List(Q,x->(x@@tau)@phi);
+    reps:=List(Q,x->Image(phi, (PreImage(tau, x)))); # modified
     Add(L,reps);
   od;
   e:=QuoInt(Degree(F),2);
@@ -537,17 +537,17 @@ local
       m:=Multiplicity(s,t);
       k:=QuoInt(t,2);
       if IsEvenInt(t) then
-        one:=A_beta_even@(k,q,beta,type);
+        one:=A_beta_even(k,q,beta,type); # there was an @!!! TODO
         one:=DirectSumMat(List([1..m],i->one));
         A:=DirectSumMat(A,one);
-        one:=A_beta_even_form@(k,q,type);
+        one:=A_beta_even_form(k,q,type); # there was an @!!! TODO
         one:=DirectSumMat(List([1..m],i->one));
         form_A:=DirectSumMat(form_A,one);
       else
-        two:=A_beta_odd@(k,q,gamma,delta,type);
+        two:=A_beta_odd(k,q,gamma,delta,type); # there was an @!!! TODO
         two:=DirectSumMat(List([1..m],i->two));
         B:=DirectSumMat(B,two);
-        two:=A_beta_odd_form@(k,q,1,type);
+        two:=A_beta_odd_form(k,q,1,type); # there was an @!!! TODO
         two:=DirectSumMat(List([1..m],i->two));
         form_B:=DirectSumMat(form_B,two);
       fi;
@@ -557,7 +557,7 @@ local
     if Verify then
       Assert(1,varrep*form*TransposedMat(FrobeniusImage(varrep,e))=form);
     fi;
-    conj:=List(L[i],alpha->D_rep@(n,q,alpha));
+    conj:=List(L[i],alpha->D_rep(n,q,alpha)); # there was an @!!! TODO
     reps:=List(conj,c->varrep^c);
     Add(Orig,reps);
     forms:=List(conj,c->c^-1*form*TransposedMat(FrobeniusImage(c^-1,e)));
@@ -578,7 +578,7 @@ local
   C:=[];
   D:=[];
   for i in [1..Size(Orig)] do
-    size:=SUUnipotentClassSize@("SU",SU(n,q),Orig[i]);
+    size:=SUUnipotentClassSize("SU",SU(n,q),Orig[i]); # there was an @!!! TODO
     D[i]:=[Order(Orig[i]),size,Orig[i]];
     if Rewrite then
       C[i]:=[Order(Reps[i]),size,Reps[i]];
@@ -596,7 +596,7 @@ end;
 
 #   given type, rank and odd field size, write down unipotent class reps
 #   as elements of corresponding Sp (n, q)
-SpUnipotentReps@:=function(n,q)
+SpUnipotentReps:=function(n,q)
 #  /out: "*** Applies to odd characteristic only";
 local 
    A,A_val,B,C,C_form,D,F,Forms,G,L,List_T,M,Nmr,P,Params,Reps,Rewrite,S,T,varX,
@@ -626,7 +626,7 @@ local
   S:=T;
   List_T:=[];
   type:="Sp";
-  alpha:=NonSquare@(F);
+  alpha:=NonSquare(F); # there was an @!!! TODO
   Reps:=[];
   Forms:=[];
   original_reps:=[];
@@ -649,23 +649,23 @@ local
       if IsEvenInt(t) then
         one:=Zero(M);
         if m > 1 then
-          temp:=A_beta_even@(k,q,1,type);
+          temp:=A_beta_even(k,q,1,type); # there was an @!!! TODO
           temp:=DirectSumMat(List([1..m-1],i->temp));
           one:=DirectSumMat(one,temp);
         fi;
         A:=DirectSumMat(A,one);
         A_val:=Concatenation(A_val,List([1..(m-1)],i->[t,1]));
         if m > 1 then
-          one:=A_beta_even_form@(k,q,type);
+          one:=A_beta_even_form(k,q,type); # there was an @!!! TODO
           one:=DirectSumMat(List([1..m-1],i->one));
         fi;
         form_A:=DirectSumMat(form_A,one);
       else
-        two:=A_beta_even@(2*k+1,q,0,type);
+        two:=A_beta_even(2*k+1,q,0,type); # there was an @!!! TODO
         two:=DirectSumMat(List([1..QuoInt(m,2)],i->two));
         B:=DirectSumMat(B,two);
         A_val:=Concatenation(A_val,List([1..QuoInt(m,2)],i->[2*k+1,0]));
-        two:=A_beta_even_form@(2*k+1,q,type);
+        two:=A_beta_even_form(2*k+1,q,type); # there was an @!!! TODO
         two:=DirectSumMat(List([1..QuoInt(m,2)],i->two));
         form_B:=DirectSumMat(form_B,two);
       fi;
@@ -680,12 +680,12 @@ local
       else
         L:=[1];
       fi;
-      list:=BackTrack@(List([1..Size(even)],i->Size(L)));
+      list:=BackTrack(List([1..Size(even)],i->Size(L))); # there was an @!!! TODO
       varX:=List(Filtered(T,t->IsEvenInt(t))
-       ,t->List(L,beta->A_beta_even@(QuoInt(t,2),q,beta,type)));
+       ,t->List(L,beta->A_beta_even(QuoInt(t,2),q,beta,type))); # there was an @!!! TODO
       params:=List(Filtered(T,t->IsEvenInt(t)),t->List(L,beta->[t,beta]));
       Y:=List(Filtered(T,t->IsEvenInt(t))
-       ,t->List(L,beta->A_beta_even_form@(QuoInt(t,2),q,type)));
+       ,t->List(L,beta->A_beta_even_form(QuoInt(t,2),q,type))); # there was an @!!! TODO
       C:=List(list,l->DirectSumMat(List( # <-list:
         [1..Size(varX)],i->varX[i][l[i]])));
       params:=List(list,l->List([1..Size(varX)],i->params[i][l[i]]));
@@ -727,7 +727,7 @@ local
   D:=[];
   for i in [1..Size(original_reps)] do
     r:=original_reps[i];
-    size:=SpUnipotentClassSize_Odd@(G,T[i],Params[i],q);
+    size:=SpUnipotentClassSize_Odd(G,T[i],Params[i],q); # there was an @!!! TODO
     D[i]:=[Order(r),size,r];
     if Rewrite then
       C[i]:=[Order(r),size,Reps[i]];
