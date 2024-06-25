@@ -44,10 +44,10 @@ local c,d,i,y;
   for y in r do
     if y[1]=t-1 or y[1]=t+1 then
       if i > 0 and y[1]=c[1][1] then
-        Insert(c[1][2],1,y[2]);  # Changed from Insert(TILDEc[1][2],1,y[2]);
+        Insert(c[1][2],1,y[2]); # actually Tildec!!! TODO
       else
         i:=i+1;
-        Insert(c,1,[y[1],[y[2]]]);  # Changed from Insert(TILDEc,1,[y[1],[y[2]]]);
+        Insert(c,1,[y[1],[y[2]]]); # actually Tildec!!! TODO
       fi;
     fi;
   od;

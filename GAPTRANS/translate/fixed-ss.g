@@ -46,11 +46,11 @@ local arr_dim,set_dim,setl,x;
   for x in set_dim do
     if IsOddInt(x[2]) then
       if [x[1],pr] in setl then
-        RemoveSet(Setl,[x[1],pr]); # actually TILDEsetl!!! TODO
-        UniteSet(Setl,[x[1],1*FORCEOne(F)]); # actually TILDEsetl!!! TODO
+        RemoveSet(setl,[x[1],pr]); # actually TILDEsetl!!! TODO
+        UniteSet(setl,[x[1],1*FORCEOne(F)]); # actually TILDEsetl!!! TODO
       else
-        RemoveSet(Setl,[x[1],1*FORCEOne(F)]); # actually TILDEsetl!!! TODO
-        UniteSet(Setl,[x[1],pr]); # actually TILDEsetl!!! TODO
+        RemoveSet(setl,[x[1],1*FORCEOne(F)]); # actually TILDEsetl!!! TODO
+        UniteSet(setl,[x[1],pr]); # actually TILDEsetl!!! TODO
       fi;
     fi;
   od;

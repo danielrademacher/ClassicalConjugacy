@@ -118,7 +118,7 @@ local
     s:=S[i];
     T:=Set(s);
     T:=List(T,x->x);
-    Sort(TILDET);
+    Sort(T); # actually TildeT!!! TODO
     n1:=Minimum(T);
     MA:=MatrixAlgebra(F,0);
     A:=Zero(MA);
@@ -507,7 +507,7 @@ local
   local roots;
     roots:=RootsOfUPol(f);
     roots:=List(roots,r->r[1]);
-    Sort(TILDEroots);
+    Sort(roots); # actually Tilderoots!!! TODO
     return rec(val1:=roots[1],
       val2:=roots);
   end;
@@ -527,7 +527,7 @@ local
     s:=S[i];
     T:=Set(s);
     T:=List(T,x->x);
-    Sort(TILDET);
+    Sort(T); # actually TildeT!!! TODO
     M:=MatrixAlgebra(F,0);
     A:=Zero(M);
     form_A:=Zero(M);
@@ -636,7 +636,7 @@ local
     s:=S[i];
     T:=Set(s);
     T:=List(T,x->x);
-    Sort(TILDET);
+    Sort(T); # actually TildeW!!! TODO
     M:=MatrixAlgebra(F,0);
     A:=Zero(M);
     form_A:=Zero(M);

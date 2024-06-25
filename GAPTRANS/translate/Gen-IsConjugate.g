@@ -362,7 +362,7 @@ local
       m1:=TransformForm(B1,type1:Restore:=false);
       m2:=TransformForm(B2,type1:Restore:=false);
       if IsSemisimple(Submatrix(varX,pos,pos,d,d)) then
-        InsertBlock(Y,m1*m2^-1,pos); # actually TildeY!!! TODO
+        InsertBlock(Y,m1*m2^-1,pos,pos); # actually TildeY!!! TODO
       else
         Y1:=m1^-1*Submatrix(varX,pos,pos,d,d)*m1;
         Y2:=m2^-1*Submatrix(varX,pos,pos,d,d)*m2;

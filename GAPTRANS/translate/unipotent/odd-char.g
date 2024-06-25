@@ -142,7 +142,7 @@ local
     s:=S[i];
     T:=Set(s);
     T:=List(T,x->x);
-    Sort(TILDET);
+    Sort(T); # actually TildeW!!! TODO
     M:=MatrixAlgebra(F,0);
     A:=Zero(M);
     form_A:=Zero(M);

@@ -314,7 +314,7 @@ local F,alpha,e,eam,f,m,mm,mu,prev,ptn,q,ss,tag,term,tp;
     #   Convert mu to triples < e, alpha, m >
     #  labels := [ Append(pp,m) : pp -> m in mu ];
     Error("labels := [ Append(pp,m) : pp -> m in mu ];");
-    Sort(TILDElabels);
+    Sort(labels); # actually Tildelabels!!! TODO
     prev:=[0,0];
     #   previous value of <e,m>
     for eam in labels do

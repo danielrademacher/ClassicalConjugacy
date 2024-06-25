@@ -493,7 +493,7 @@ local
     Error("Input type is wrong");
   fi;
   #   sort classes and labels: increasing order and sizes
-  ParallelSort(varX,Xlabel); # actually ParallelSort(TILDEvarX,TILDEXlabel); TODO
+  ParallelSort(varX,Xlabel); # actually TILDEvarX, TILDEXlabel!!! TODO
   #   return labels as indexed set, not sequence
   return rec(val1:=varX,
     val2:=List( # {@-list:

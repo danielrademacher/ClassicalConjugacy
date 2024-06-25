@@ -294,7 +294,7 @@ local
     d:=[];
     for i in [1..h] do
       d:=Concatenation(d,c);
-      Prune(TILDEc);
+      Prune(c); # actually Tildec!!! TODO
     od;
     A:=UpperTriangularMatrix(F,d);
     y:=BlockMatrix(2,2,[0,A,-TransposedMat(A),0]);
@@ -314,7 +314,7 @@ local
         c[l+1]:=Sum(List([1..l],j->C[i][j+1]*c[l-j+1]));
       od;
     fi;
-    Reversed(TILDEc);
+    Reversed(c); # actually Tildec!!! TODO
     c:=Concatenation(c,List([1..h-1],v->0));
     d:=[];
     for v in [1..i] do

@@ -526,10 +526,10 @@ end;
 OParameters@:=function(type,T)
 local S,V,W,delta,s,t;
   W:=Concatenation(T[1],T[1],T[3],T[3]);
-  Sort(TILDEW);
-  Reversed(TILDEW);
+  Sort(W); # actually TildeW!!! TODO
+  Reversed(W); # actually TildeW!!! TODO
   V:=Concatenation(T[2],T[4]);
-  Sort(TILDEV);
+  Sort(V); # actually TildeV!!! TODO
   S:=Filtered(W,w->IsOddInt(w) and ForAll(V,v->Abs(w-2*v)<>1));
   if type="Sp" then
     RemoveSet(S,1); # actually TildeS!!! TODO
