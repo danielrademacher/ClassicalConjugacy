@@ -172,3 +172,67 @@ end;
 UnipotentCentraliserOrder := function(type,G,g,list)
 
 end;
+
+InsertBlock := function(A,b,c,d)
+
+end;
+
+Submatrix := function(A,i,j,k,l)
+
+end;
+
+Max := function(a,b)
+
+end;
+
+Min := function(a,b)
+
+end;
+
+ScalarMat := function(A,n,m,F)
+
+end;
+
+QuadraticSpace := function(Q)
+
+end;
+
+GModule := function(G)
+
+end;
+
+SemilinearDual := function(M,mu)
+
+end;
+
+AHom := function(M,D)
+
+end;
+
+ConjugateTranspose := function(x, mu)
+
+end;
+
+UpperTriangularMatrix := function(F,d)
+
+end;
+
+ConstantCoefficient := function(f)
+
+end;
+
+ChangeClassLabel := function(l,f,pr)
+
+end;
+
+StandardAlternatingForm := function(n,F)
+
+end;
+
+StandardHermitianForm := function(n,F)
+
+end;
+
+GenIsConjugate := function(G,x,list)
+
+end;

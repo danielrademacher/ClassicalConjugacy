@@ -75,7 +75,7 @@ end;
 MyClassicalType@:=function(G)
 local flag,type;
   # =v= MULTIASSIGN =v=
-  type:=GroupType@(G);
+  type:=GroupType(G); #TODO: GroupType@(G)
   flag:=type.val1;
   type:=type.val2;
   # =^= MULTIASSIGN =^=
@@ -150,8 +150,7 @@ local F,Vect,i,k,n,t;
   return Vect;
 end;
 
-#   given the element c of the Cartesian product (see end of code "fixed-ss.m")
- ,
+#   given the element c of the Cartesian product (see end of code "fixed-ss.m"),
 #   returns true if its class in SO splits into two classes in Omega
 InstallGlobalFunction(CheckSplitOmega@,
 function(c,F,L)
@@ -197,9 +196,11 @@ end);
 
 #   return TildeDualPolynomial if unitary eq true, DualPolynomial otherwise
 InstallGlobalFunction(ConjugatePolynomial@,
-function(unitary)
+function(unitary) #TODO: This function has to be checked completly. Where is Dualpolynomial coming from?
+local DualPolynomial;
+DualPolynomial := 0;
 if unitary then
-    return TildeDualPolynomial;
+    return DualPolynomial; # TODO: TildeDualPolynomial
   else
     return DualPolynomial;
   fi;

@@ -33,8 +33,7 @@ local B,C,Jx,Jy,c,forgetvar3;
     return rec(val1:=true,
       val2:=(B^-1*C)*FORCEOne(Generic(G)));
   else
-    return rec(val1:=false,
-      val2:=_);
+    return rec(val1:=false,val2:="null"); # TODO: before val2 := _
   fi;
 end);
 
