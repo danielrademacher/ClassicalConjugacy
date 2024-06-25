@@ -475,7 +475,7 @@ local
           Add(L,[1,f*cp_f,l]);
           #   the form preserved by f has non-square determinant
         else
-          UniteSet(TILDEDone,f);
+          UniteSet(Done,f); # actually TildeDone!!! TODO
         fi;
       else
         Add(L,[2,f,l]);

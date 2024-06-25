@@ -215,7 +215,7 @@ local
       params:=Concatenation(params,[B_val]);
       C_form:=[DirectSumMat([form_A,form_B])];
       if epsilon=1 and Special=true then
-        UniteSet(TILDEspecial,Size(Reps)+1);
+        UniteSet(special,Size(Reps)+1); # actually Tildespecial!!! TODO
       fi;
     fi;
     if epsilon in [1,-1] then

@@ -17,16 +17,16 @@ local Risp,a;
   Risp:=[];
   if type="Sp" then
     for a in L do
-      UniteSet(TILDERisp,a[1]);
+      UniteSet(Risp,a[1]); # actually TILDERisp!!! TODO
       if IsOddInt(a[1]) then
-        UniteSet(TILDERisp,a[1]);
+        UniteSet(Risp,a[1]); # actually TILDERisp!!! TODO
       fi;
     od;
   else
     for a in L do
-      UniteSet(TILDERisp,a[1]);
+      UniteSet(Risp,a[1]); # actually TILDERisp!!! TODO
       if IsEvenInt(a[1]) then
-        UniteSet(TILDERisp,a[1]);
+        UniteSet(Risp,a[1]); # actually TILDERisp!!! TODO
       fi;
     od;
   fi;
@@ -197,7 +197,7 @@ local
               if v2 then
                 SplitOmega:=true;
               else
-                UniteSet(TILDEValuesOmegapm,v3);
+                UniteSet(ValuesOmegapm,v3); # actually TILDEValuesOmegapm!!! TODO
               fi;
             fi;
           elif special and true in List( # {-list:

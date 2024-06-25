@@ -156,7 +156,7 @@ local
       varX:=DirectSumMat(varX,DirectSumMat(List([1..d],j->CompanionMat(f))));
       varX:=DirectSumMat(varX,DirectSumMat(List([1..d],j->Star(CompanionMat(f))
        ^-1)));
-      RemoveSet(TILDEc1,[ConjPol(f),d]);
+      RemoveSet(c1,[ConjPol(f),d]); # actually Tildec1!!! TODO
     fi;
     i:=i+1;
   od;
@@ -224,7 +224,7 @@ local
       fi;
       m1:=TransformForm(B1,type1:Restore:=false);
       m2:=TransformForm(B2,type1:Restore:=false);
-      InsertBlock(TILDEY,m1*m2^-1,pos,pos);
+      InsertBlock(Y,m1*m2^-1,pos,pos); # actually TildeY!!! TODO
       pos:=pos+d;
     elif f<>ConjPol(f) then
       ni:=Degree(f)*d;
@@ -237,7 +237,7 @@ local
       fi;
       Y1:=Y1*Y2^-1;
       Y1:=DirectSumMat(Y1,IdentityMatrix(F,ni));
-      InsertBlock(TILDEY,Y1,pos,pos);
+      InsertBlock(Y,Y1,pos,pos); # actually TildeY!!! TODO
       pos:=pos+2*ni;
     else
       ni:=Degree(f)*d;
@@ -261,7 +261,7 @@ local
         B2:=B2+TransposedMat(Submatrix(A2,pos,pos,ni,ni))*T^-1;
       fi;
       Y1:=SwitchMatrix@(B1,B2,f);
-      InsertBlock(TILDEY,Y1,pos,pos);
+      InsertBlock(Y,Y1,pos,pos); # actually TildeY!!! TODO
       pos:=pos+ni;
     fi;
     i:=i+1;
@@ -298,7 +298,7 @@ local
           C:=Sum(List([1..deg],i->C^(i-1)*Eltseq(w,F)[i]));
           l:=QuoInt(Log(DeterminantMat(C),det),(p^e-1));
           y:=IdentityMatrix(F,d*deg);
-          InsertBlock(TILDEy,C^-l,1,1);
+          InsertBlock(y,C^-l,1,1); # actually Tildey!!! TODO
           y:=DirectSumMat(y,Star(B1)*Star(y^-1)*Star(B1^-1));
         else
           C:=CompanionMat(f);
@@ -344,7 +344,7 @@ local
             j1->List([1..d],
               j2->Sum(List([1..deg],k->C^(k-1)*Eltseq(suss[j1][j2],F)[k])))));
         fi;
-        InsertBlock(TILDEY,y,1,1);
+        InsertBlock(Y,y,1,1); # actually TildeY!!! TODO
         Y:=d1^-1*Y*d1;
         varZ:=varZ*Y;
       else
@@ -378,7 +378,7 @@ local
             y:=GOElement(d,F:Minus:=true);
             y:=m*y*m^-1;
           fi;
-          InsertBlock(TILDEY,y,n-d+1,n-d+1);
+          InsertBlock(Y,y,n-d+1,n-d+1); # actually TildeY!!! TODO
           #   YX=XY, detY = -1
           #   following should hold
           #   assert X*Y eq Y*X
@@ -420,7 +420,7 @@ local
             y:=SOElement(d,F:Minus:=true);
           fi;
           y:=m*y*m^-1;
-          InsertBlock(TILDEY,y,n-d+1,n-d+1);
+          InsertBlock(Y,y,n-d+1,n-d+1); # actually TildeY!!! TODO
           #   YX=XY, SpinorNorm(Y) = 1
           Y:=d1^-1*Y*d1;
           varZ:=varZ*Y;
@@ -528,7 +528,7 @@ local
               j2->Sum(List([1..Degree(f)],k->C^(k-1)*Eltseq(suss[j1][j2],F)[k]))
            )));
         fi;
-        InsertBlock(TILDEY,y,pos,pos);
+        InsertBlock(Y,y,pos,pos); # actually TildeY!!! TODO
         Y:=d1^-1*Y*d1;
         varZ:=varZ*Y;
       fi;

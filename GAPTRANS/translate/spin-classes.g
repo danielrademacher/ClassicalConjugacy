@@ -58,7 +58,7 @@ local
     ZH:=LMGCentre(H);
     SanityChecks@(G,H,ZG,ZH);
     if Size(ZH) > 1 then
-      CheckTauAndPhi@(G,H,ZG,ZH,TILDEtau,TILDEphi);
+      CheckTauAndPhi@(G,H,ZG,ZH,tau,phi); # actually Tildetau, TILDEphi!!! TODO
     fi;
     G.SpinHom:=tau;
     G.SpinInvHom:=phi;
@@ -117,7 +117,7 @@ local
   Info(InfoClasses,1,"Group has",Size(reps),"classes");
   R:=List(reps,r->[Order(r[1]),r[2],r[1],r[3],r[4]]);
   S:=List([1..Size(R)],i->[R[i][1],R[i][2]]);
-  ParallelSort(TILDES,TILDER);
+  ParallelSort(S,R); # actually TildeS, TildeR!!! TODO
   classes:=List(R,r->[r[1],r[2],r[3]]);
   cents:=List(R,r->r[4]);
   G.SpinLifts:=List([1..Size(ccH)],hno->Filtered([1..Size(classes)],i->R[i][5]
@@ -158,7 +158,7 @@ local CH,H,S,T,TH,ZG,ZH,a,b,celt1,elt,g,gen,havehoms,isc,phi,tau;
     ZH:=LMGCentre(H);
     SanityChecks@(G,H,ZG,ZH);
     if Size(ZH) > 1 then
-      CheckTauAndPhi@(G,H,ZG,ZH,TILDEtau,TILDEphi);
+      CheckTauAndPhi@(G,H,ZG,ZH,tau,phi); # actually Tildetau, Tildephi!!! TODO
     fi;
     G.SpinHom:=tau;
     G.SpinInvHom:=phi;
@@ -219,7 +219,7 @@ local CH,H,S,T,TH,ZG,ZH,a,b,cG,cH,centralizerGens,havehoms,phi,sG,splits,tau;
     ZH:=LMGCentre(H);
     SanityChecks@(G,H,ZG,ZH);
     if Size(ZH) > 1 then
-      CheckTauAndPhi@(G,H,ZG,ZH,TILDEtau,TILDEphi);
+      CheckTauAndPhi@(G,H,ZG,ZH,tau,phi); # actually Tildetau, Tildephi!!! TODO
     fi;
     G.SpinHom:=tau;
     G.SpinInvHom:=phi;
@@ -303,7 +303,7 @@ local CMH,CMfn,H,ZG,cl,clH,lifts,phi,tau,z;
 end;
 
 InstallGlobalFunction(CheckTauAndPhi@,
-function(G,H,ZG,ZH,TILDEVAR~tau,TILDEVAR~phi)
+function(G,H,ZG,ZH,tau,phi)
 #  /out:make sure tau is a homomorphism
 local 
    CZH,Grels,NG,NH,cg,flag,i,ims,invims,ishom,isinv,izh,newims,ng,nh,phi,tau;

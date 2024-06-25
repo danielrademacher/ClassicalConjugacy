@@ -59,7 +59,7 @@ local
       r:=BlockMatrix(m,m,Concatenation(List([1..m],
         l1->List([1..m],
           l2->StdEm@(ScalarMat(varE,T[j][2],(Gr.k)[l1][l2]),F))));
-      UniteSet(TILDEGen,InsertBlock(IdentityMatrix(F,n),r,pos+1,pos+1)
+      UniteSet(Gen,InsertBlock(IdentityMatrix(F,n),r,pos+1,pos+1) # actually TildeGen!!! TODO
        *FORCEOne(gl));
     od;
     w:=PrimitiveElement(varE);
@@ -71,7 +71,7 @@ local
        ;
     od;
     r:=StdEm@(r,F);
-    UniteSet(TILDEGen,InsertBlock(IdentityMatrix(F,n),r,pos+1,pos+1)
+    UniteSet(Gen,InsertBlock(IdentityMatrix(F,n),r,pos+1,pos+1) # actually TildeGen!!! TODO
      *FORCEOne(gl));
   od;
   #  first set of generators
@@ -105,7 +105,7 @@ local
         mat:=mat*FORCEOne(GL(m*T[j][2],varE));
         Add(array,StdEm@(mat,F));
       od;
-      UniteSet(TILDEGen,DirectSumMat(array)*FORCEOne(gl));
+      UniteSet(Gen,DirectSumMat(array)*FORCEOne(gl)); # actually TildeGen!!! TODO
     od;
   fi;
   #  end semisimple part
@@ -125,10 +125,10 @@ local
         for h in [1..Degree(varE)] do
           r:=IdentityMatrix(F,n);
           for i in [1..m-k] do
-            InsertBlock(TILDEr,u^(h-1),pos+(i-1)*Degree(varE,F),pos+(i+k-1)
+            InsertBlock(r,u^(h-1),pos+(i-1)*Degree(varE,F),pos+(i+k-1) # actually Tilder!!! TODO
              *Degree(varE,F));
           od;
-          UniteSet(TILDEGen,r*FORCEOne(gl));
+          UniteSet(Gen,r*FORCEOne(gl)); # actually TildeGen!!! TODO
         od;
       od;
     fi;
@@ -143,9 +143,9 @@ local
       li:=Degree(c[i][1])*c[i][2];
       lj:=Degree(c[i+1][1])*c[i+1][2];
       for k in [0..Degree(F)-1] do
-        UniteSet(TILDEGen,InsertBlock(r,w^k*IdentityMatrix(F,Min(li,lj))
+        UniteSet(Gen,InsertBlock(r,w^k*IdentityMatrix(F,Min(li,lj)) # actually TildeGen!!! TODO
          ,pos,pos+li+Max(0,lj-li))*FORCEOne(gl));
-        UniteSet(TILDEGen,InsertBlock(r,w^k*IdentityMatrix(F,Min(li,lj))
+        UniteSet(Gen,InsertBlock(r,w^k*IdentityMatrix(F,Min(li,lj)) # actually TildeGen!!! TODO
          ,pos+li,pos+Max(li-lj,0))*FORCEOne(gl));
       od;
     fi;
@@ -160,7 +160,7 @@ local
   for i in [1..Size(c)] do
     if c[i][2] >= 2 then
       for j in [1..c[i][2]-1] do
-        InsertBlock(TILDEr,IdentityMatrix(F,Degree(c[i][1])),pos+(j-1)
+        InsertBlock(r,IdentityMatrix(F,Degree(c[i][1])),pos+(j-1) # actually Tilder!!! TODO
          *Degree(c[i][1]),pos+j*Degree(c[i][1]));
       od;
     fi;

@@ -290,7 +290,7 @@ local
     varX:=DirectSumMat(varX,Y);
     if f<>ConjPol(f) then
       varX:=DirectSumMat(varX,Star(Y)^-1);
-      RemoveSet(TILDEc,[ConjPol(f),c[i][2]]);
+      RemoveSet(c,[ConjPol(f),c[i][2]]); # actually Tildec!!! TODO
     fi;
     i:=i+1;
   od;
@@ -362,7 +362,7 @@ local
       m1:=TransformForm(B1,type1:Restore:=false);
       m2:=TransformForm(B2,type1:Restore:=false);
       if IsSemisimple(Submatrix(varX,pos,pos,d,d)) then
-        InsertBlock(TILDEY,m1*m2^-1,pos,pos);
+        InsertBlock(Y,m1*m2^-1,pos); # actually TildeY!!! TODO
       else
         Y1:=m1^-1*Submatrix(varX,pos,pos,d,d)*m1;
         Y2:=m2^-1*Submatrix(varX,pos,pos,d,d)*m2;
@@ -393,7 +393,7 @@ local
         # =^= MULTIASSIGN =^=
         if vero then
           z:=m1*z*m2^-1;
-          InsertBlock(TILDEY,z,pos,pos);
+          InsertBlock(Y,z,pos,pos); # actually TildeY!!! TODO
         else
           return rec(val1:=false,
             val2:=_);
@@ -406,7 +406,7 @@ local
       Y2:=Submatrix(A2,pos,pos+ni,ni,ni);
       Y1:=Y1*Y2^-1;
       Y1:=DirectSumMat(Y1,IdentityMatrix(F,ni));
-      InsertBlock(TILDEY,Y1,pos,pos);
+      InsertBlock(Y,Y1,pos,pos); # actually TildeY!!! TODO
       pos:=pos+2*ni;
     else
       ni:=deg*d;
@@ -431,7 +431,7 @@ local
       fi;
       if IsSemisimple(Submatrix(varX,pos,pos,ni,ni)) then
         Y1:=SwitchMatrix@(B1,B2,f);
-        InsertBlock(TILDEY,Y1,pos,pos);
+        InsertBlock(Y,Y1,pos,pos); # actually TildeY!!! TODO
       else
         K:=ExtStructure(F,f);
         # Implicit generator Assg from previous line.
@@ -472,7 +472,7 @@ local
         varZ:=BlockMatrix(d,d,Concatenation(List([1..d],
           j1->List([1..d],
             j2->Sum(List([1..deg],k->R^(k-1)*Eltseq(z[j1][j2],F)[k])))));
-        InsertBlock(TILDEY,varZ,pos,pos);
+        InsertBlock(Y,varZ,pos,pos); # actually TildeY!!! TODO
       fi;
       pos:=pos+ni;
     fi;
@@ -590,11 +590,8 @@ local
               forgetvar2:=C.val2;
               C:=C.val3;
               # =^= MULTIASSIGN =^=
-              C:=[i,C,m];
-              #   useful to preserve the value C and avoid to recompute it if
-              #  IsOmega=true
             fi;
-            InsertBlock(TILDEY,y,pos,pos);
+            InsertBlock(Y,y,pos,pos); # actually TildeY!!! TODO
             #   YX=XY, detY = -1
             Y:=d1^-1*Y*d1;
             varZ:=varZ*Y;
@@ -639,7 +636,7 @@ local
           for i in [1..Ngens(Cent)] do
             if SpinN@(m*Cent.i*minv,B1,p)=1 then
               split:=true;
-              InsertBlock(TILDEY,m*Cent.i*minv,1,1);
+              InsertBlock(Y,m*Cent.i*minv,1,1); # actually TildeY!!! TODO
               break i;
             fi;
           od;
@@ -677,7 +674,7 @@ local
                 else
                   y:=ElementOfSpinorNorm1@(X1,B1:special:=true);
                 fi;
-                InsertBlock(TILDEY,y,pos,pos);
+                InsertBlock(Y,y,pos,pos); # actually TildeY!!! TODO
               else
                 if IsBound((C)) and C[1]=i then
                   # =v= MULTIASSIGN =v=
@@ -695,7 +692,7 @@ local
                 if ThereIs then
                   if DeterminantMat(y)=1 then
                     split:=true;
-                    InsertBlock(TILDEY,y,pos,pos);
+                    InsertBlock(Y,y,pos,pos); # actually TildeY!!! TODO
                   else
                     Add(DoesNotSplit,[y,1]);
                   fi;
@@ -712,10 +709,10 @@ local
               split:=true;
               if f<>ConjPol(f) then
                 suss:=MatrixInCentralizerNE@(F,f,pos,A1,d,deg,c1[i],type);
-                InsertBlock(TILDEY,suss,pos,pos);
+                InsertBlock(Y,suss,pos,pos); # actually TildeY!!! TODO
               else
                 suss:=MatrixInCentralizerEQ@(F,f,pos,sgn,A1,d,deg,c1[i],type);
-                InsertBlock(TILDEY,suss,pos,pos);
+                InsertBlock(Y,suss,pos,pos); # actually TildeY!!! TODO
               fi;
             else
               if f<>ConjPol(f) then
@@ -730,7 +727,7 @@ local
         if split=false and List( # {-list:
           DoesNotSplit,y->y[2])=Set([0,1]) then
           split:=true;
-          InsertBlock(TILDEY,DirectSumMat(List( # <-list:
+          InsertBlock(Y,DirectSumMat(List( # <-list: # actually TildeY!!! TODO
             DoesNotSplit,y->y[1])),1,1);
         fi;
         if split then

@@ -38,9 +38,9 @@ local I,J,M,MA,R,i,j;
         I[i][j]:=1;
       od;
     od;
-    InsertBlock(TILDER,I,1,1);
+    InsertBlock(R,I,1,1); # actually TildeR!!! TODO
     J:=JordanBlock@(k,q);
-    InsertBlock(TILDER,J,k+1,k+1);
+    InsertBlock(R,J,k+1,k+1); # actually TildeR!!! TODO
     for i in [1..k-1] do
       R[i][k+1]:=1;
       R[i][k+2]:=beta;
@@ -532,7 +532,7 @@ local S,V,W,delta,s,t;
   Sort(TILDEV);
   S:=Filtered(W,w->IsOddInt(w) and ForAll(V,v->Abs(w-2*v)<>1));
   if type="Sp" then
-    RemoveSet(TILDES,1);
+    RemoveSet(S,1); # actually TildeS!!! TODO
   fi;
   s:=Size(S);
   t:=Size(Filtered([1..Size(V)-1],j->V[j+1]-V[j] >= 2));

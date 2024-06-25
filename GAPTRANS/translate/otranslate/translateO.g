@@ -82,7 +82,7 @@ local f,newlst,nu,plist,polpart;
         newlst:=Filtered(plist,em->true);
       fi;
     fi;
-    UniteSet(TILDEnu,[f,newlst]);
+    UniteSet(nu,[f,newlst]); # actually Tildenu!!! TODO
   od;
   return nu;
 end;
@@ -243,23 +243,23 @@ local F,e,ee,f,label,lambda,m,name,polpart,pp,q,ss,tp,z;
       m:=m.val2;
       # =^= MULTIASSIGN =^=
       if tp > 0 then
-        UniteSet(TILDElabel,[e,1*FORCEOne(F)]^^m);
+        UniteSet(label,[e,1*FORCEOne(F)]^^m); # actually Tildelabel!!! TODO
       elif IsEvenInt(e) then
-        UniteSet(TILDElabel,[e,0*FORCEOne(F)]^^(QuoInt(m,2)));
+        UniteSet(label,[e,0*FORCEOne(F)]^^(QuoInt(m,2))); # actually Tildelabel!!! TODO
       else
         ee:=Abs(e);
         ss:=sgnO@(ee,m,q);
         if e*ss > 0 then
-          UniteSet(TILDElabel,[ee,1*FORCEOne(F)]^^m);
+          UniteSet(label,[ee,1*FORCEOne(F)]^^m); # actually Tildelabel!!! TODO
         else
-          UniteSet(TILDElabel,[ee,z]);
+          UniteSet(label,[ee,z]); # actually Tildelabel!!! TODO
           if m > 1 then
-            UniteSet(TILDElabel,[ee,1*FORCEOne(F)]^^(m-1));
+            UniteSet(label,[ee,1*FORCEOne(F)]^^(m-1)); # actually Tildelabel!!! TODO
           fi;
         fi;
       fi;
     od;
-    UniteSet(TILDEname,[tp,f,label]);
+    UniteSet(name,[tp,f,label]); # actually Tildename!!! TODO
   od;
   return name;
 end;
@@ -345,7 +345,7 @@ local F,alpha,e,eam,f,m,mm,mu,prev,ptn,q,ss,tag,term,tp;
         fi;
       fi;
     od;
-    UniteSet(TILDEtag,[f,ptn]);
+    UniteSet(tag,[f,ptn]); # actually Tildetag!!! TODO
   od;
   return tag;
 end;

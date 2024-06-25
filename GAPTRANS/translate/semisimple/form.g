@@ -290,7 +290,7 @@ local
         c[l]:=c[l]+Sum(List([1..l-1],j->C[deg][j+1]*c[l-j]));
       fi;
     od;
-    Insert(TILDEc,1,1);
+    Insert(c,1,1); # actually Tildec!!! TODO
     d:=[];
     for i in [1..h] do
       d:=Concatenation(d,c);
@@ -319,7 +319,7 @@ local
     d:=[];
     for v in [1..i] do
       d:=Concatenation(c,d);
-      Remove(TILDEc,1);
+      Remove(c,1); # actually Tildec!!! TODO
     od;
     y:=SymmetricMatrix(F,d);
   else

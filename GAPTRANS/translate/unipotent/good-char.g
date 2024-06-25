@@ -220,9 +220,9 @@ local F,I,J,M,MA,R,i,j;
         I[i][j]:=1;
       od;
     od;
-    InsertBlock(TILDER,I,1,1);
+    InsertBlock(R,I,1,1); # actually TildeR!!! TODO
     J:=MyJordanBlock@(k,Size(F),-1:sgn:=-1);
-    InsertBlock(TILDER,J,k+1,k+1);
+    InsertBlock(R,J,k+1,k+1); # actually TildeR!!! TODO
     for i in [1..k] do
       R[i][k+1]:=beta;
     od;
@@ -254,9 +254,9 @@ local F,I,J,M,MA,R,i,j;
         I[i][j]:=1;
       od;
     od;
-    InsertBlock(TILDER,I,1,1);
+    InsertBlock(R,I,1,1); # actually TildeR!!! TODO
     J:=MyJordanBlock@(k,Size(F),-1:sgn:=-1);
-    InsertBlock(TILDER,J,k+2,k+2);
+    InsertBlock(R,J,k+2,k+2); # actually TildeR!!! TODO
     for i in [1..k] do
       R[i][k+1]:=1;
       R[i][k+2]:=gamma;

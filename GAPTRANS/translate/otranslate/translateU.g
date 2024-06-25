@@ -35,9 +35,9 @@ local F,e,f,label,lambda,m,polpart,pp,q,tag,tp;
       e:=m.val1;
       m:=m.val2;
       # =^= MULTIASSIGN =^=
-      UniteSet(TILDElabel,e^^m);
+      UniteSet(label,e^^m); # actually Tildelabel!!! TODO
     od;
-    UniteSet(TILDEtag,[tp,f,label]);
+    UniteSet(tag,[tp,f,label]); # actually Tildetag!!! TODO
   od;
   return tag;
 end;

@@ -46,11 +46,11 @@ local arr_dim,set_dim,setl,x;
   for x in set_dim do
     if IsOddInt(x[2]) then
       if [x[1],pr] in setl then
-        RemoveSet(TILDEsetl,[x[1],pr]);
-        UniteSet(TILDEsetl,[x[1],1*FORCEOne(F)]);
+        RemoveSet(Setl,[x[1],pr]); # actually TILDEsetl!!! TODO
+        UniteSet(Setl,[x[1],1*FORCEOne(F)]); # actually TILDEsetl!!! TODO
       else
-        RemoveSet(TILDEsetl,[x[1],1*FORCEOne(F)]);
-        UniteSet(TILDEsetl,[x[1],pr]);
+        RemoveSet(Setl,[x[1],1*FORCEOne(F)]); # actually TILDEsetl!!! TODO
+        UniteSet(Setl,[x[1],pr]); # actually TILDEsetl!!! TODO
       fi;
     fi;
   od;
@@ -90,8 +90,8 @@ local C,varE,IsOmega,Y,_,d,done,e,f,forgetvar1,i,k,l,pos,pr,q,w,y,z;
         if d=1 then
           pos:=pos+1;
         elif d=2 then
-          z:=SOElement(2,F:Minus:=IndicateType@(c[i][4])="orthogonalminus");
-          InsertBlock(TILDEY,z,pos,pos);
+          z:=SOElement(2,F:Minus:=IndicateType(c[i][4])="orthogonalminus");
+          InsertBlock(Y,z,pos,pos); # actually TILDEY!!! TODO
           done:=true;
           break i;
         else
@@ -105,7 +105,7 @@ local C,varE,IsOmega,Y,_,d,done,e,f,forgetvar1,i,k,l,pos,pr,q,w,y,z;
             z[d][1]:=1;
             z[1][d]:=1;
           fi;
-          InsertBlock(TILDEY,z,pos,pos);
+          InsertBlock(Y,z,pos,pos); # actually TILDEY!!! TODO
           done:=true;
           break i;
         fi;
@@ -127,8 +127,8 @@ local C,varE,IsOmega,Y,_,d,done,e,f,forgetvar1,i,k,l,pos,pr,q,w,y,z;
         break i;
       else
         if L[i][2]=2 then
-          z:=GOElement(2,F:Minus:=IndicateType@(c[i][4])="orthogonalminus");
-          InsertBlock(TILDEY,z,pos,pos);
+          z:=GOElement(2,F:Minus:=IndicateType(c[i][4])="orthogonalminus");
+          InsertBlock(Y,z,pos,pos); # actually TILDEY!!! TODO
         else
           #   an element of det -1
           Y[pos][pos]:=0;
@@ -149,13 +149,12 @@ local C,varE,IsOmega,Y,_,d,done,e,f,forgetvar1,i,k,l,pos,pr,q,w,y,z;
         l:=varE.1;
         w:=PrimitiveElement(varE);
         y:=Sum(List([1..d],j->Eltseq(w,F)[j]*C^(j-1)));
-        InsertBlock(TILDEY,y,pos,pos);
+        InsertBlock(Y,y,pos,pos); # actually TILDEY!!! TODO
         if type="SU" then
           e:=QuoInt(Degree(F),2);
-          InsertBlock(TILDEY,TransposedMat(FrobeniusImage(y^-1,e)),pos+L[i][2]
-           *d,pos+L[i][2]*d);
+          InsertBlock(Y,TransposedMat(FrobeniusImage(y^-1,e)),pos+L[i][2]*d,pos+L[i][2]*d); # actually TILDEY!!! TODO
         else
-          InsertBlock(TILDEY,TransposedMat(y^-1),pos+L[i][2]*d,pos+L[i][2]*d);
+          InsertBlock(Y,TransposedMat(y^-1),pos+L[i][2]*d,pos+L[i][2]*d); # actually TILDEY!!! TODO
         fi;
         done:=true;
         break i;
@@ -185,12 +184,12 @@ local C,varE,IsOmega,Y,_,d,done,e,f,forgetvar1,i,k,l,pos,pr,q,w,y,z;
         if k=1 then
           w:=w^(q-1);
           y:=Sum(List([1..d],j->Eltseq(w,F)[j]*C^(j-1)));
-          InsertBlock(TILDEY,y,pos,pos);
+          InsertBlock(Y,y,pos,pos); # actually TILDEY!!! TODO
         else
           y:=Sum(List([1..d],j->Eltseq(w^q,F)[j]*C^(j-1)));
-          InsertBlock(TILDEY,y,pos,pos);
+          InsertBlock(Y,y,pos,pos); # actually TILDEY!!! TODO
           y:=Sum(List([1..d],j->Eltseq(w^-1,F)[j]*C^(j-1)));
-          InsertBlock(TILDEY,y,pos+d*(k-1),pos+d*(k-1));
+          InsertBlock(Y,y,pos+d*(k-1),pos+d*(k-1)); # actually TILDEY!!! TODO
         fi;
         done:=true;
         break i;
@@ -1084,7 +1083,7 @@ local
           j1->List([1..d],
             j2->IdentityMatrix(F,h)*Repr[i][3][j1][j2])));
         for j in [1..d] do
-          InsertBlock(TILDEY,C,h*(j-1)+1,h*(j-1)+1);
+          InsertBlock(Y,C,h*(j-1)+1,h*(j-1)+1); # actually TILDEY!!! TODO
         od;
         if type in ["GU","SU"] then
           Y:=DirectSumMat(Y,TransposedMat(FrobeniusImage(Y,e)^-1));
@@ -1130,7 +1129,7 @@ local
           Y:=Y*DirectSumMat(List([1..d],i->C));
           Form:=ZeroMatrix(F,d*h,d*h);
           for i in [1..d] do
-            InsertBlock(TILDEForm,x[4],h*(i-1)+1,(d-i)*h+1);
+            InsertBlock(Form, x[4], h*(i-1)+1, (d-i)*h+1); # actually TILDEForm!!! TODO
           od;
         else
           Y:=DirectSumMat(List( # <-list:
@@ -1146,7 +1145,7 @@ local
           pos:=1;
           for i in P1 do
             for j in [1..i] do
-              InsertBlock(TILDEForm,x[4],pos+h*(j-1),pos+h*(i-j));
+              InsertBlock(Form, x[4], pos + h*(j-1), pos + h*(i-j)); # actually TILDEForm!!! TODO
             od;
             pos:=pos+i*h;
           od;

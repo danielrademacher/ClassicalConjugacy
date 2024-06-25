@@ -44,10 +44,10 @@ local c,d,i,y;
   for y in r do
     if y[1]=t-1 or y[1]=t+1 then
       if i > 0 and y[1]=c[1][1] then
-        Insert(TILDEc[1][2],1,y[2]);
+        Insert(c[1][2],1,y[2]);  # Changed from Insert(TILDEc[1][2],1,y[2]);
       else
         i:=i+1;
-        Insert(TILDEc,1,[y[1],[y[2]]]);
+        Insert(c,1,[y[1],[y[2]]]);  # Changed from Insert(TILDEc,1,[y[1],[y[2]]]);
       fi;
     fi;
   od;
@@ -140,7 +140,7 @@ local
     varX:=DirectSumMat(varX,Y);
     if f<>ConjPol(f) then
       varX:=DirectSumMat(varX,Star(Y)^-1);
-      RemoveSet(TILDEc,[ConjPol(f),c[i][2]]);
+      RemoveSet(c,[ConjPol(f),c[i][2]]); # actually TILDEc!!! TODO
     fi;
     i:=i+1;
   od;

@@ -103,34 +103,34 @@ local F,a0,e,f,label,lambda,m,polpart,pp,q,ss,tag,tp,z;
       m:=m.val2;
       # =^= MULTIASSIGN =^=
       if tp > 0 then
-        UniteSet(TILDElabel,[e,1*FORCEOne(F)]^^m);
+        UniteSet(label,[e,1*FORCEOne(F)]^^m); # actually Tildelabel!!! TODO
       elif IsOddInt(e) then
-        UniteSet(TILDElabel,[e,0*FORCEOne(F)]^^(QuoInt(m,2)));
+        UniteSet(label,[e,0*FORCEOne(F)]^^(QuoInt(m,2))); # actually Tildelabel!!! TODO
       else
         a0:=Coefficient(f,0);
         ss:=sgnSp@(a0<>1*FORCEOne(F),e,m,q);
         if ss=1 then
           if e > 0 then
-            UniteSet(TILDElabel,[e,1*FORCEOne(F)]^^m);
+            UniteSet(label,[e,1*FORCEOne(F)]^^m); # actually Tildelabel!!! TODO
           else
-            UniteSet(TILDElabel,[-e,z]);
+            UniteSet(label,[-e,z]); # actually Tildelabel!!! TODO
             if m > 1 then
-              UniteSet(TILDElabel,[-e,1*FORCEOne(F)]^^(m-1));
+              UniteSet(label,[-e,1*FORCEOne(F)]^^(m-1)); # actually Tildelabel!!! TODO
             fi;
           fi;
         else
           if e < 0 then
-            UniteSet(TILDElabel,[-e,1*FORCEOne(F)]^^m);
+            UniteSet(label,[-e,1*FORCEOne(F)]^^m); # actually Tildelabel!!! TODO
           else
-            UniteSet(TILDElabel,[e,z]);
+            UniteSet(label,[e,z]); # actually Tildelabel!!! TODO
             if m > 1 then
-              UniteSet(TILDElabel,[e,1*FORCEOne(F)]^^(m-1));
+              UniteSet(label,[e,1*FORCEOne(F)]^^(m-1)); # actually Tildelabel!!! TODO
             fi;
           fi;
         fi;
       fi;
     od;
-    UniteSet(TILDEtag,[tp,f,label]);
+    UniteSet(tag,[tp,f,label]); # actually Tildetag!!! TODO
   od;
   return tag;
 end;
@@ -193,7 +193,7 @@ local F,a0,alpha,e,eam,f,m,mm,mu,prev,ptn,q,ss,tag,term,tp;
         fi;
       fi;
     od;
-    UniteSet(TILDEtag,[f,ptn]);
+    UniteSet(tag,[f,ptn]); # actually Tildetag!!! TODO
   od;
   return tag;
 end;

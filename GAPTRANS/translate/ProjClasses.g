@@ -117,7 +117,7 @@ local C,CL,MatricesOnly,cno,g,i,index,known,mm,phi,projclasslen,projclassrep;
       #  group is C[i][2] if this condition holds and C[i][2]/2
       #  otherwise.  
       cno:=phi(g*z);
-      UniteSet(TILDEknown,cno);
+      UniteSet(known,cno); # actually Tildeknown!!! TODO
       projclassrep[cno]:=i;
       projclasslen[i]:=C[i][2];
     else
@@ -253,7 +253,7 @@ local
       P.Classes:=cc;
       C:=Classes(P);
       index:=List([1..Size(cc)],i->Position(C,cc[i]));
-      ParallelSort(TILDEindex,TILDEmm);
+      ParallelSort(index,mm); # actually Tildeindex, Tildemm!!! TODO
       return rec(val1:=C,
         val2:=P,
         val3:=f,
@@ -311,7 +311,7 @@ local
     P.Classes:=cc;
     C:=Classes(P);
     index:=List([1..Size(cc)],i->Position(C,cc[i]));
-    ParallelSort(TILDEindex,TILDEmm);
+    ParallelSort(index,mm); # actually Tildeindex, Tildemm!!! TODO
     return rec(val1:=C,
       val2:=P,
       val3:=f,

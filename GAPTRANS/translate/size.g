@@ -720,10 +720,10 @@ local ConjPol,G1,JF,SPoly,SPoly1,varX,_,b,c,f,forgetvar1,forgetvar2,gcd,q;
   SPoly:=Set([]);
   for f in SPoly1 do
     if f=ConjPol(f) then
-      UniteSet(TILDESPoly,f);
+      UniteSet(SPoly,f); # actually TildeSPoly!!! TODO
     else
       if not (ConjPol(f) in SPoly) then
-        UniteSet(TILDESPoly,f);
+        UniteSet(SPoly,f); # actually TildeSPoly!!! TODO
       fi;
     fi;
   od;

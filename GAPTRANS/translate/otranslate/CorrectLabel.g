@@ -41,8 +41,8 @@ local DetForm,EvenLabelToChange,ThereIsEven,dim,discr,l,pr,q,x;
       if IsOddInt(dim) then
         if not IsSquare(discr) then
           DetForm:=DetForm*-1;
-          RemoveSet(TILDEL,l);
-          UniteSet(TILDEL,[l[1],l[2],ChangeClassLabel@(l[3],F,pr)]);
+          RemoveSet(L,l); # actually TildeL!!! TODO
+          UniteSet(L,[l[1],l[2],ChangeClassLabel@(l[3],F,pr)]); # actually TildeL!!! TODO
         fi;
       else
         ThereIsEven:=true;
@@ -69,8 +69,8 @@ local DetForm,EvenLabelToChange,ThereIsEven,dim,discr,l,pr,q,x;
     fi;
   od;
   if ThereIsEven and (_is_square@(n,q)xorDetForm=1) then
-    RemoveSet(TILDEL,EvenLabelToChange);
-    UniteSet(TILDEL,[EvenLabelToChange[1],EvenLabelToChange[2]
+    RemoveSet(L,EvenLabelToChange); # actually TildeL!!! TODO
+    UniteSet(L,[EvenLabelToChange[1],EvenLabelToChange[2] # actually TildeL!!! TODO
      ,ChangeClassLabel@(EvenLabelToChange[3],F,pr)]);
   fi;
   return L;

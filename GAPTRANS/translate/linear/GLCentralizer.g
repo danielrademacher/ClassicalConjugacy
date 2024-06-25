@@ -46,7 +46,7 @@ local
       r:=BlockMatrix(m,m,Concatenation(List([1..m],
         l1->List([1..m],
           l2->StdEm@(ScalarMat(varE,lvarSet[j][2],(Gr.k)[l1][l2]),F))));
-      UniteSet(TILDEGen,InsertBlock(IdentityMatrix(F,n),r,pos+1,pos+1)
+      UniteSet(Gen,InsertBlock(IdentityMatrix(F,n),r,pos+1,pos+1) # actually TildeGen!!! TODO
        *FORCEOne(gl));
     od;
   od;
@@ -67,10 +67,10 @@ local
         for h in [1..Degree(varE)] do
           r:=IdentityMatrix(F,n);
           for i in [1..m-k] do
-            InsertBlock(TILDEr,u^(h-1),pos+(i-1)*Degree(varE,F),pos+(i+k-1)
+            InsertBlock(r,u^(h-1),pos+(i-1)*Degree(varE,F),pos+(i+k-1) # actually Tilder!!! TODO
              *Degree(varE,F));
           od;
-          UniteSet(TILDEGen,r*FORCEOne(gl));
+          UniteSet(Gen,r*FORCEOne(gl)); # actually TildeGen!!! TODO
         od;
       od;
     fi;
@@ -83,9 +83,9 @@ local
     if c[i][1]=c[i+1][1] and c[i][2]<>c[i+1][2] then
       li:=Degree(c[i][1])*c[i][2];
       lj:=Degree(c[i+1][1])*c[i+1][2];
-      UniteSet(TILDEGen,InsertBlock(r,IdentityMatrix(F,Min(li,lj))
+      UniteSet(Gen,InsertBlock(r,IdentityMatrix(F,Min(li,lj)) # actually TildeGen!!! TODO
        ,pos,pos+li+Max(0,lj-li))*FORCEOne(gl));
-      UniteSet(TILDEGen,InsertBlock(r,IdentityMatrix(F,Min(li,lj))
+      UniteSet(Gen,InsertBlock(r,IdentityMatrix(F,Min(li,lj)) # actually TildeGen!!! TODO
        ,pos+li,pos+Max(li-lj,0))*FORCEOne(gl));
     fi;
     pos:=pos+Degree(c[i][1])*c[i][2];
@@ -99,7 +99,7 @@ local
   for i in [1..Size(c)] do
     if c[i][2] >= 2 then
       for j in [1..c[i][2]-1] do
-        InsertBlock(TILDEr,IdentityMatrix(F,Degree(c[i][1])),pos+(j-1)
+        InsertBlock(r,IdentityMatrix(F,Degree(c[i][1])),pos+(j-1) # actually Tilder!!! TODO
          *Degree(c[i][1]),pos+j*Degree(c[i][1]));
       od;
     fi;
