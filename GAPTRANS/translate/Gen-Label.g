@@ -181,7 +181,7 @@ local G,P,Projective;
       val2:=P);
   else
     return rec(val1:=G,
-      val2:=_);
+      val2:=fail); # there was an _
   fi;
 end);
 
@@ -254,7 +254,7 @@ function(type,x)
 local 
    A,Arr,B,ClassLabels,ConjPol,Done,ElemF,F,FormF,Gr,L,L_omega,LabelNumber,
    SplitsOmega2,Star,TypeForTF,varX,a,b,c,cp_f,deg,dim,e,f,i,indexinc,l,m,mult,
-   n,newone,omega,p,pos,pr,q,special,tf2m,tf2p,tsq,type;
+   n,newone,omega,p,pos,pr,q,special,tf2m,tf2p,tsq;
   varX:=ValueOption("varX");
   if varX=fail then
     varX:=[];
@@ -481,7 +481,7 @@ local
         Add(L,[2,f,l]);
         if type in ["GO","SO","Omega"] then
           mult:=Sum(List(l,r->r[1]));
-          if IsOddInt(mult)xor(q mod 4=3 and IsOddInt(QuoInt(dim,2))) then
+          if XOR(IsOddInt(mult), (q mod 4=3 and IsOddInt(QuoInt(dim,2)))) then
           fi;
           #   the form preserved by f has non-square determinant
         fi;
@@ -514,7 +514,7 @@ local
         if GenIsConjugate(Gr,x,varX[i][3]:Checks:=false) then # there was an @!!! TODO
           L:=ClassLabels[i];
           LabelNumber:=i;
-          break i;
+          break;
         fi;
       od;
     fi;
@@ -526,7 +526,7 @@ end);
 #  changed intrinsic IsometryGroupClassLabel (type :: MonStgElt, g:: GrpMatElt)
 #  -> {* *}
 IsometryGroupClassLabel:=function(type,g) # there was an @!!! TODO
-local F,G,d,flag,label,mu,q,tp,trans,type,types;
+local F,G,d,flag,label,mu,q,tp,trans,types;
   types:=["GU","Sp","O+","O-","GO+","GO-","O","GO"];
   if not type in types then
     Error(["type must be one ",types]);

@@ -10,9 +10,9 @@
 
 DeclareGlobalFunction("Jordan_Parameters");
 
-DeclareGlobalFunction("UnipotentCentraliserOrder");
+# DeclareGlobalFunction("UnipotentCentraliserOrder"); had to be moved
 
-DeclareGlobalFunction("UnipotentCentralizerOrder");
+# DeclareGlobalFunction("UnipotentCentralizerOrder"); had to be moved
 
 #   compute cardinality of the centralizer of unipotent element g
 #   in the group of type "type" preserving the supplied form;
@@ -172,6 +172,5 @@ local Array,F,JF,L,P,T,W,_,c,card,e,exp,forgetvar1,forgetvar2,i,j,p,q,split;
   return card;
 end);
 
-DeclareSynonym(UnipotentCentralizerOrder,UnipotentCentraliserOrder); #TODO: actually we have DeclareSynonym(UnipotentCentralizerOrder@,UnipotentCentraliserOrder@);
 
 
