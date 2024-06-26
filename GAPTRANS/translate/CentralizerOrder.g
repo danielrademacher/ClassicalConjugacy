@@ -10,9 +10,9 @@
 #  Defines: CheckSplitOmega, CheckWhetherChanged, ClassicalCentraliserOrder,
 #  MyCentraliserOrder, TurnLabelToJordan
 
-DeclareGlobalFunction("MyCentraliserOrder@");
+DeclareGlobalFunction("MyCentraliserOrder"); # there was an @!!! TODO
 
-TurnLabelToJordan@:=function(L,type)
+TurnLabelToJordan:=function(L,type) # there was an @!!! TODO
 local Risp,a;
   Risp:=[];
   if type="Sp" then
@@ -34,7 +34,7 @@ local Risp,a;
 end;
 
 #   returns 3 values: |C_GO:C_SO|>1, |C_SO:C_Omega|>1 , values of b_i(-1)^k_i
-CheckSplitOmega@:=function(L,icl)
+CheckSplitOmega:=function(L,icl) # there was an @!!! TODO
 #  /out: icl = IsChangedLabel
 local set;
   set:=List(Filtered(L,x->IsOddInt(x[1])),x->x[1]);
@@ -67,7 +67,7 @@ end;
 #   check whether the label of t \pm 1 with even multiplicity in Omega(odd, q)
 #  corresponds or it has changed
 #   by multiplying the form by a non-square when assembling in file fixed-ss.m
-CheckWhetherChanged@:=function(L,n,q)
+CheckWhetherChanged:=function(L,n,q) # there was an @!!! TODO
 local DetForm,is_square,l;
   is_square:=((q mod 8 in [1,3] and n mod 4=3) or (q mod 8 in [1,7] and n mod 
    4=1));
@@ -108,7 +108,7 @@ end;
 #   compute the cardinality of the centralizer using only the label L
 #   of the element g; the label L is that returned by ClassicalClasses but
 #   can be the complete label returned by IsometryGroupClassLabel
-InstallGlobalFunction(MyCentraliserOrder@,
+InstallGlobalFunction(MyCentraliserOrder, # there was an @!!! TODO
 function(type,g)
 local 
    Card,D,F,IsChangedLabel,JF,L,L1,SpecialCase2,SplitOmega,SplitSO,T,
@@ -148,7 +148,7 @@ local
   fi;
   Card:=Factorization(1);
   if L=[] then
-    L1:=GenericLabel@(type,g);
+    L1:=GenericLabel(type,g); # there was an @!!! TODO
   else
     L1:=L;
     if special or is_omega then
@@ -157,7 +157,7 @@ local
   fi;
   if is_omega then
     if type="Omega" then
-      IsChangedLabel:=CheckWhetherChanged@(L1,Length(g),q);
+      IsChangedLabel:=CheckWhetherChanged(L1,Length(g),q); # there was an @!!! TODO
     else
       IsChangedLabel:=false;
     fi;
@@ -167,27 +167,27 @@ local
       if type="Sp" then
         if IsEvenInt(q) then
           T:=l[3];
-          card:=Factorization(SpUnipotentCentraliserOrder@(T,[],q));
+          card:=Factorization(SpUnipotentCentraliserOrder(T,[],q)); # there was an @!!! TODO
         else
-          T:=TurnLabelToJordan@(l[3],"Sp");
+          T:=TurnLabelToJordan(l[3],"Sp"); # there was an @!!! TODO
           W:=MultisetToSequence(l[3]);
-          card:=Factorization(SpUnipotentCentraliserOrder@(T,W,q));
+          card:=Factorization(SpUnipotentCentraliserOrder(T,W,q)); # there was an @!!! TODO
         fi;
       elif type in ["SU","GU"] then
         JF:=List(l[3],a->a);
-        card:=UnipotentCentraliserOrder@("GU",[],IdentityMatrix(F,2),[]:JF:=JF)
+        card:=UnipotentCentraliserOrder("GU",[],IdentityMatrix(F,2),[]:JF:=JF) # there was an @!!! TODO
          ;
       else
         if IsEvenInt(q) then
           T:=l[3];
-          card:=Factorization(OrthogonalUnipotentCentraliserOrder@("GO+",T,[]
+          card:=Factorization(OrthogonalUnipotentCentraliserOrder("GO+",T,[] # there was an @!!! TODO
            ,false,q));
         else
-          T:=TurnLabelToJordan@(l[3],"GO");
+          T:=TurnLabelToJordan(l[3],"GO"); # there was an @!!! TODO
           W:=MultisetToSequence(l[3]);
           if is_omega then
             # =v= MULTIASSIGN =v=
-            v3:=CheckSplitOmega@(W,IsChangedLabel);
+            v3:=CheckSplitOmega(W,IsChangedLabel); # there was an @!!! TODO
             v1:=v3.val1;
             v2:=v3.val2;
             v3:=v3.val3;
@@ -204,7 +204,7 @@ local
             l[3],x->IsOddInt(x[1])) then
             SplitSO:=true;
           fi;
-          card:=Factorization(OrthogonalUnipotentCentraliserOrder@("GO+",T,W,
+          card:=Factorization(OrthogonalUnipotentCentraliserOrder("GO+",T,W, # there was an @!!! TODO
            false,q));
         fi;
       fi;
@@ -216,7 +216,7 @@ local
       else
         JF:=List(l[3],h->h[1]);
       fi;
-      card:=UnipotentCentraliserOrder@("GL",[]
+      card:=UnipotentCentraliserOrder("GL",[] # there was an @!!! TODO
        ,IdentityMatrix(GF(p^(QuoInt(e*Degree(l[2]),2))),2),[]:JF:=JF);
       if is_omega and true in List( # {-list:
         JF,h->IsOddInt(h)) then
@@ -230,7 +230,7 @@ local
       else
         JF:=List(l[3],h->h[1]);
       fi;
-      card:=UnipotentCentraliserOrder@("GU",[]
+      card:=UnipotentCentraliserOrder("GU",[] # there was an @!!! TODO
        ,IdentityMatrix(GF(p^(e*Degree(l[2]))),2),[]:JF:=JF);
       if is_omega and true in List( # {-list:
         JF,h->IsOddInt(h)) then
@@ -275,15 +275,15 @@ local
   return Card/D;
 end);
 
-ClassicalCentraliserOrder@:=function(G,g)
+ClassicalCentraliserOrder:=function(G,g) # there was an @!!! TODO
 #  -> ,RngIntEltFact  Return the factored order of the centraliser of g in the
 #  standard classical group G of the given type
-local CB,F,ValidTypes@,d,flag,tp;
+local CB,F,ValidTypes,d,flag,tp; # there was an @!!! TODO
   if not (Generic(Parent(g))=Generic(G)) then
     Error("Input element is not in group");
   fi;
   #   require g in G: "Element not in group";
-  if not MyIsIn@(G,g:Add:=Set(["GL","SL"])) then
+  if not MyIsIn(G,g:Add:=Set(["GL","SL"])) then # there was an @!!! TODO
     Error("Input element is not in group");
   fi;
   if IsCentral(G,g) then
@@ -295,25 +295,25 @@ local CB,F,ValidTypes@,d,flag,tp;
     return FactoredOrder(Centraliser(G,g));
   fi;
   # =v= MULTIASSIGN =v=
-  tp:=ClassicalGroupType@(G);
+  tp:=ClassicalGroupType(G); # there was an @!!! TODO
   flag:=tp.val1;
   tp:=tp.val2;
   # =^= MULTIASSIGN =^=
-  ValidTypes@:=Set(["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+",
+  ValidTypes:=Set(["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+", # there was an @!!! TODO
    "SO-","SO","GO+","GO-","GO"]);
-  if not flag and tp in ValidTypes@ then
-    Error(["Type of group must be one of ",ValidTypes@]);
+  if not flag and tp in ValidTypes then # there was an @!!! TODO
+    Error(["Type of group must be one of ",ValidTypes]); # there was an @!!! TODO
   fi;
   if tp="GO" and IsOddInt(d) and IsEvenInt(Size(F)) then
     Error("Function does not apply to this case");
   fi;
   if tp="GL" then
-    return GLCentralizerOrder@(G,g);
+    return GLCentralizerOrder(G,g); # there was an @!!! TODO
   elif tp="SL" then
-    return SLCentralizerOrder@(G,g);
+    return SLCentralizerOrder(G,g); # there was an @!!! TODO
   else
-    CB:=TransformMatrix@(G);
-    return MyCentraliserOrder@(tp,g^CB);
+    CB:=TransformMatrix(G); # there was an @!!! TODO
+    return MyCentraliserOrder(tp,g^CB); # there was an @!!! TODO
   fi;
 end;
 

@@ -6,7 +6,7 @@
 
 #  Defines: tagToNameGU, tagToNameSU
 
-tagToNameGU@:=function(mu)
+tagToNameGU:=function(mu)
 local F,e,f,label,lambda,m,polpart,pp,q,tag,tp;
   tag:=[];
   F:=BaseRing(mu[1][1]);
@@ -48,8 +48,8 @@ ndx:=Explode(xi);
 mu:=ndx.val1;
 ndx:=ndx.val2;
 # =^= MULTIASSIGN =^=
-tagToNameSU@:=function(xi)
-return [tagToNameGU@(mu),ndx];
+tagToNameSU:=function(xi)
+return [tagToNameGU(mu),ndx]; # there was an @!!! TODO
 end;
 
 

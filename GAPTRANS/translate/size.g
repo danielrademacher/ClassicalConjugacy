@@ -22,14 +22,14 @@
 #  GroupType, IsApplicable, MyIsIn, OrthogonalType, RecogniseGOEven,
 #  UnitaryClassSize
 
-DeclareGlobalFunction("GroupType@");
+DeclareGlobalFunction("GroupType"); # there was an @!!! TODO
 
-DeclareGlobalFunction("MyIsIn@");
+DeclareGlobalFunction("MyIsIn"); # there was an @!!! TODO
 
 #   code prepared by Eamonn O'Brien and Don Taylor
 #   builds on RecogniseClassical returning boolean and precise name
 #   return quadratic form when G is orthogonal and reducible
-FormsReducibleCase@:=function(G,type)
+FormsReducibleCase:=function(G,type) # there was an @!!! TODO
 local F,J,MA,S,d,flag;
   F:=BaseRing(G);
   #   assert #F gt 2;
@@ -56,7 +56,7 @@ local F,J,MA,S,d,flag;
 end;
 
 #   return "GO+", "SO+", "Omega+" as type for G; same for O- and O
-OrthogonalType@:=function(G)
+OrthogonalType:=function(G) # there was an @!!! TODO
 local F,J,U,V,varX,d,factors,form,gord,m,ord,phi,preserves_form,q,qforms,type;
   type:=ClassicalType(G);
   if Type(type)=BoolElt or not (type in 
@@ -76,7 +76,7 @@ local F,J,U,V,varX,d,factors,form,gord,m,ord,phi,preserves_form,q,qforms,type;
     # =^= MULTIASSIGN =^=
   else
     # =v= MULTIASSIGN =v=
-    form:=FormsReducibleCase@(G,type);
+    form:=FormsReducibleCase(G,type); # there was an @!!! TODO
     preserves_form:=form.val1;
     form:=form.val2;
     # =^= MULTIASSIGN =^=
@@ -186,7 +186,7 @@ local F,J,U,V,varX,d,factors,form,gord,m,ord,phi,preserves_form,q,qforms,type;
       U:=phi.val1;
       phi:=phi.val2;
       # =^= MULTIASSIGN =^=
-      varX:=SubStructure(U,List([1..Ngens(G)],i->factors[i]@@phi));
+      varX:=SubStructure(U,List([1..Ngens(G)],i->PreImage(phi, factors[i])));
       # rewritten select statement
       if (Size(varX)=q-1) then
         type:="CGO";
@@ -246,7 +246,7 @@ local F,J,U,V,varX,d,factors,form,gord,m,ord,phi,preserves_form,q,qforms,type;
 end;
 
 #   return type GL / SL / GU / SU / Sp / GO+ / SO+ / Omega+ / ... for G
-InstallGlobalFunction(GroupType@,
+InstallGlobalFunction(GroupType, # there was an @!!! TODO
 function(G)
 local 
    D,F,F0,Limit,U,U0,varX,d,factors,flag,form,m,nmr,ok,p1,p2,phi,psi,q,q0,type;
@@ -289,7 +289,7 @@ local
   fi;
   type:=ClassicalType(G);
   if type in ["orthogonalminus","orthogonalplus","orthogonalcircle"] then
-    type:=OrthogonalType@(G);
+    type:=OrthogonalType(G); # there was an @!!! TODO
     if Type(type)=BoolElt then
       return rec(val1:=false,
         val2:=_);
@@ -344,8 +344,8 @@ local
       p1:=p2.val2;
       p2:=p2.val3;
       # =^= MULTIASSIGN =^=
-      varX:=SubStructure(D,List([1..Ngens(G)],i->p1(factors[i]@@psi)
-       +p2(DeterminantMat(G.i)@@phi)));
+      varX:=SubStructure(D,List([1..Ngens(G)],i->p1(PreImage(psi, factors[i]))
+       +p2(PreImage(phi, DeterminantMat(G.i)))));
       m:=Size(varX);
       if not IsBound(G.FactoredOrder) then
         G.FactoredOrder:=FactoredOrder(SU(d,q0))*CollectedFactors(m);
@@ -399,7 +399,7 @@ local
     val2:=type);
 end);
 
-RecogniseGOEven@:=function(G)
+RecogniseGOEven:=function(G) # there was an @!!! TODO
 local F,Q,Q_,U,varX,d,factors,flag,forms,g,i,m,p,phi,q,qforms,tp,type;
   d:=Degree(G);
   F:=BaseRing(G);
@@ -473,7 +473,7 @@ local F,Q,Q_,U,varX,d,factors,flag,forms,g,i,m,p,phi,q,qforms,tp,type;
     U:=phi.val1;
     phi:=phi.val2;
     # =^= MULTIASSIGN =^=
-    varX:=SubStructure(U,List([1..Ngens(G)],i->factors[i]@@phi));
+    varX:=SubStructure(U,List([1..Ngens(G)],i->PreImage(phi, factors[i])));
     m:=Size(varX);
     if not IsBound(G.FactoredOrder) then
       G.FactoredOrder:=FactoredOrder(GO(d,q))*CollectedFactors(m);
@@ -490,7 +490,7 @@ local F,Q,Q_,U,varX,d,factors,flag,forms,g,i,m,p,phi,q,qforms,tp,type;
     val2:=tp);
 end;
 
-ClassicalGroupType@:=function(G)
+ClassicalGroupType:=function(G) # there was an @!!! TODO
 #  -> ,BoolElt ,MonStgElt  if G := identified as a classical group in its
 #  natural representation , then return true and classical type of group
 local F,d,flag,gord,q,type;
@@ -607,13 +607,13 @@ local F,d,flag,gord,q,type;
   #   recognise GO(2n + 1, 2^k)
   if IsOddInt(d) and IsEvenInt(q) and not IsIrreducible(G) then
     # =v= MULTIASSIGN =v=
-    type:=RecogniseGOEven@(G);
+    type:=RecogniseGOEven(G); # there was an @!!! TODO
     flag:=type.val1;
     type:=type.val2;
     # =^= MULTIASSIGN =^=
   else
     # =v= MULTIASSIGN =v=
-    type:=GroupType@(G);
+    type:=GroupType(G); # there was an @!!! TODO
     flag:=type.val1;
     type:=type.val2;
     # =^= MULTIASSIGN =^=
@@ -631,9 +631,9 @@ end;
 
 #   G conjugate of natural copy of classical group
 #   decide if x is in G
-InstallGlobalFunction(MyIsIn@,
+InstallGlobalFunction(MyIsIn, # there was an @!!! TODO
 function(G,x)
-local Add,CB,H,ValidTypes@,d,flag,q,q0,type;
+local Add,CB,H,ValidTypes,d,flag,q,q0,type; # there was an @!!! TODO
   lvarAdd:=ValueOption("lvarAdd");
   if lvarAdd=fail then
     lvarAdd:=Set([]);
@@ -650,14 +650,14 @@ local Add,CB,H,ValidTypes@,d,flag,q,q0,type;
     return x in G;
   fi;
   # =v= MULTIASSIGN =v=
-  type:=ClassicalGroupType@(G);
+  type:=ClassicalGroupType(G); # there was an @!!! TODO
   flag:=type.val1;
   type:=type.val2;
   # =^= MULTIASSIGN =^=
-  ValidTypes@:=Set(["Sp","SU","GU","Omega+","Omega-","Omega","O+","O-","O",
+  ValidTypes:=Set(["Sp","SU","GU","Omega+","Omega-","Omega","O+","O-","O", # there was an @!!! TODO
    "SO+","SO-","SO","GO+","GO-","GO"]);
-  if (not flag) or (flag and not (type in Union(ValidTypes@,lvarAdd))) then
-    Error("Type of input group must be one of ",ValidTypes@);
+  if (not flag) or (flag and not (type in Union(ValidTypes,lvarAdd))) then # there was an @!!! TODO
+    Error("Type of input group must be one of ",ValidTypes); # there was an @!!! TODO
   fi;
   if IsOddInt(d) and IsEvenInt(q) and type="GO" then
     Error("Function does not apply to this case");
@@ -667,20 +667,20 @@ local Add,CB,H,ValidTypes@,d,flag,q,q0,type;
   elif type="SL" then
     return DeterminantMat(x)=1;
   fi;
-  CB:=TransformMatrix@(G);
+  CB:=TransformMatrix(G); # there was an @!!! TODO
   # rewritten select statement
   if type in ["SU","GU"] then
     q0:=RootInt(q);
   else
     q0:=q;
   fi;
-  H:=StandardGroup@(type,d,q0);
+  H:=StandardGroup(type,d,q0); # there was an @!!! TODO
   return x^CB in H;
 end);
 
 #   we are not able to write down centralisers for elements outside
 #   of Omega in even char
-IsApplicable@:=function(G,g,type)
+IsApplicable:=function(G,g,type) # there was an @!!! TODO
 local V,flag,form,type;
   if not (type in ["SO+","SO-","SO","GO+","GO-","GO"]) then
     return true;
@@ -699,7 +699,7 @@ local V,flag,form,type;
 end;
 
 #   size of conjugacy class of g in GU or SU
-UnitaryClassSize@:=function(g,special)
+UnitaryClassSize:=function(g,special) # there was an @!!! TODO
 local ConjPol,G1,JF,SPoly,SPoly1,varX,_,b,c,f,forgetvar1,forgetvar2,gcd,q;
   c:=Factorization(1);
   # =v= MULTIASSIGN =v=
@@ -713,7 +713,7 @@ local ConjPol,G1,JF,SPoly,SPoly1,varX,_,b,c,f,forgetvar1,forgetvar2,gcd,q;
   forgetvar1:=q.val1;
   q:=q.val2;
   # =^= MULTIASSIGN =^=
-  ConjPol:=ConjugatePolynomial@(true);
+  ConjPol:=ConjugatePolynomial(true); # there was an @!!! TODO
   JF:=[];
   SPoly1:=List( # {-list:
     b,x->x[1]);
@@ -735,12 +735,12 @@ local ConjPol,G1,JF,SPoly,SPoly1,varX,_,b,c,f,forgetvar1,forgetvar2,gcd,q;
     if f=ConjPol(f) then
       G1:=GU(2,q^Degree(f));
       varX:=Identity(G1);
-      c:=c*UnipotentCentraliserOrder@("GU",G1,varX,
+      c:=c*UnipotentCentraliserOrder("GU",G1,varX, # there was an @!!! TODO
        varX:JF:=MultisetToSequence(JF));
     else
       G1:=GL(2,q^(2*Degree(f)));
       varX:=Identity(G1);
-      c:=c*UnipotentCentraliserOrder@("GL",G1,varX,
+      c:=c*UnipotentCentraliserOrder("GL",G1,varX, # there was an @!!! TODO
        varX:JF:=MultisetToSequence(JF));
     fi;
     gcd:=Gcd(gcd,Gcd(JF));
@@ -753,13 +753,13 @@ local ConjPol,G1,JF,SPoly,SPoly1,varX,_,b,c,f,forgetvar1,forgetvar2,gcd,q;
   return c;
 end;
 
-ClassicalClassSize@:=function(G,g)
+ClassicalClassSize:=function(G,g) # there was an @!!! TODO
 #  -> ,RngIntElt  Size of conjugacy class of g in classical group G
-local CB,Gr,ValidTypes@,_,c,d,flag,forgetvar1,form,q,type;
+local CB,Gr,ValidTypes,_,c,d,flag,forgetvar1,form,q,type; # there was an @!!! TODO
   if not Generic(Parent(g))=Generic(G) then
     Error("Input element is not in group");
   fi;
-  if not MyIsIn@(G,g:Add:=Set(["GL","SL"])) then
+  if not MyIsIn(G,g:Add:=Set(["GL","SL"])) then # there was an @!!! TODO
     Error("Input element is not in group");
   fi;
   if IsCentral(G,g) then
@@ -771,29 +771,29 @@ local CB,Gr,ValidTypes@,_,c,d,flag,forgetvar1,form,q,type;
     return Size(Class(G,g));
   fi;
   # =v= MULTIASSIGN =v=
-  type:=ClassicalGroupType@(G);
+  type:=ClassicalGroupType(G); # there was an @!!! TODO
   flag:=type.val1;
   type:=type.val2;
   # =^= MULTIASSIGN =^=
-  ValidTypes@:=Set(["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+",
+  ValidTypes:=Set(["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+", # there was an @!!! TODO
    "SO-","SO","GO+","GO-","GO"]);
-  if not flag and type in ValidTypes@ then
-    Error(["Type of group must be one of ",ValidTypes@]);
+  if not flag and type in ValidTypes then # there was an @!!! TODO
+    Error(["Type of group must be one of ",ValidTypes]); # there was an @!!! TODO
   fi;
   if type="GO" and IsOddInt(d) and IsEvenInt(q) then
     Error("Function does not apply to this case");
   fi;
-  CB:=TransformMatrix@(G);
+  CB:=TransformMatrix(G); # there was an @!!! TODO
   if type="SL" then
-    c:=SLCentralizerOrder@(G,g);
+    c:=SLCentralizerOrder(G,g); # there was an @!!! TODO
   elif type="GL" then
-    c:=GLCentralizerOrder@(G,g);
+    c:=GLCentralizerOrder(G,g); # there was an @!!! TODO
   elif type in ["GU","SU"] then
-    c:=UnitaryClassSize@(g^CB,type="SU");
+    c:=UnitaryClassSize(g^CB,type="SU"); # there was an @!!! TODO
   elif IsSemisimple(g) then
     #   Gr := G^CB; Gr`ClassicalType := G`ClassicalType;
     #   unitary case considered above so q is correct
-    Gr:=StandardGroup@(type,d,q);
+    Gr:=StandardGroup(type,d,q); # there was an @!!! TODO
     Gr.ClassicalType:=G.ClassicalType;
     c:=SSCentralizerOrder(Gr,g^CB);
   elif IsUnipotent(g) and type="Sp" then
@@ -802,16 +802,16 @@ local CB,Gr,ValidTypes@,_,c,d,flag,forgetvar1,form,q,type;
     forgetvar1:=form.val1;
     form:=form.val2;
     # =^= MULTIASSIGN =^=
-    c:=UnipotentCentraliserOrder@("Sp",G,g,form);
-  elif IsUnipotent(g) and IsApplicable@(G,g,type) then
+    c:=UnipotentCentraliserOrder("Sp",G,g,form); # there was an @!!! TODO
+  elif IsUnipotent(g) and IsApplicable(G,g,type) then # there was an @!!! TODO
     # =v= MULTIASSIGN =v=
-    form:=OrthogonalType@(G);
+    form:=OrthogonalType(G); # there was an @!!! TODO
     type:=form.val1;
     form:=form.val2;
     # =^= MULTIASSIGN =^=
-    c:=UnipotentCentraliserOrder@(type,G,g,form);
+    c:=UnipotentCentraliserOrder(type,G,g,form); # there was an @!!! TODO
   else
-    c:=MyCentraliserOrder@(type,g^CB);
+    c:=MyCentraliserOrder(type,g^CB); # there was an @!!! TODO
   fi;
   return Int((FactoredOrder(G)/c));
 end;

@@ -13,9 +13,9 @@
 #  Defines: CheckTauAndPhi, SanityChecks, SpinCentraliser, SpinCentralizer,
 #  SpinClassMap, SpinClasses, SpinConjugacyClasses, SpinIsConjugate
 
-DeclareGlobalFunction("CheckTauAndPhi@");
+DeclareGlobalFunction("CheckTauAndPhi"); # there was an @!!! TODO
 
-DeclareGlobalFunction("SanityChecks@");
+DeclareGlobalFunction("SanityChecks"); # there was an @!!! TODO
 
 AddAttribute(GrpMat,"SpinHom");
 AddAttribute(GrpMat,"SpinInvHom");
@@ -24,7 +24,7 @@ AddAttribute(GrpMat,"SpinCentre");
 AddAttribute(GrpMat,"SpinLifts");
 #  Forward declaration of CheckTauAndPhi
 #  Forward declaration of SanityChecks
-SpinClasses@:=function(G)
+SpinClasses:=function(G) # there was an @!!! TODO
 #  -> ,SeqEnum ,SeqEnum  Conjugacy classes of spin group G
 local 
    C,H,HClassCt,R,S,T,TH,ZG,ZH,a,b,c,cG,ccH,cent,centord,centralizerGens,cents,
@@ -56,9 +56,9 @@ local
     H:=Codomain(tau);
     TH:=CompositionTree(H);
     ZH:=LMGCentre(H);
-    SanityChecks@(G,H,ZG,ZH);
+    SanityChecks(G,H,ZG,ZH); # there was an @!!! TODO
     if Size(ZH) > 1 then
-      CheckTauAndPhi@(G,H,ZG,ZH,tau,phi); # actually Tildetau, TILDEphi!!! TODO
+      CheckTauAndPhi(G,H,ZG,ZH,tau,phi); # actually Tildetau, TILDEphi!!! TODO # there was an @!!! TODO
     fi;
     G.SpinHom:=tau;
     G.SpinInvHom:=phi;
@@ -127,12 +127,12 @@ local
     val2:=cents);
 end;
 
-SpinConjugacyClasses@:=function(G)
+SpinConjugacyClasses:=function(G) # there was an @!!! TODO
 #  -> ,SeqEnum ,SeqEnum  Conjugacy classes of spin group G
-return SpinClasses@(G);
+return SpinClasses(G); # there was an @!!! TODO
 end;
 
-SpinIsConjugate@:=function(G,g,h)
+SpinIsConjugate:=function(G,g,h) # there was an @!!! TODO
 #  -> ,BoolElt ,GrpMatElt  Are elements g , h of spin group G conjugate in G ?
 local CH,H,S,T,TH,ZG,ZH,a,b,celt1,elt,g,gen,havehoms,isc,phi,tau;
   havehoms:=IsBound(G.SpinHom) and IsBound(G.SpinInvHom) and 
@@ -156,9 +156,9 @@ local CH,H,S,T,TH,ZG,ZH,a,b,celt1,elt,g,gen,havehoms,isc,phi,tau;
     H:=Codomain(tau);
     TH:=CompositionTree(H);
     ZH:=LMGCentre(H);
-    SanityChecks@(G,H,ZG,ZH);
+    SanityChecks(G,H,ZG,ZH); # there was an @!!! TODO
     if Size(ZH) > 1 then
-      CheckTauAndPhi@(G,H,ZG,ZH,tau,phi); # actually Tildetau, Tildephi!!! TODO
+      CheckTauAndPhi(G,H,ZG,ZH,tau,phi); # actually Tildetau, Tildephi!!! TODO # there was an @!!! TODO
     fi;
     G.SpinHom:=tau;
     G.SpinInvHom:=phi;
@@ -169,7 +169,7 @@ local CH,H,S,T,TH,ZG,ZH,a,b,celt1,elt,g,gen,havehoms,isc,phi,tau;
   tau:=Function(tau);
   phi:=Function(phi);
   # =v= MULTIASSIGN =v=
-  elt:=ClassicalIsConjugate@(H,tau(g),tau(h));
+  elt:=ClassicalIsConjugate(H,tau(g),tau(h)); # there was an @!!! TODO
   isc:=elt.val1;
   elt:=elt.val2;
   # =^= MULTIASSIGN =^=
@@ -192,7 +192,7 @@ local CH,H,S,T,TH,ZG,ZH,a,b,celt1,elt,g,gen,havehoms,isc,phi,tau;
     val2:=_);
 end;
 
-SpinCentraliser@:=function(G,g)
+SpinCentraliser:=function(G,g) # there was an @!!! TODO
 #  -> ,GrpMat  Centraliser of element g of spin group G
 local CH,H,S,T,TH,ZG,ZH,a,b,cG,cH,centralizerGens,havehoms,phi,sG,splits,tau;
   havehoms:=IsBound(G.SpinHom) and IsBound(G.SpinInvHom) and 
@@ -217,9 +217,9 @@ local CH,H,S,T,TH,ZG,ZH,a,b,cG,cH,centralizerGens,havehoms,phi,sG,splits,tau;
     H:=Codomain(tau);
     TH:=CompositionTree(H);
     ZH:=LMGCentre(H);
-    SanityChecks@(G,H,ZG,ZH);
+    SanityChecks(G,H,ZG,ZH); # there was an @!!! TODO
     if Size(ZH) > 1 then
-      CheckTauAndPhi@(G,H,ZG,ZH,tau,phi); # actually Tildetau, Tildephi!!! TODO
+      CheckTauAndPhi(G,H,ZG,ZH,tau,phi); # actually Tildetau, Tildephi!!! TODO # there was an @!!! TODO
     fi;
     G.SpinHom:=tau;
     G.SpinInvHom:=phi;
@@ -256,15 +256,15 @@ local CH,H,S,T,TH,ZG,ZH,a,b,cG,cH,centralizerGens,havehoms,phi,sG,splits,tau;
     centralizerGens);
 end;
 
-SpinCentralizer@:=function(G,g)
+SpinCentralizer:=function(G,g) # there was an @!!! TODO
 #  -> ,GrpMat  Centraliser of element g of spin group G
-return SpinCentraliser@(G,g);
+return SpinCentraliser(G,g); # there was an @!!! TODO
 end;
 
-SpinClassMap@:=function(G)
+SpinClassMap:=function(G) # there was an @!!! TODO
 #  -> ,Map  The class map of spin group G
 local CMH,CMfn,H,ZG,cl,clH,lifts,phi,tau,z;
-  cl:=SpinClasses@(G);
+  cl:=SpinClasses(G); # there was an @!!! TODO
   tau:=G.SpinHom;
   phi:=G.SpinInvHom;
   H:=G.SpinHomImage;
@@ -275,14 +275,14 @@ local CMH,CMfn,H,ZG,cl,clH,lifts,phi,tau,z;
     
   until z<>G.0 and Function(tau)(z)=H.0;
   clH:=ClassicalClasses(H);
-  CMH:=ClassicalClassMap@(H);
+  CMH:=ClassicalClassMap(H); # there was an @!!! TODO
   CMfn:=function(g)
   local clno,cnoh,elt,g,h,hrep,isc,poss;
     h:=Function(tau)(g);
     cnoh:=Function(CMH)(h);
     hrep:=clH[cnoh][3];
     # =v= MULTIASSIGN =v=
-    elt:=ClassicalIsConjugate@(H,h,hrep);
+    elt:=ClassicalIsConjugate(H,h,hrep); # there was an @!!! TODO
     isc:=elt.val1;
     elt:=elt.val2;
     # =^= MULTIASSIGN =^=
@@ -302,7 +302,7 @@ local CMH,CMfn,H,ZG,cl,clH,lifts,phi,tau,z;
     x->CMfn(x));
 end;
 
-InstallGlobalFunction(CheckTauAndPhi@,
+InstallGlobalFunction(CheckTauAndPhi, # there was an @!!! TODO
 function(G,H,ZG,ZH,tau,phi)
 #  /out:make sure tau is a homomorphism
 local 
@@ -368,7 +368,7 @@ local
   Info(InfoClasses,2,"phi is now an inverse to tau");
 end);
 
-InstallGlobalFunction(SanityChecks@,
+InstallGlobalFunction(SanityChecks, # there was an @!!! TODO
 function(G,H,ZG,ZH)
 #  basic sanity cheks
   if DimensionOfMatrixGroup(H) < 7 then

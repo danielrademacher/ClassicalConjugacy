@@ -8,11 +8,11 @@
 #  Defines: Jordan_Parameters, UnipotentCentraliserOrder,
 #  UnipotentCentralizerOrder
 
-DeclareGlobalFunction("Jordan_Parameters@");
+DeclareGlobalFunction("Jordan_Parameters");
 
-DeclareGlobalFunction("UnipotentCentraliserOrder@");
+DeclareGlobalFunction("UnipotentCentraliserOrder");
 
-DeclareGlobalFunction("UnipotentCentralizerOrder@");
+DeclareGlobalFunction("UnipotentCentralizerOrder");
 
 #   compute cardinality of the centralizer of unipotent element g
 #   in the group of type "type" preserving the supplied form;
@@ -21,7 +21,7 @@ DeclareGlobalFunction("UnipotentCentralizerOrder@");
 #   in the linear and unitary case, JF is the only information
 #   needed to compute the cardinality;
 #   form is not required for Sp / Orthogonal in even characteristic
-InstallGlobalFunction(Jordan_Parameters@,
+InstallGlobalFunction(Jordan_Parameters,
 function(g)
 local _,blocks,c,forgetvar1,forgetvar2;
   # =v= MULTIASSIGN =v=
@@ -34,7 +34,7 @@ local _,blocks,c,forgetvar1,forgetvar2;
   return Multiset(blocks);
 end);
 
-InstallGlobalFunction(UnipotentCentraliserOrder@,
+InstallGlobalFunction(UnipotentCentraliserOrder,
 function(type,G,g,form)
 local Array,F,JF,L,P,T,W,_,c,card,e,exp,forgetvar1,forgetvar2,i,j,p,q,split;
   JF:=ValueOption("JF");
@@ -79,7 +79,7 @@ local Array,F,JF,L,P,T,W,_,c,card,e,exp,forgetvar1,forgetvar2,i,j,p,q,split;
   card:=Factorization(1);
   if type="GL" or type="SL" then
     for i in [1..Size(P)] do
-      card:=card*CardinalityOfClassicalGroup@("linear",P[i][2],q);
+      card:=card*CardinalityOfClassicalGroup("linear",P[i][2],q); # there was an @!!! TODO
     od;
     exp:=0;
     for i in [1..Size(P)] do
@@ -98,7 +98,7 @@ local Array,F,JF,L,P,T,W,_,c,card,e,exp,forgetvar1,forgetvar2,i,j,p,q,split;
     fi;
   elif type="GU" or type="SU" then
     for i in [1..Size(P)] do
-      card:=card*CardinalityOfClassicalGroup@("unitary",P[i][2],q);
+      card:=card*CardinalityOfClassicalGroup("unitary",P[i][2],q); # there was an @!!! TODO
     od;
     exp:=0;
     for i in [1..Size(P)] do
@@ -123,15 +123,15 @@ local Array,F,JF,L,P,T,W,_,c,card,e,exp,forgetvar1,forgetvar2,i,j,p,q,split;
       else
         T:=L;
       fi;
-      card:=Factorization(SpUnipotentCentraliserOrder@(T,[],q));
+      card:=Factorization(SpUnipotentCentraliserOrder(T,[],q)); # there was an @!!! TODO
     elif IsOddInt(q) then
       if Size(T)=0 then
-        T:=Jordan_Parameters@(g);
+        T:=Jordan_Parameters(g); # there was an @!!! TODO
       fi;
       if Size(L)=0 then
         L:=MyUnipotentClassLabel(G,g);
       fi;
-      card:=Factorization(SpUnipotentCentraliserOrder@(T,L,q));
+      card:=Factorization(SpUnipotentCentraliserOrder(T,L,q)); # there was an @!!! TODO
     fi;
   elif type="GO+" or type="GO-" or type="GO" or type="SO+" or type="SO-" or 
      type="SO" or type="Omega+" or type="Omega-" or type="Omega" then
@@ -143,17 +143,17 @@ local Array,F,JF,L,P,T,W,_,c,card,e,exp,forgetvar1,forgetvar2,i,j,p,q,split;
       else
         W:=T;
       fi;
-      card:=Factorization(OrthogonalUnipotentCentraliserOrder@(type,T,[]
+      card:=Factorization(OrthogonalUnipotentCentraliserOrder(type,T,[] # there was an @!!! TODO
        ,false,q));
     elif IsOddInt(q) then
       if Size(T)=0 then
-        T:=Jordan_Parameters@(g);
+        T:=Jordan_Parameters(g); # there was an @!!! TODO
       fi;
       if Size(L)=0 then
         L:=MyUnipotentClassLabel(G,g);
       fi;
       if type in ["GO+","GO-","GO"] then
-        card:=Factorization(OrthogonalUnipotentCentraliserOrder@(type,T,L,false,
+        card:=Factorization(OrthogonalUnipotentCentraliserOrder(type,T,L,false, # there was an @!!! TODO
          q));
       else
         # rewritten select statement
@@ -162,7 +162,7 @@ local Array,F,JF,L,P,T,W,_,c,card,e,exp,forgetvar1,forgetvar2,i,j,p,q,split;
         else
           split:=true;
         fi;
-        card:=Factorization(OrthogonalUnipotentCentraliserOrder@(type,T,L[1]
+        card:=Factorization(OrthogonalUnipotentCentraliserOrder(type,T,L[1] # there was an @!!! TODO
          ,split,q));
       fi;
     fi;

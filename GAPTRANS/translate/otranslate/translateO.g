@@ -19,7 +19,7 @@
 
 #   The sign of the unipotent or negative unipotent of type <e,m> in GF(q)
 #   for orthogonal groups
-sgnO@:=function(e,m,q)
+sgnO:=function(e,m,q)
 local val;
   if IsEvenInt(e) then
     Print("e must be odd");
@@ -55,7 +55,7 @@ local val;
   return val;
 end;
 
-changeSign@:=function(mu)
+changeSign:=function(mu)
 local f,newlst,nu,plist,polpart;
   nu:=# {@-list:
   [];
@@ -89,7 +89,7 @@ end;
 
 #   The functions invToWittType and theSign have been copied from GOConjugacy.m
 #   import "GOConjugacy.m" : invToWittType, theSign
-invToWittType@:=function(inv)
+invToWittType:=function(inv)
 local W,e,f,lambda,m,mu,omega,pol_part,q,qmod4,w;
   q:=Size(BaseRing(Parent(inv[1][1])));
   qmod4:=q mod 4=1;
@@ -145,16 +145,16 @@ local W,e,f,lambda,m,mu,omega,pol_part,q,qmod4,w;
   return w;
 end;
 
-theSign@:=function(inv)
+theSign:=function(inv)
 local W,w;
-  w:=invToWittType@(inv);
+  w:=invToWittType(inv); # there was an @!!! TODO
   W:=Parent(w);
   return # rewritten select statement
   function(xxx)if xxx then return 1;else return -1;fi;end(w in [0*FORCEOne(W)
    ,W.1]);
 end;
 
-tagDim@:=function(mu)
+tagDim:=function(mu)
 local d,d_,e,em,f,lambda,m,polpart;
   d:=0;
   for polpart in mu do
@@ -177,7 +177,7 @@ local d,d_,e,em,f,lambda,m,polpart;
   return d;
 end;
 
-nmDim@:=function(nm)
+nmDim:=function(nm)
 local a,d,d_,e,eam,f,m,mu,term,tp;
   d:=0;
   for term in nm do
@@ -212,7 +212,7 @@ end;
 #   polynomial and pi is a (signed) partition for an even dimensional 
  orthogonal
 #   group over GF(q), q odd
-toNameEven@:=function(mu)
+toNameEven:=function(mu)
 local F,e,ee,f,label,lambda,m,name,polpart,pp,q,ss,tp,z;
   name:=[];
   F:=BaseRing(mu[1][1]);
@@ -248,7 +248,7 @@ local F,e,ee,f,label,lambda,m,name,polpart,pp,q,ss,tp,z;
         UniteSet(label,[e,0*FORCEOne(F)]^^(QuoInt(m,2))); # actually Tildelabel!!! TODO
       else
         ee:=Abs(e);
-        ss:=sgnO@(ee,m,q);
+        ss:=sgnO(ee,m,q); # there was an @!!! TODO
         if e*ss > 0 then
           UniteSet(label,[ee,1*FORCEOne(F)]^^m); # actually Tildelabel!!! TODO
         else
@@ -264,21 +264,21 @@ local F,e,ee,f,label,lambda,m,name,polpart,pp,q,ss,tp,z;
   return name;
 end;
 
-tagToNameO@:=function(mu)
+tagToNameO:=function(mu)
 local F,label,n;
-  n:=tagDim@(mu);
+  n:=tagDim(mu); # there was an @!!! TODO
   if IsEvenInt(n) then
-    return toNameEven@(mu);
+    return toNameEven(mu); # there was an @!!! TODO
   fi;
   F:=BaseRing(mu[1][1]);
-  label:=toNameEven@(mu);
-  return TurnCorrectLabel@(label,n,F);
+  label:=toNameEven(mu); # there was an @!!! TODO
+  return TurnCorrectLabel(label,n,F); # there was an @!!! TODO
   #   g := RepresentativeMatrixO(mu);
   #   return IsometryGroupClassLabel("GO",g);
 end;
 
-sigil@:=["s","ns","id"];
-tagToNameSO@:=function(mu)
+sigil:=["s","ns","id"];
+tagToNameSO:=function(mu)
 local nm,sgn,xi;
   if Type(mu)=Tup then
     # =v= MULTIASSIGN =v=
@@ -286,9 +286,9 @@ local nm,sgn,xi;
     xi:=sgn.val1;
     sgn:=sgn.val2;
     # =^= MULTIASSIGN =^=
-    nm:=[tagToNameO@(xi),sigil@[sgn+2]];
+    nm:=[tagToNameO(xi),sigil@[sgn+2]]; # there was an @!!! TODO
   else
-    nm:=[tagToNameO@(mu),"ns"];
+    nm:=[tagToNameO(mu),"ns"]; # there was an @!!! TODO
   fi;
   return nm;
 end;
@@ -297,7 +297,7 @@ end;
 #   signed partitions corresponding to the De Franceschi label nm in an
 #   orthogonal group over GF(q), q odd.  If the dimension is odd, further
 #   processing is necessary.
-toTag@:=function(nm)
+toTag:=function(nm)
 local F,alpha,e,eam,f,m,mm,mu,prev,ptn,q,ss,tag,term,tp;
   tag:=# {@-list:
   [];
@@ -329,10 +329,10 @@ local F,alpha,e,eam,f,m,mm,mu,prev,ptn,q,ss,tag,term,tp;
       elif IsEvenInt(e) then
         Add(ptn,[e,2*m]);
       else
-        ss:=sgnO@(e,m,q);
+        ss:=sgnO(e,m,q); # there was an @!!! TODO
         if e=prev[1] then
           mm:=prev[2]+m;
-          ss:=sgnO@(e,mm,q);
+          ss:=sgnO(e,mm,q); # there was an @!!! TODO
           #   replace the top of the stack
           ptn[Size(ptn)]:=[-ss*e,mm];
           prev:=[0,0];
@@ -350,12 +350,12 @@ local F,alpha,e,eam,f,m,mm,mu,prev,ptn,q,ss,tag,term,tp;
   return tag;
 end;
 
-nameToTagO@:=function(nm)
+nameToTagO:=function(nm)
 local tag;
-  tag:=toTag@(nm);
-  if IsOddInt(nmDim@(nm)) then
-    if theSign@(tag)=-1 then
-      tag:=changeSign@(tag);
+  tag:=toTag(nm); # there was an @!!! TODO
+  if IsOddInt(nmDim(nm)) then # there was an @!!! TODO
+    if theSign(tag)=-1 then # there was an @!!! TODO
+      tag:=changeSign(tag); # there was an @!!! TODO
     fi;
   fi;
   return tag;

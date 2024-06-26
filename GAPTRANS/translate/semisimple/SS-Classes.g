@@ -5,14 +5,14 @@
 
 #  Defines: SemisimpleClasses
 
-SemisimpleClasses@:=function(type,n,q)
+SemisimpleClasses:=function(type,n,q) # there was an @!!! TODO
 #  -> ,]  Semisimple conjugacy classes of the classical group of supplied type
 #  , rank and field size
-local F,ValidTypes@;
-  ValidTypes@:=["Sp","SU","GU","Omega+","Omega-","Omega","SO+","SO-","SO","GO+",
+local F,ValidTypes; # there was an @!!! TODO
+  ValidTypes:=["Sp","SU","GU","Omega+","Omega-","Omega","SO+","SO-","SO","GO+", # there was an @!!! TODO
    "GO-","GO","O+","O-","O"];
-  if not type in ValidTypes@ then
-    Error(["Type must be one of ",ValidTypes@]);
+  if not type in ValidTypes then # there was an @!!! TODO
+    Error(["Type must be one of ",ValidTypes]); # there was an @!!! TODO
   fi;
   if not n > 0 then
     Error("Degree must be positive");
@@ -88,10 +88,10 @@ local F,ValidTypes@;
   fi;
 end;
 
-SemisimpleClasses@:=function(type,n,F)
+SemisimpleClasses:=function(type,n,F) # there was an @!!! TODO
 #  -> ,]  Semisimple conjugacy classes of the classical group of supplied type
 #  , rank and field
-return SemisimpleClasses@(type,n,Size(F));
+return SemisimpleClasses(type,n,Size(F)); # there was an @!!! TODO
 end;
 
 

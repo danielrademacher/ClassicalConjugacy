@@ -89,13 +89,13 @@ local Valid,flag,label,type;
   if not type in Valid then
     Error(["Classical group type is not valid, must be one of ",Valid]);
   fi;
-  label:=UnipotentLabel@(G,g);
+  label:=UnipotentLabel(G,g); # there was an @!!! TODO
   return label;
 end;
 
 #   C is sequence of classes and L is sequence of labels;
 #   return index of conjugacy class containing element g
-UnipotentClassIndex@:=function(G,g,U,L,type,F)
+UnipotentClassIndex:=function(G,g,U,L,type,F) # there was an @!!! TODO
 #  /out: two cases coincide
 local found,index,j,label,two,Tup; # Tup is a type in magma!!! TODO
   if type in ["GL","SL"] and Size(F)=2 then
@@ -108,7 +108,7 @@ local found,index,j,label,two,Tup; # Tup is a type in magma!!! TODO
     G.ClassicalType:=type;
   fi;
   #   do we need label relative to isom group? or actual G?
-  label:=UnipotentLabel@(G,g);
+  label:=UnipotentLabel(G,g); # there was an @!!! TODO
   if type="SU" then
     two:=label[2];
     label:=label[1];
@@ -152,11 +152,11 @@ local found,index,j,label,two,Tup; # Tup is a type in magma!!! TODO
   return Position(L,label);
 end;
 
-UnipotentClassMap@:=function(G,U,L)
+UnipotentClassMap:=function(G,U,L) # there was an @!!! TODO
 #  -> ,Map  U and L are output of UnipotentClasses , where U := sequence of
 #  unipotent class representative and L := the corresponding list of labels ;
 #  return unipotent class map for G
-local F,ValidTypes@,flag,type;
+local F,ValidTypes,flag,type; # there was an @!!! TODO
   type:=ValueOption("type");
   if type=fail then
     type:=false;
@@ -164,7 +164,7 @@ local F,ValidTypes@,flag,type;
   if not IsIrreducible(G) then
     Error("Input group must be irreducible");
   fi;
-  ValidTypes@:=Set(["GL","SL","Sp","SU","GU","Omega+","Omega-","Omega","O","O+",
+  ValidTypes:=Set(["GL","SL","Sp","SU","GU","Omega+","Omega-","Omega","O","O+", # there was an @!!! TODO
    "O-","SO+","SO-","SO","GO+","GO-","GO"]);
   if not ForAll(U,x->IsUnipotent(x[3])) then
     Error("Must supply unipotent classes");
@@ -184,8 +184,8 @@ local F,ValidTypes@,flag,type;
       if not type<>false then
       Error("For this (small) case, you must supply type");
     fi;
-      if not type in ValidTypes@ then
-      Error(["Type must be one of ",ValidTypes@]);
+      if not type in ValidTypes then # there was an @!!! TODO
+      Error(["Type must be one of ",ValidTypes]); # there was an @!!! TODO
     fi;
     if type="O" then
       type:="GO";
@@ -201,12 +201,12 @@ local F,ValidTypes@,flag,type;
     flag:=type.val1;
     type:=type.val2;
     # =^= MULTIASSIGN =^=
-      if not flag and type in ValidTypes@ then
-      Error(["Input group must be one of these types",ValidTypes@]);
+      if not flag and type in ValidTypes then # there was an @!!! TODO
+      Error(["Input group must be one of these types",ValidTypes]); # there was an @!!! TODO
     fi;
   fi;
   return GroupGeneralMappingByFunction(Generic(G),[1..Size(U)],
-    g->UnipotentClassIndex@(G,g,U,L,type,F));
+    g->UnipotentClassIndex(G,g,U,L,type,F)); # there was an @!!! TODO
 end;
 
 

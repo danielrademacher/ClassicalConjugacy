@@ -6,18 +6,18 @@
 
 #  Defines: UnipotentClasses
 
-UnipotentClasses@:=function(type,d,q)
+UnipotentClasses:=function(type,d,q) # there was an @!!! TODO
 #  -> ,] ,[ ,] ,[ ,] ,[ ,] ,[ ,]  Unipotent conjugacy classes of the classical
 #  group of supplied type and rank defined over field of given size
-local L,R,Rewrite,T,ValidTypes@,epsilon,forms,reps,type;
+local L,R,Rewrite,T,ValidTypes,epsilon,forms,reps,type; # there was an @!!! TODO
   Rewrite:=ValueOption("Rewrite");
   if Rewrite=fail then
     Rewrite:=true;
   fi;
-  ValidTypes@:=["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+","SO-",
+  ValidTypes:=["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+","SO-", # there was an @!!! TODO
    "SO","GO+","GO-","GO","O+","O-","O"];
-  if not type in ValidTypes@ then
-    Error(["Type must be one of ",ValidTypes@]);
+  if not type in ValidTypes then # there was an @!!! TODO
+    Error(["Type must be one of ",ValidTypes]); # there was an @!!! TODO
   fi;
   if not d > 0 then
     Error("Degree must be positive");
@@ -62,19 +62,19 @@ local L,R,Rewrite,T,ValidTypes@,epsilon,forms,reps,type;
   fi;
   if type="SL" then
     # =v= MULTIASSIGN =v=
-    T:=SLUnipotentReps@(d,q);
+    T:=SLUnipotentReps(d,q); # there was an @!!! TODO
     R:=T.val1;
     T:=T.val2;
     # =^= MULTIASSIGN =^=
   elif type="GL" then
     # =v= MULTIASSIGN =v=
-    T:=GLUnipotentReps@(d,q);
+    T:=GLUnipotentReps(d,q); # there was an @!!! TODO
     R:=T.val1;
     T:=T.val2;
     # =^= MULTIASSIGN =^=
   elif type="SU" then
     # =v= MULTIASSIGN =v=
-    T:=SUUnipotentReps@(d,q:Rewrite:=Rewrite);
+    T:=SUUnipotentReps(d,q:Rewrite:=Rewrite); # there was an @!!! TODO
     R:=T.val1;
     reps:=T.val2;
     forms:=T.val3;
@@ -82,7 +82,7 @@ local L,R,Rewrite,T,ValidTypes@,epsilon,forms,reps,type;
     # =^= MULTIASSIGN =^=
   elif type="GU" then
     # =v= MULTIASSIGN =v=
-    T:=GUUnipotentReps@(d,q:Rewrite:=Rewrite);
+    T:=GUUnipotentReps(d,q:Rewrite:=Rewrite); # there was an @!!! TODO
     R:=T.val1;
     reps:=T.val2;
     forms:=T.val3;
@@ -94,7 +94,7 @@ local L,R,Rewrite,T,ValidTypes@,epsilon,forms,reps,type;
     fi;
     if IsEvenInt(q) then
       # =v= MULTIASSIGN =v=
-      T:=EvenUnipotentReps@(type,d,q:Rewrite:=Rewrite);
+      T:=EvenUnipotentReps(type,d,q:Rewrite:=Rewrite); # there was an @!!! TODO
       R:=T.val1;
       reps:=T.val2;
       forms:=T.val3;
@@ -102,7 +102,7 @@ local L,R,Rewrite,T,ValidTypes@,epsilon,forms,reps,type;
       # =^= MULTIASSIGN =^=
     else
       # =v= MULTIASSIGN =v=
-      L:=SpUnipotentReps@(d,q:Rewrite:=Rewrite);
+      L:=SpUnipotentReps(d,q:Rewrite:=Rewrite); # there was an @!!! TODO
       R:=L.val1;
       reps:=L.val2;
       forms:=L.val3;
@@ -113,7 +113,7 @@ local L,R,Rewrite,T,ValidTypes@,epsilon,forms,reps,type;
   elif type in ["Omega+","Omega","Omega-"] then
     if IsOddInt(q) then
       # =v= MULTIASSIGN =v=
-      L:=OrthogonalUnipotentReps@(d,q,epsilon:Special:=true,Perfect:=true,
+      L:=OrthogonalUnipotentReps(d,q,epsilon:Special:=true,Perfect:=true, # there was an @!!! TODO
        Rewrite:=Rewrite);
       R:=L.val1;
       reps:=L.val2;
@@ -123,7 +123,7 @@ local L,R,Rewrite,T,ValidTypes@,epsilon,forms,reps,type;
       # =^= MULTIASSIGN =^=
     else
       # =v= MULTIASSIGN =v=
-      T:=EvenUnipotentReps@(type,d,q:Rewrite:=Rewrite);
+      T:=EvenUnipotentReps(type,d,q:Rewrite:=Rewrite); # there was an @!!! TODO
       R:=T.val1;
       reps:=T.val2;
       forms:=T.val3;
@@ -133,7 +133,7 @@ local L,R,Rewrite,T,ValidTypes@,epsilon,forms,reps,type;
   elif type in ["SO+","SO-","SO"] then
     if IsOddInt(q) then
       # =v= MULTIASSIGN =v=
-      L:=OrthogonalUnipotentReps@(d,q,epsilon:Special:=true,Perfect:=false,
+      L:=OrthogonalUnipotentReps(d,q,epsilon:Special:=true,Perfect:=false, # there was an @!!! TODO
        Rewrite:=Rewrite);
       R:=L.val1;
       reps:=L.val2;
@@ -143,7 +143,7 @@ local L,R,Rewrite,T,ValidTypes@,epsilon,forms,reps,type;
       # =^= MULTIASSIGN =^=
     else
       # =v= MULTIASSIGN =v=
-      T:=EvenUnipotentReps@(type,d,q:Rewrite:=Rewrite);
+      T:=EvenUnipotentReps(type,d,q:Rewrite:=Rewrite); # there was an @!!! TODO
       R:=T.val1;
       reps:=T.val2;
       forms:=T.val3;
@@ -153,7 +153,7 @@ local L,R,Rewrite,T,ValidTypes@,epsilon,forms,reps,type;
   elif type in ["O+","O-","O"] then
     if IsOddInt(q) then
       # =v= MULTIASSIGN =v=
-      L:=OrthogonalUnipotentReps@(d,q,epsilon:Special:=false,Perfect:=false,
+      L:=OrthogonalUnipotentReps(d,q,epsilon:Special:=false,Perfect:=false, # there was an @!!! TODO
        Rewrite:=Rewrite);
       R:=L.val1;
       reps:=L.val2;
@@ -167,7 +167,7 @@ local L,R,Rewrite,T,ValidTypes@,epsilon,forms,reps,type;
       fi;
     else
       # =v= MULTIASSIGN =v=
-      T:=EvenUnipotentReps@(type,d,q:Rewrite:=Rewrite);
+      T:=EvenUnipotentReps(type,d,q:Rewrite:=Rewrite); # there was an @!!! TODO
       R:=T.val1;
       reps:=T.val2;
       forms:=T.val3;
@@ -197,7 +197,7 @@ local L,R,Rewrite,T,ValidTypes@,epsilon,forms,reps,type;
   fi;
 end;
 
-UnipotentClasses@:=function(type,d,F)
+UnipotentClasses:=function(type,d,F) # there was an @!!! TODO
 #  -> ,] ,[ ,] ,[ ,] ,[ ,] ,[ ,]  Unipotent conjugacy classes of the classical
 #  group of supplied type and rank defined over given field
 local Rewrite;
@@ -205,7 +205,7 @@ local Rewrite;
   if Rewrite=fail then
     Rewrite:=true;
   fi;
-  return UnipotentClasses@(type,d,Size(F));
+  return UnipotentClasses(type,d,Size(F)); # there was an @!!! TODO
 end;
 
 

@@ -159,7 +159,7 @@ local
 end;
 
 GLUnipotentReps:=function(n,q)
-local C,Card,F,G,P,P1,Partition,T,Y,card,i,j,ord,p,pos;
+local C,Card,F,G,P,P1,Partition,T,Y,card,i,j,ord,p,pos,lvarPartition;
   lvarPartition:=ValueOption("lvarPartition");
   if lvarPartition=fail then
     lvarPartition:=[];
@@ -345,7 +345,8 @@ local D,F,MA,f,lambda;
 end;
 
 #   return element in standard copy of GU(n,F) with single Jordan block J_n
-InstallGlobalFunction(GUUnipotentBlock,
+DeclareGlobalFunction("GUUnipotentBlock");
+InstallGlobalFunction("GUUnipotentBlock",
 function(n,F)
 local Y,b,d,i,j,m,q,w;
   q:=RootInt(Size(F));
@@ -398,7 +399,7 @@ end);
 
 #   unipotent classes in GU(n, q)
 GUUnipotentReps:=function(n,q)
-local B,C,D,F,Forms,G,Orig,P,Partition,Reps,Rewrite,T,VectorForms,Y,i,m,p,size;
+local B,C,D,F,Forms,G,Orig,P,Partition,Reps,Rewrite,T,VectorForms,Y,i,m,p,size,lvarPartition;
   Rewrite:=ValueOption("Rewrite");
   if Rewrite=fail then
     Rewrite:=true;
@@ -455,7 +456,7 @@ SUUnipotentReps:=function(n,q)
 local 
    A,B,C,D,F,FixedRoot,Forms,G,JF,L,M,N,Orig,P,Params,Q,Reps,Rewrite,S,T,Verify,
    varZ,_,beta,conj,delta,e,forgetvar1,form,form_A,form_B,forms,i,k,m,nmr,one,
-   params,phi,reps,s,size,t,tau,tr,two,type,varrep,w,z;
+   params,phi,reps,s,size,t,tau,tr,two,type,varrep,w,z,gamma;
   Rewrite:=ValueOption("Rewrite");
   if Rewrite=fail then
     Rewrite:=true;
@@ -514,7 +515,8 @@ local
 
   #   R<x>:= PolynomialRing (F);
   #   time gamma := FixedRoot (x + x^q + 1);
-  Assert(1,gamma:=ForAny(F,x->x<>0 and x+x^q=-1));
+  gamma:=ForAny(F,x->x<>0 and x+x^q=-1);
+  Assert(1,gamma);
   beta:=Root(-1*FORCEOne(F),q-1);
   #   assert exists(beta) {x : x in F | x ne 0 and x + x^q eq 0};
   delta:=-1*FORCEOne(F);

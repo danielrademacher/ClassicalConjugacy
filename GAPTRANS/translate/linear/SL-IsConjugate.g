@@ -8,13 +8,13 @@
 
 #  Defines: GLIsConjugate, SLIsConjugate
 
-DeclareGlobalFunction("GLIsConjugate@");
+DeclareGlobalFunction("GLIsConjugate");
 
-DeclareGlobalFunction("SLIsConjugate@");
+DeclareGlobalFunction("SLIsConjugate");
 
 #   if x and y are conjugate in GL, then returns true and z in SL
 #   such that z^-1*x*z=y, otherwise returns false
-InstallGlobalFunction(GLIsConjugate@,
+InstallGlobalFunction(GLIsConjugate,
 function(G,x,y)
 local B,C,Jx,Jy,c,forgetvar3;
   # =v= MULTIASSIGN =v=
@@ -39,7 +39,7 @@ end);
 
 #   if x and y are conjugate in SL, then returns true and z in SL
 #   such that z^-1*x*z=y, otherwise returns false
-InstallGlobalFunction(SLIsConjugate@,
+InstallGlobalFunction(SLIsConjugate,
 function(S,x,y)
 local 
    A,B,C,varE,F,Form,R,W,varX,Y,_,a,answer,ax,ay,bX,c,d,deg,f,forgetvar1,

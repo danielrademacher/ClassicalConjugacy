@@ -7,15 +7,15 @@
 
 #  Defines: GLCentralizerOrder, SLCentralizerOrder
 
-DeclareGlobalFunction("GLCentralizerOrder@");
+DeclareGlobalFunction("GLCentralizerOrder");
 
-DeclareGlobalFunction("SLCentralizerOrder@");
+DeclareGlobalFunction("SLCentralizerOrder");
 
 #   G = GL(n,q) or SL(n,q)
 #   compute the factored order of the centralizer of x in G
 #   if the JordanForm of x is known, the function can be
 #   called with the parameter JF
-InstallGlobalFunction(GLCentralizerOrder@,
+InstallGlobalFunction(GLCentralizerOrder,
 function(G,x)
 local F,JF,S,SLOrder,_,c,d,forgetvar1,forgetvar2,g,i,j,n,q,r;
   JF:=ValueOption("JF");
@@ -67,14 +67,14 @@ local F,JF,S,SLOrder,_,c,d,forgetvar1,forgetvar2,g,i,j,n,q,r;
   return r*g;
 end);
 
-InstallGlobalFunction(SLCentralizerOrder@,
+InstallGlobalFunction(SLCentralizerOrder,
 function(G,x)
 local JF;
   JF:=ValueOption("JF");
   if JF=fail then
     JF:=[];
   fi;
-  return GLCentralizerOrder@(G,x:JF:=JF);
+  return GLCentralizerOrder(G,x:JF:=JF); # there was an @!!! TODO
 end);
 
 

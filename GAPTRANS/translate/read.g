@@ -12,7 +12,7 @@ Read("semisimple/SS-IsConjugate.g");
 Read("linear/SLCentralizer.g");
 Read("unipotent/ClassMap.g");
 Read("unipotent/good-char.g");
-# Read("unipotent/Centraliser-Order.g");
+Read("unipotent/Centraliser-Order.g");
 # Read("Gen-Label.g");
 # Read("CentralizerOrder.g");
 # Read("fixed-ss.g");

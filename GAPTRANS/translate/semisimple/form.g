@@ -19,21 +19,21 @@
 #  FormForCompanionMatrix, IndicateType, IsElementOf, MyClassicalType,
 #  MyIsOrthogonalGroup, MyIsSymplecticGroup, MyIsUnitaryGroup, SFC, SpinN
 
-DeclareGlobalFunction("CheckSplitOmega@");
+DeclareGlobalFunction("CheckSplitOmega"); # there was an @!!! TODO
 
-DeclareGlobalFunction("ConjugatePolynomial@");
+DeclareGlobalFunction("ConjugatePolynomial"); # there was an @!!! TODO
 
-DeclareGlobalFunction("DetermineForm@");
+DeclareGlobalFunction("DetermineForm"); # there was an @!!! TODO
 
-DeclareGlobalFunction("FormForCompanionMatrix@");
+DeclareGlobalFunction("FormForCompanionMatrix"); # there was an @!!! TODO
 
-DeclareGlobalFunction("IndicateType@");
+DeclareGlobalFunction("IndicateType"); # there was an @!!! TODO
 
-DeclareGlobalFunction("IsElementOf@");
+DeclareGlobalFunction("IsElementOf"); # there was an @!!! TODO
 
-DeclareGlobalFunction("SpinN@");
+DeclareGlobalFunction("SpinN"); # there was an @!!! TODO
 
-MyIsSymplecticGroup@:=function(G)
+MyIsSymplecticGroup:=function(G) # there was an @!!! TODO
 local type;
   if IsBound(G.ClassicalType) then
     type:=G.ClassicalType;
@@ -43,7 +43,7 @@ local type;
   fi;
 end;
 
-MyIsUnitaryGroup@:=function(G)
+MyIsUnitaryGroup:=function(G) # there was an @!!! TODO
 local type;
   if IsBound(G.ClassicalType) then
     type:=G.ClassicalType;
@@ -53,7 +53,7 @@ local type;
   fi;
 end;
 
-MyIsOrthogonalGroup@:=function(G)
+MyIsOrthogonalGroup:=function(G) # there was an @!!! TODO
 local Limit,flag,nmr,type;
   if IsBound(G.ClassicalType) then
     type:=G.ClassicalType;
@@ -72,7 +72,7 @@ local Limit,flag,nmr,type;
   fi;
 end;
 
-MyClassicalType@:=function(G)
+MyClassicalType:=function(G) # there was an @!!! TODO
 local flag,type;
   # =v= MULTIASSIGN =v=
   type:=GroupType(G); #TODO: GroupType@(G)
@@ -95,7 +95,7 @@ end;
 #   such that the vector w=vA^-1 is the vector of the coefficients
 #   of the matrix of the quadratic form preserved by
 #   CompanionMatrix (f) as in FormForCompanionMatrix below
-SFC@:=function(f)
+SFC:=function(f) # there was an @!!! TODO
 local A,F,V,a,i,j,m,n,v;
   F:=BaseRing(f);
   n:=Degree(f);
@@ -131,7 +131,7 @@ end;
 #   given a form X (diagonal join of standard forms), return
 #   the set of discriminants of the forms of odd dimension
 #   it is useful in the case "Omega", q odd
-Discriminants@:=function(varX)
+Discriminants:=function(varX) # there was an @!!! TODO
 local F,Vect,i,k,n,t;
   n:=Length(varX);
   F:=BaseRing(varX);
@@ -152,7 +152,7 @@ end;
 
 #   given the element c of the Cartesian product (see end of code "fixed-ss.m"),
 #   returns true if its class in SO splits into two classes in Omega
-InstallGlobalFunction(CheckSplitOmega@,
+InstallGlobalFunction(CheckSplitOmega, # there was an @!!! TODO
 function(c,F,L)
 local Answer,Discr,ExistsDg,ExistsPm,SplitDg,SplitPm,T,i,setv,v;
   SplitPm:=true;
@@ -169,7 +169,7 @@ local Answer,Discr,ExistsDg,ExistsPm,SplitDg,SplitPm,T,i,setv,v;
       if not (T in [Set([0]),Set([1]),Set([0,1])]) then
         SplitPm:=false;
       elif T=Set([0,1]) or T=Set([1]) then
-        v:=Discriminants@(c[i][4]);
+        v:=Discriminants(c[i][4]); # there was an @!!! TODO
         setv:=List( # {-list:
           v,x->IsSquare(x*FORCEOne(F)));
         if Size(setv)=2 then
@@ -195,7 +195,7 @@ local Answer,Discr,ExistsDg,ExistsPm,SplitDg,SplitPm,T,i,setv,v;
 end);
 
 #   return TildeDualPolynomial if unitary eq true, DualPolynomial otherwise
-InstallGlobalFunction(ConjugatePolynomial@,
+InstallGlobalFunction(ConjugatePolynomial, # there was an @!!! TODO
 function(unitary) #TODO: This function has to be checked completly. Where is Dualpolynomial coming from?
 local DualPolynomial;
 DualPolynomial := 0;
@@ -207,7 +207,7 @@ if unitary then
 end);
 
 #   SpinorNorm is defined in different ways in odd and even char
-InstallGlobalFunction(SpinN@,
+InstallGlobalFunction(SpinN, # there was an @!!! TODO
 function(x,Q,p)
 local V;
   if IsOddInt(p) then
@@ -219,7 +219,7 @@ local V;
 end);
 
 #   returns the orthogonal type of the form B
-InstallGlobalFunction(IndicateType@,
+InstallGlobalFunction(IndicateType, # there was an @!!! TODO
 function(B)
 local F,V,n;
   n:=Length(B);
@@ -245,7 +245,7 @@ end);
 
 #   given polynomial f and its companion matrix C, return B such that CBC*=B,
 #   where B is hermitian, alternating, symmetric or quadratic
-InstallGlobalFunction(FormForCompanionMatrix@,
+InstallGlobalFunction(FormForCompanionMatrix, # there was an @!!! TODO
 function(f,type)
 local 
    A,C,D,varE,F,F0,Gr,M,MA,_,c,d,deg,flag,forgetvar1,h,i,j,l,m,mu,n,q,v,w,x,y;
@@ -327,7 +327,7 @@ local
       y:=MatrixByEntries(F,2,2,[1,C[2][2],0,1]);
     else
       # =v= MULTIASSIGN =v=
-      v:=SFC@(f);
+      v:=SFC(f); # there was an @!!! TODO
       A:=v.val1;
       v:=v.val2;
       # =^= MULTIASSIGN =^=
@@ -354,7 +354,7 @@ end);
 #   check if x in G, a group of supplied type preserving
 #   sesquilinear form B and quadratic form Q;
 #   also decide if the element is in SO or Omega
-InstallGlobalFunction(IsElementOf@,
+InstallGlobalFunction(IsElementOf, # there was an @!!! TODO
 function(G,x,type,B,Q)
 local F,IsOmega,e,n,p,special;
   F:=BaseRing(G);
@@ -381,14 +381,14 @@ local F,IsOmega,e,n,p,special;
     special:=ForAll(Generators(G),g->DeterminantMat(g)=1);
   fi;
   if type<>"unitary" and type<>"symplectic" and (special or p=2) then
-    IsOmega:=ForAll(Generators(G),g->SpinN@(g,Q,p)=0);
+    IsOmega:=ForAll(Generators(G),g->SpinN(g,Q,p)=0); # there was an @!!! TODO
   fi;
   #   check if x is in the special group G
   if special and DeterminantMat(x)<>1 then
     Error("x must be in G");
   fi;
   #  check if x is in the Omega group G
-  if IsOmega and SpinN@(x*FORCEOne(GL(n,F)),Q,p)<>0 then
+  if IsOmega and SpinN(x*FORCEOne(GL(n,F)),Q,p)<>0 then # there was an @!!! TODO
     Error("x must be in G");
   fi;
   return rec(val1:=special,
@@ -396,7 +396,7 @@ local F,IsOmega,e,n,p,special;
 end);
 
 #   determine form and check that x is in G
-InstallGlobalFunction(DetermineForm@,
+InstallGlobalFunction(DetermineForm, # there was an @!!! TODO
 function(G,x)
 local B,F,lvarIsAbelian,IsOmega,Q,_,e,flag,forgetvar1,n,p,q,sgn,special,type;
   lvarIsAbelian:=false;
@@ -407,7 +407,7 @@ local B,F,lvarIsAbelian,IsOmega,Q,_,e,flag,forgetvar1,n,p,q,sgn,special,type;
   sgn:=1;
   e:=0;
   #   compute form of G
-  if MyIsSymplecticGroup@(G) then
+  if MyIsSymplecticGroup(G) then # there was an @!!! TODO
     sgn:=(-1)*FORCEOne(F);
     # =v= MULTIASSIGN =v=
     B:=SymplecticForm(G);
@@ -432,15 +432,15 @@ local B,F,lvarIsAbelian,IsOmega,Q,_,e,flag,forgetvar1,n,p,q,sgn,special,type;
     Q:=InvariantQuadraticForms(G)[1];
     lvarIsAbelian:=true;
     B:=Q+TransposedMat(Q);
-  elif MyIsUnitaryGroup@(G)=true then
+  elif MyIsUnitaryGroup(G)=true then # there was an @!!! TODO
     type:="unitary";
     # =v= MULTIASSIGN =v=
     B:=UnitaryForm(G);
     forgetvar1:=B.val1;
     B:=B.val2;
     # =^= MULTIASSIGN =^=
-  elif MyIsOrthogonalGroup@(G) then
-    type:=MyClassicalType@(G);
+  elif MyIsOrthogonalGroup(G) then # there was an @!!! TODO
+    type:=MyClassicalType(G); # there was an @!!! TODO
     if not IsTrivial(G) and Degree(G)=2 and IsIrreducible(G)=false then
       # =v= MULTIASSIGN =v=
       Q:=FormsReducibleCase(G,type); # there was an @, TODO
@@ -467,7 +467,7 @@ local B,F,lvarIsAbelian,IsOmega,Q,_,e,flag,forgetvar1,n,p,q,sgn,special,type;
   fi;
   if IsBound(Q) then
     # =v= MULTIASSIGN =v=
-    IsOmega:=IsElementOf@(G,x,type,B,Q);
+    IsOmega:=IsElementOf(G,x,type,B,Q); # there was an @!!! TODO
     special:=IsOmega.val1;
     IsOmega:=IsOmega.val2;
     # =^= MULTIASSIGN =^=
@@ -483,7 +483,7 @@ local B,F,lvarIsAbelian,IsOmega,Q,_,e,flag,forgetvar1,n,p,q,sgn,special,type;
       val7:=lvarIsAbelian);
   else
     # =v= MULTIASSIGN =v=
-    IsOmega:=IsElementOf@(G,x,type,B,[]);
+    IsOmega:=IsElementOf(G,x,type,B,[]); # there was an @!!! TODO
     special:=IsOmega.val1;
     IsOmega:=IsOmega.val2;
     # =^= MULTIASSIGN =^=

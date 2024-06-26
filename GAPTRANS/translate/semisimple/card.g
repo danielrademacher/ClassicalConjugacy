@@ -6,10 +6,10 @@
 
 #  Defines: CardinalityOfClassicalGroup
 
-DeclareGlobalFunction("CardinalityOfClassicalGroup@");
+DeclareGlobalFunction("CardinalityOfClassicalGroup"); # there was an @!!! TODO
 
 #   order of classical group
-InstallGlobalFunction(CardinalityOfClassicalGroup@,
+InstallGlobalFunction(CardinalityOfClassicalGroup, # there was an @!!! TODO
 function(type,n,q)
 local C,_,e,forgetvar1,i,m,p; # type was a type, check whether needed as reference
   # =v= MULTIASSIGN =v=

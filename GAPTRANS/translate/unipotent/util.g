@@ -13,10 +13,10 @@
 #  MyCommutatorSpace, MyDiagonalJoin, MyInnerProduct, MyInsert, MyPerpSpace,
 #  MySort, MySpinorNorm, NonSquare, NormaliseQuadForm, PerpSpace, Q_value
 
-DeclareGlobalFunction("MySpinorNorm@");
+DeclareGlobalFunction("MySpinorNorm"); # there was an @!!! TODO
 
 #   building blocks
-InstallGlobalFunction(MySpinorNorm@,
+InstallGlobalFunction(MySpinorNorm, # there was an @!!! TODO
 function(g,form)
 #  /out: assert IsSymmetric (form);
 local value;
@@ -29,13 +29,13 @@ local value;
   return value;
 end);
 
-NonSquare@:=function(K)
+NonSquare:=function(K) # there was an @!!! TODO
 return PrimitiveElement(K);
   #   assert exists(k){ x : x in K | IsSquare (x) eq false};
   #   return k;
 end;
 
-ChooseAlpha@:=function(q)
+ChooseAlpha:=function(q) # there was an @!!! TODO
 local P,x,alpha;
   P:=PolynomialRing(GF(q));
   # Implicit generator Assg from previous line.
@@ -45,7 +45,7 @@ local P,x,alpha;
   return alpha;
 end;
 
-MySort@:=function(m)
+MySort:=function(m) # there was an @!!! TODO
 local C,L,varX,Y,i,p;
   varX:=List([1..Size(m)],i->m[i][1]*m[i][2]);
   Y:=[[1..varX[1]]];
@@ -66,7 +66,7 @@ local C,L,varX,Y,i,p;
     val2:=L);
 end;
 
-CayleyTransform@:=function(u)
+CayleyTransform:=function(u) # there was an @!!! TODO
 local F,MA,d; #TODO: u needed as reference?
   d:=Length(u);
   F:=BaseRing(u);
@@ -75,11 +75,11 @@ local F,MA,d; #TODO: u needed as reference?
   return (u^0-u)*(u^0+u)^-1;
 end;
 
-MyCommutatorSpace@:=function(V,U,gens)
+MyCommutatorSpace:=function(V,U,gens) # there was an @!!! TODO
     return SubStructure(V,Concatenation(List(Basis(U), v->List(gens,g->v-v*g))));
 end;
 
-CentralisedSpace@:=function(g)
+CentralisedSpace:=function(g) # there was an @!!! TODO
 local A,F,G,N,a;
   G:=Parent(g);
   F:=CoefficientRing(G);
@@ -92,7 +92,7 @@ end;
 
 #   write down perp space of U meet Space wrt Form; Form is
 #  defined only on Space and not on the full vector space 
-PerpSpace@:=function(Form,U,Space)
+PerpSpace:=function(Form,U,Space) # there was an @!!! TODO
 local F,L,W,d,r;
   W:=Intersection(U,Space);
   F:=BaseRing(U);
@@ -105,7 +105,7 @@ local F,L,W,d,r;
 end;
 
 #   perp space for S
-MyPerpSpace@:=function(S,form)
+MyPerpSpace:=function(S,form) # there was an @!!! TODO
 local K,L,N,V,W,d,r;
   d:=Length(form);
   K:=BaseRing(Parent(form));
@@ -120,7 +120,7 @@ local K,L,N,V,W,d,r;
   return N;
 end;
 
-MyInnerProduct@:=function(form,u,v,q)
+MyInnerProduct:=function(form,u,v,q) # there was an @!!! TODO
 local F,MA,a,d;
   F:=BaseRing(form);
   d:=Length(form);
@@ -129,7 +129,7 @@ local F,MA,a,d;
   return a[1];
 end;
 
-MyDiagonalJoin@:=function(L)
+MyDiagonalJoin:=function(L) # there was an @!!! TODO
 local A,i;
   if Size(L)=0 then
     return L;
@@ -142,7 +142,7 @@ local A,i;
   return A;
 end;
 
-FixesForm@:=function(r,form)
+FixesForm:=function(r,form) # there was an @!!! TODO
 local F,G,d;
   d:=Length(form);
   F:=BaseRing(Parent(form));
@@ -150,7 +150,7 @@ local F,G,d;
   return r*FORCEOne(G)*form*FORCEOne(G)*TransposedMat(r)*FORCEOne(G)=form;
 end;
 
-FixesUnitaryForm@:=function(x,form)
+FixesUnitaryForm:=function(x,form) # there was an @!!! TODO
 local F,MA,e; # TODO: x needed as reference?
   F:=BaseRing(form);
   e:=QuoInt(Degree(F),2);
@@ -160,7 +160,7 @@ local F,MA,e; # TODO: x needed as reference?
 end;
 
 #   Convert quadratic form to an upper triangular matrix
-NormaliseQuadForm@:=function(form)
+NormaliseQuadForm:=function(form) # there was an @!!! TODO
 local i,j,n,newForm;
   n:=Length(form);
   Assert(1,NumberColumns(form)=n);
@@ -178,14 +178,14 @@ local i,j,n,newForm;
 end;
 
 #   does g preserve quadratic form?
-FixesQuadraticForm@:=function(g,form)
+FixesQuadraticForm:=function(g,form) # there was an @!!! TODO
 local n_form,new_form;
-  n_form:=NormaliseQuadForm@(form);
-  new_form:=NormaliseQuadForm@(g*form*TransposedMat(g));
+  n_form:=NormaliseQuadForm(form); # there was an @!!! TODO
+  new_form:=NormaliseQuadForm(g*form*TransposedMat(g)); # there was an @!!! TODO
   return n_form=new_form;
 end;
 
-JordanBlock@:=function(d,q)
+JordanBlock:=function(d,q) # there was an @!!! TODO
 local A,M,i;
   M:=MatrixAlgebra(GF(q),d);
   A:=Identity(M);
@@ -195,7 +195,7 @@ local A,M,i;
   return A;
 end;
 
-MyInsert@:=function(M,N,a,b)
+MyInsert:=function(M,N,a,b) # there was an @!!! TODO
 local i,j;
   for i in [1..Length(N)] do
     for j in [1..NumberColumns(N)] do
@@ -205,7 +205,7 @@ local i,j;
   return M;
 end;
 
-Q_value@:=function(form,v)
+Q_value:=function(form,v) # there was an @!!! TODO
 local V;
   V:=MatrixByEntries(v)*form*TransposedMat(MatrixByEntries(v));
   return V[1][1];
@@ -213,7 +213,7 @@ end;
 
 #   compute kernel of hom from G to cyclic group C
 #   images of generators of G in C are listed in image
-KernelOfHom@:=function(G,C,image)
+KernelOfHom:=function(G,C,image) # there was an @!!! TODO
 local H,K,a,g,n;
   if Size(C)=1 then
     return G;

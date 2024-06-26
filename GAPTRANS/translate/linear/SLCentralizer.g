@@ -9,10 +9,10 @@
 
 #  Defines: PresOrder, SLCentralizer
 
-DeclareGlobalFunction("SLCentralizer@");
+DeclareGlobalFunction("SLCentralizer");
 
 #   returns the smallest k such that (m+k(q-1),q^r-1)=(m,q-1)
-PresOrder@:=function(q,r,m)
+PresOrder:=function(q,r,m)
 local g,k;
   g:=Gcd(q-1,m);
   k:=0;
@@ -23,7 +23,7 @@ local g,k;
 end;
 
 #   x is an element of S = SL(d, q); determine its centraliser
-InstallGlobalFunction(SLCentralizer@,
+InstallGlobalFunction(SLCentralizer,
 function(S,x)
 local 
    A,B,C,varE,F,Gen,Gr,H,K,R,T,_,a,array,b,c,forgetvar1,forgetvar2,forgetvar3,
@@ -58,7 +58,7 @@ local
     for k in [1..Ngens(Gr)] do
       r:=BlockMatrix(m,m,Concatenation(List([1..m],
         l1->List([1..m],
-          l2->StdEm@(ScalarMat(varE,T[j][2],(Gr.k)[l1][l2]),F)))));
+          l2->StdEm(ScalarMat(varE,T[j][2],(Gr.k)[l1][l2]),F))))); # there was an @!!! TODO
       UniteSet(Gen,InsertBlock(IdentityMatrix(F,n),r,pos+1,pos+1) # actually TildeGen!!! TODO
        *FORCEOne(gl));
     od;
@@ -70,7 +70,7 @@ local
       r[k][k]:=w^(((Size(F)-1)/Gcd(T[j][2],Size(F)-1))*FORCEOne(IntegerRing()))
        ;
     od;
-    r:=StdEm@(r,F);
+    r:=StdEm(r,F); # there was an @!!! TODO
     UniteSet(Gen,InsertBlock(IdentityMatrix(F,n),r,pos+1,pos+1) # actually TildeGen!!! TODO
      *FORCEOne(gl));
   od;
@@ -94,16 +94,16 @@ local
         varE:=ExtStructure(F,T[j][1]:Optimize:=false);
         m:=Multiplicity(c,T[j]);
         t:=PrimitiveElement(varE);
-        t:=t^PresOrder@(Size(F),Degree(T[j][1]),Log(Norm(t,F),w));
+        t:=t^PresOrder(Size(F),Degree(T[j][1]),Log(Norm(t,F),w)); # there was an @!!! TODO
         #   end construction of primitive element t of E of norm w
         mat:=IdentityMatrix(varE,m*T[j][2]);
-        u:=t^(PresOrder@(Size(F),Degree(T[j][1]),(K.k)[j])
+        u:=t^(PresOrder(Size(F),Degree(T[j][1]),(K.k)[j]) # there was an @!!! TODO
          *FORCEOne(IntegerRing()));
         for h in [1..T[j][2]] do
           mat[h][h]:=u;
         od;
         mat:=mat*FORCEOne(GL(m*T[j][2],varE));
-        Add(array,StdEm@(mat,F));
+        Add(array,StdEm(mat,F)); # there was an @!!! TODO
       od;
       UniteSet(Gen,DirectSumMat(array)*FORCEOne(gl)); # actually TildeGen!!! TODO
     od;
@@ -115,7 +115,7 @@ local
     if m > 1 then
       varE:=ExtStructure(F,T[j][1]:Optimize:=false);
       mu:=Multiplicity(c,T[j]);
-      u:=StdEm@(MatrixByEntries(varE,1,1,[PrimitiveElement(varE)]),F);
+      u:=StdEm(MatrixByEntries(varE,1,1,[PrimitiveElement(varE)]),F); # there was an @!!! TODO
       pos:=1;
       if j > 1 then
         pos:=pos+Sum(List([1..j-1],i->Degree(T[i][1])*T[i][2]
@@ -181,7 +181,7 @@ local
   # =^= MULTIASSIGN =^=
   H:=SubStructure(Generic(S),Gen);
   H:=H^((C^-1*B)*FORCEOne(GL(n,F)));
-  order:=GLCentralizerOrder@(S,x:JF:=c);
+  order:=GLCentralizerOrder(S,x:JF:=c); # there was an @!!! TODO
   H.FactoredOrder:=order;
   H.Order:=Int(order);
   return rec(val1:=H,

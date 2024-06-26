@@ -17,68 +17,68 @@
 #  $Id: ProjClasses.m 65133 2021-11-21 02:56:51Z don $
 
 #   functions prepared with Derek Holt and Don Taylor
-ClassicalCentreOrder@:=AssociativeArray();
-ClassicalCentreOrder@["GL"]:=function(d,q)
+ClassicalCentreOrder:=AssociativeArray(); # there was an @!!! TODO
+ClassicalCentreOrder["GL"]:=function(d,q) # there was an @!!! TODO
 return q-1;
 end;
 
-ClassicalCentreOrder@["SL"]:=function(d,q)
+ClassicalCentreOrder["SL"]:=function(d,q) # there was an @!!! TODO
 return Gcd(d,q-1);
 end;
 
-ClassicalCentreOrder@["GU"]:=function(d,q)
+ClassicalCentreOrder["GU"]:=function(d,q) # there was an @!!! TODO
 return q+1;
 end;
 
-ClassicalCentreOrder@["SU"]:=function(d,q)
+ClassicalCentreOrder["SU"]:=function(d,q) # there was an @!!! TODO
 return Gcd(d,q+1);
 end;
 
-ClassicalCentreOrder@["Sp"]:=function(d,q)
+ClassicalCentreOrder["Sp"]:=function(d,q) # there was an @!!! TODO
 return Gcd(2,q-1);
 end;
 
-ClassicalCentreOrder@["GO"]:=function(d,q)
+ClassicalCentreOrder["GO"]:=function(d,q) # there was an @!!! TODO
 return # rewritten select statement
   function(xxx)if xxx then return 1;else return 2;fi;end(IsEvenInt(q));
 end;
 
-ClassicalCentreOrder@["SO"]:=function(d,q)
+ClassicalCentreOrder["SO"]:=function(d,q) # there was an @!!! TODO
 return 1;
 end;
 
-ClassicalCentreOrder@["Omega"]:=function(d,q)
+ClassicalCentreOrder["Omega"]:=function(d,q) # there was an @!!! TODO
 return 1;
 end;
 
-ClassicalCentreOrder@["GO+"]:=function(d,q)
+ClassicalCentreOrder["GO+"]:=function(d,q) # there was an @!!! TODO
 return # rewritten select statement
   function(xxx)if xxx then return 1;else return 2;fi;end(IsEvenInt(q));
 end;
 
-ClassicalCentreOrder@["SO+"]:=function(d,q)
+ClassicalCentreOrder["SO+"]:=function(d,q) # there was an @!!! TODO
 return # rewritten select statement
   function(xxx)if xxx then return 1;else return 2;fi;end(IsEvenInt(q));
 end;
 
-ClassicalCentreOrder@["Omega+"]:=function(d,q)
+ClassicalCentreOrder["Omega+"]:=function(d,q) # there was an @!!! TODO
 return # rewritten select statement
   function(xxx)if xxx then return 1;else return (# rewritten select statement
   function(xxx)if xxx then return 2;else return 
    1;fi;end(IsEvenInt(QuoInt(d*(q-1),4))));fi;end(IsEvenInt(q));
 end;
 
-ClassicalCentreOrder@["GO-"]:=function(d,q)
+ClassicalCentreOrder["GO-"]:=function(d,q) # there was an @!!! TODO
 return # rewritten select statement
   function(xxx)if xxx then return 1;else return 2;fi;end(IsEvenInt(q));
 end;
 
-ClassicalCentreOrder@["SO-"]:=function(d,q)
+ClassicalCentreOrder["SO-"]:=function(d,q) # there was an @!!! TODO
 return # rewritten select statement
   function(xxx)if xxx then return 1;else return 2;fi;end(IsEvenInt(q));
 end;
 
-ClassicalCentreOrder@["Omega-"]:=function(d,q)
+ClassicalCentreOrder["Omega-"]:=function(d,q) # there was an @!!! TODO
 return # rewritten select statement
   function(xxx)if xxx then return 1;else return (# rewritten select statement
   function(xxx)if xxx then return 2;else return 1;fi;end(IsOddInt(QuoInt(d*(q-1)
@@ -86,13 +86,13 @@ return # rewritten select statement
 end;
 
 #   tau is hom from standard classical group G to its projective copy G / <z>
-ClassesForSpO@:=function(G,tau,z)
+ClassesForSpO:=function(G,tau,z) # there was an @!!! TODO
 local C,CL,MatricesOnly,cno,g,i,index,known,mm,phi,projclasslen,projclassrep;
   MatricesOnly:=ValueOption("MatricesOnly");
   if MatricesOnly=fail then
     MatricesOnly:=false;
   fi;
-  C:=ClassicalConjugacyClasses@(G);
+  C:=ClassicalConjugacyClasses(G); # there was an @!!! TODO
   if Order(z)=1 then
     mm:=List([1..Size(C)],i->[C[i][1],C[i][2],C[i][3]]);
     if MatricesOnly then
@@ -103,7 +103,7 @@ local C,CL,MatricesOnly,cno,g,i,index,known,mm,phi,projclasslen,projclassrep;
         val2:=mm);
     fi;
   fi;
-  phi:=ClassicalClassMap@(G);
+  phi:=ClassicalClassMap(G); # there was an @!!! TODO
   projclassrep:=List([1..Size(C)],i->i);
   projclasslen:=[];
   known:=Set([]);
@@ -112,7 +112,7 @@ local C,CL,MatricesOnly,cno,g,i,index,known,mm,phi,projclasslen,projclassrep;
       continue;
     fi;
     g:=C[i][3];
-    if not ClassicalIsConjugate@(G,g,g*z) then
+    if not ClassicalIsConjugate(G,g,g*z) then # there was an @!!! TODO
       #   length of the class of the image of g in the projective
       #  group is C[i][2] if this condition holds and C[i][2]/2
       #  otherwise.  
@@ -138,13 +138,13 @@ end;
 
 #  ============================================================================
 #  =
-ProjectiveClassicalClasses@:=function(type,n,q)
+ProjectiveClassicalClasses:=function(type,n,q) # there was an @!!! TODO
 #  -> ,SeqEnum ,GrpPerm ,HomGrp ,SeqEnum  The conjugacy classes of the
 #  projective classical group P of supplied type ; return the classes , P , the
 #  homomorphism f from the classical group G to P , and preimages of the class
 #  representatives in G
 local 
-   C,F,G,MatricesOnly,P,UseLMGHom,ValidTypes@,available,c,cc,count,d,f,flg,g,h,
+   C,F,G,MatricesOnly,P,UseLMGHom,ValidTypes,available,c,cc,count,d,f,flg,g,h, # there was an @!!! TODO
    i,index,k,m,mm,pClassSz,phi,xi,z;
   UseLMGHom:=ValueOption("UseLMGHom");
   if UseLMGHom=fail then
@@ -154,10 +154,10 @@ local
   if MatricesOnly=fail then
     MatricesOnly:=false;
   fi;
-  ValidTypes@:=["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+","SO-",
+  ValidTypes:=["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+","SO-", # there was an @!!! TODO
    "SO","GO+","GO-","GO"];
-  if not type in ValidTypes@ then
-    Error(["Type must be one of ",ValidTypes@]);
+  if not type in ValidTypes then # there was an @!!! TODO
+    Error(["Type must be one of ",ValidTypes]); # there was an @!!! TODO
   fi;
   if not IsPrimePower(q) then
     Error("Invalid field size");
@@ -178,7 +178,7 @@ local
     fi;
   fi;
   # =v= MULTIASSIGN =v=
-  P:=StandardGroup@(type,n,q:Projective:=true);
+  P:=StandardGroup(type,n,q:Projective:=true); # there was an @!!! TODO
   G:=P.val1;
   P:=P.val2;
   # =^= MULTIASSIGN =^=
@@ -214,7 +214,7 @@ local
         val4:=mm);
     fi;
   fi;
-  d:=ClassicalCentreOrder@[type](n,q);
+  d:=ClassicalCentreOrder[type](n,q); # there was an @!!! TODO
   # rewritten select statement
   if type in ["GU","SU"] then
     F:=GF(q^2);
@@ -239,14 +239,14 @@ local
   if not (type in ["GL","SL","GU","SU"]) then
     if MatricesOnly then
       f:=IdentityHomomorphism(G);
-      mm:=ClassesForSpO@(G,f,z:MatricesOnly:=true);
+      mm:=ClassesForSpO(G,f,z:MatricesOnly:=true); # there was an @!!! TODO
       return rec(val1:=mm,
         val2:=_,
         val3:=_,
         val4:=_);
     else
       # =v= MULTIASSIGN =v=
-      mm:=ClassesForSpO@(G,f,z);
+      mm:=ClassesForSpO(G,f,z); # there was an @!!! TODO
       cc:=mm.val1;
       mm:=mm.val2;
       # =^= MULTIASSIGN =^=
@@ -261,7 +261,7 @@ local
     fi;
   fi;
   cc:=ClassicalClasses(G);
-  phi:=ClassicalClassMap@(G);
+  phi:=ClassicalClassMap(G); # there was an @!!! TODO
   if d=1 then
     mm:=List(cc,c->[c[1],c[2],c[3]]);
     if not MatricesOnly then
@@ -278,7 +278,7 @@ local
         count:=1;
         for k in [1..d-1] do
           h:=g*z^k;
-          if not ClassicalIsConjugate@(G,g,h) then
+          if not ClassicalIsConjugate(G,g,h) then # there was an @!!! TODO
             available[phi(h)]:=false;
           else
             count:=count+1;
@@ -319,18 +319,18 @@ local
   fi;
 end;
 
-ProjectiveClassicalCentraliser@:=function(G,g)
+ProjectiveClassicalCentraliser:=function(G,g) # there was an @!!! TODO
 #  -> ,Grp  return preimage in the classical group G of centraliser of image of
 #  g in the central quotient of G
-local C,D,F,ValidTypes@,varZ,c,d,f,i,n,o,q,type,xi,z;
-  ValidTypes@:=["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+","SO-",
+local C,D,F,ValidTypes,varZ,c,d,f,i,n,o,q,type,xi,z; # there was an @!!! TODO
+  ValidTypes:=["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+","SO-", # there was an @!!! TODO
    "SO","GO+","GO-","GO"];
   # =v= MULTIASSIGN =v=
-  type:=ClassicalGroupType@(G);
+  type:=ClassicalGroupType(G); # there was an @!!! TODO
   f:=type.val1;
   type:=type.val2;
   # =^= MULTIASSIGN =^=
-  if not type in ValidTypes@ then
+  if not type in ValidTypes then # there was an @!!! TODO
     Error(["Function does not apply to classical group of type",type]);
   fi;
   n:=Degree(G);
@@ -341,7 +341,7 @@ local C,D,F,ValidTypes@,varZ,c,d,f,i,n,o,q,type,xi,z;
   else
     q:=Size(F);
   fi;
-  d:=ClassicalCentreOrder@[type](n,q);
+  d:=ClassicalCentreOrder[type](n,q); # there was an @!!! TODO
   xi:=PrimitiveElement(F);
   z:=ScalarMat(F,n,xi);
   z:=(z^(QuoInt((Size(F)-1),d)))*FORCEOne(Generic(G));
@@ -354,7 +354,7 @@ local C,D,F,ValidTypes@,varZ,c,d,f,i,n,o,q,type,xi,z;
   D:=DivisorsInt(o);
   for i in [1..Size(D)-1] do
     # =v= MULTIASSIGN =v=
-    c:=ClassicalIsConjugate@(G,g,g*z^D[i]);
+    c:=ClassicalIsConjugate(G,g,g*z^D[i]); # there was an @!!! TODO
     f:=c.val1;
     c:=c.val2;
     # =^= MULTIASSIGN =^=
@@ -366,19 +366,19 @@ local C,D,F,ValidTypes@,varZ,c,d,f,i,n,o,q,type,xi,z;
   return C;
 end;
 
-ProjectiveClassicalIsConjugate@:=function(G,g,h)
+ProjectiveClassicalIsConjugate:=function(G,g,h) # there was an @!!! TODO
 #  -> ,BoolElt ,GrpMatElt  if the images of g and h are conjugate in the
 #  central quotient of the classical group G , then return true and preimage in
 #  G of a conjugating element , else return false
-local F,ValidTypes@,varZ,c,d,f,i,n,o,q,type,xi,z;
-  ValidTypes@:=["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+","SO-",
+local F,ValidTypes,varZ,c,d,f,i,n,o,q,type,xi,z; # there was an @!!! TODO
+  ValidTypes:=["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+","SO-", # there was an @!!! TODO
    "SO","GO+","GO-","GO"];
   # =v= MULTIASSIGN =v=
-  type:=ClassicalGroupType@(G);
+  type:=ClassicalGroupType(G); # there was an @!!! TODO
   f:=type.val1;
   type:=type.val2;
   # =^= MULTIASSIGN =^=
-  if not type in ValidTypes@ then
+  if not type in ValidTypes then # there was an @!!! TODO
     Error(["Function does not apply to classical group of type",type]);
   fi;
   n:=Degree(G);
@@ -389,14 +389,14 @@ local F,ValidTypes@,varZ,c,d,f,i,n,o,q,type,xi,z;
   else
     q:=Size(F);
   fi;
-  d:=ClassicalCentreOrder@[type](n,q);
+  d:=ClassicalCentreOrder[type](n,q); # there was an @!!! TODO
   xi:=PrimitiveElement(F);
   z:=ScalarMat(F,n,xi);
   z:=(z^(QuoInt((Size(F)-1),d)))*FORCEOne(Generic(G));
   varZ:=SubStructure(Generic(G),z);
   if IsTrivial(varZ) then
     # =v= MULTIASSIGN =v=
-    c:=ClassicalIsConjugate@(G,g,h);
+    c:=ClassicalIsConjugate(G,g,h); # there was an @!!! TODO
     f:=c.val1;
     c:=c.val2;
     # =^= MULTIASSIGN =^=
@@ -411,7 +411,7 @@ local F,ValidTypes@,varZ,c,d,f,i,n,o,q,type,xi,z;
   o:=Size(varZ);
   for i in [0..o-1] do
     # =v= MULTIASSIGN =v=
-    c:=ClassicalIsConjugate@(G,g,h*z^i);
+    c:=ClassicalIsConjugate(G,g,h*z^i); # there was an @!!! TODO
     f:=c.val1;
     c:=c.val2;
     # =^= MULTIASSIGN =^=

@@ -9,13 +9,13 @@
 #  Defines: AllClasses, ClassicalConjugacyClasses, IsometryGroupCardinality,
 #  UCComputation
 
-DeclareGlobalFunction("IsometryGroupCardinality@");
+DeclareGlobalFunction("IsometryGroupCardinality"); # there was an @!!! TODO
 
-DeclareGlobalFunction("UCComputation@");
+DeclareGlobalFunction("UCComputation"); # there was an @!!! TODO
 
 #   data about unipotent classes are computed just once and
 #   passed as argument to AllUnipotentElementsOfS
-InstallGlobalFunction(UCComputation@,
+InstallGlobalFunction(UCComputation, # there was an @!!! TODO
 function(type,dim,q0)
 local Form,L,Repr,Rewrite,T,UC,UCForm,UCL,UCRepr,UCT,Y,forgetvar3,j,temp;
   Rewrite:=ValueOption("Rewrite");
@@ -33,7 +33,7 @@ local Form,L,Repr,Rewrite,T,UC,UCForm,UCL,UCRepr,UCT,Y,forgetvar3,j,temp;
   if type="GU" or type="SU" then
     for j in [1..dim] do
       # =v= MULTIASSIGN =v=
-      Form:=UnipotentClasses@("GU",j,q0:Rewrite:=Rewrite);
+      Form:=UnipotentClasses("GU",j,q0:Rewrite:=Rewrite); # there was an @!!! TODO
       Y:=Form.val1;
       T:=Form.val2;
       forgetvar3:=Form.val3;
@@ -49,7 +49,7 @@ local Form,L,Repr,Rewrite,T,UC,UCForm,UCL,UCRepr,UCT,Y,forgetvar3,j,temp;
   elif type="Sp" then
     for j in [2,2+2..dim] do
       # =v= MULTIASSIGN =v=
-      Form:=UnipotentClasses@("Sp",j,q0:Rewrite:=Rewrite);
+      Form:=UnipotentClasses("Sp",j,q0:Rewrite:=Rewrite); # there was an @!!! TODO
       Y:=Form.val1;
       T:=Form.val2;
       L:=Form.val3;
@@ -74,7 +74,7 @@ local Form,L,Repr,Rewrite,T,UC,UCForm,UCL,UCRepr,UCT,Y,forgetvar3,j,temp;
   elif type="O" or type="Omega" then
     for j in [1,1+2..dim] do
       # =v= MULTIASSIGN =v=
-      Form:=UnipotentClasses@(type,j,q0:Rewrite:=Rewrite);
+      Form:=UnipotentClasses(type,j,q0:Rewrite:=Rewrite); # there was an @!!! TODO
       Y:=Form.val1;
       T:=Form.val2;
       L:=Form.val3;
@@ -99,7 +99,7 @@ local Form,L,Repr,Rewrite,T,UC,UCForm,UCL,UCRepr,UCT,Y,forgetvar3,j,temp;
   elif type="O+" or type="Omega+" or type="O-" or type="Omega-" then
     for j in [2,2+2..dim] do
       # =v= MULTIASSIGN =v=
-      Form:=UnipotentClasses@(type,j,q0:Rewrite:=Rewrite);
+      Form:=UnipotentClasses(type,j,q0:Rewrite:=Rewrite); # there was an @!!! TODO
       Y:=Form.val1;
       T:=Form.val2;
       L:=Form.val3;
@@ -130,19 +130,19 @@ local Form,L,Repr,Rewrite,T,UC,UCForm,UCL,UCRepr,UCT,Y,forgetvar3,j,temp;
 end);
 
 #   cardinality of group of isometries
-InstallGlobalFunction(IsometryGroupCardinality@,
+InstallGlobalFunction(IsometryGroupCardinality, # there was an @!!! TODO
 function(type,d,q)
 local CardOfG;
   if type="Sp" then
-    CardOfG:=CardinalityOfClassicalGroup@("Sp",d,q);
+    CardOfG:=CardinalityOfClassicalGroup("Sp",d,q); # there was an @!!! TODO
   elif type="GU" or type="SU" then
-    CardOfG:=CardinalityOfClassicalGroup@("GU",d,q);
+    CardOfG:=CardinalityOfClassicalGroup("GU",d,q); # there was an @!!! TODO
   elif type="O+" or type="GO+" or type="SO+" or type="Omega+" then
-    CardOfG:=CardinalityOfClassicalGroup@("GO+",d,q);
+    CardOfG:=CardinalityOfClassicalGroup("GO+",d,q); # there was an @!!! TODO
   elif type="O" or type="GO" or type="SO" or type="Omega" then
-    CardOfG:=CardinalityOfClassicalGroup@("GO",d,q);
+    CardOfG:=CardinalityOfClassicalGroup("GO",d,q); # there was an @!!! TODO
   elif type="O-" or type="GO-" or type="SO-" or type="Omega-" then
-    CardOfG:=CardinalityOfClassicalGroup@("GO-",d,q);
+    CardOfG:=CardinalityOfClassicalGroup("GO-",d,q); # there was an @!!! TODO
   fi;
   if IsEvenInt(q) and type in ["Omega+","Omega-"] then
     CardOfG:=CardOfG/SequenceToFactorization([[2,1]]);
@@ -152,7 +152,7 @@ end);
 
 #   returns list of representatives for conjugacy classes in symplectic,
 #   orthogonal and unitary groups (in the standard MAGMA copy)
-AllClasses@:=function(type,d,q)
+AllClasses:=function(type,d,q) # there was an @!!! TODO
 local 
    CardOfG,DataArray,L,L1,SameSSPart,TIP,UC,UCForm,UCL,UCRepr,UCT,UCm,UCmForm,
    UCmL,UCmRepr,UCmT,UCp,UCpForm,UCpL,UCpRepr,UCpT,VarRewrite,varX,Xlabel,i,j,
@@ -163,11 +163,11 @@ local
   fi;
   varX:=[];
   Xlabel:=[];
-  CardOfG:=IsometryGroupCardinality@(type,d,q);
+  CardOfG:=IsometryGroupCardinality(type,d,q); # there was an @!!! TODO
   if type in ["GU","SU"] then
     L:=SSClassesGU(d,q:OnlyPolynomials:=true);
     # =v= MULTIASSIGN =v=
-    UCL:=UCComputation@("GU",d,q:Rewrite:=SameSSPart);
+    UCL:=UCComputation("GU",d,q:Rewrite:=SameSSPart); # there was an @!!! TODO
     UC:=UCL.val1;
     UCRepr:=UCL.val2;
     UCForm:=UCL.val3;
@@ -177,7 +177,7 @@ local
     DataArray:=[UC,UCRepr,UCForm,UCT,UCL];
     for i in [1..Size(L)] do
       # =v= MULTIASSIGN =v=
-      ylabel:=AllUnipotentElementsOfS@(type,L[i]
+      ylabel:=AllUnipotentElementsOfS(type,L[i] # there was an @!!! TODO
        :SameSSPart:=SameSSPart,DataArray:=DataArray,CardOfG:=CardOfG);
       y:=ylabel.val1;
       ylabel:=ylabel.val2;
@@ -194,7 +194,7 @@ local
       VarRewrite:=false;
     fi;
     # =v= MULTIASSIGN =v=
-    UCpL:=UCComputation@("O+",d,q:Rewrite:=VarRewrite);
+    UCpL:=UCComputation("O+",d,q:Rewrite:=VarRewrite); # there was an @!!! TODO
     UCp:=UCpL.val1;
     UCpRepr:=UCpL.val2;
     UCpForm:=UCpL.val3;
@@ -202,7 +202,7 @@ local
     UCpL:=UCpL.val5;
     # =^= MULTIASSIGN =^=
     # =v= MULTIASSIGN =v=
-    UCmL:=UCComputation@("O-",d,q:Rewrite:=VarRewrite);
+    UCmL:=UCComputation("O-",d,q:Rewrite:=VarRewrite); # there was an @!!! TODO
     UCm:=UCmL.val1;
     UCmRepr:=UCmL.val2;
     UCmForm:=UCmL.val3;
@@ -210,7 +210,7 @@ local
     UCmL:=UCmL.val5;
     # =^= MULTIASSIGN =^=
     # =v= MULTIASSIGN =v=
-    UCL:=UCComputation@("O",d,q:Rewrite:=VarRewrite);
+    UCL:=UCComputation("O",d,q:Rewrite:=VarRewrite); # there was an @!!! TODO
     UC:=UCL.val1;
     UCRepr:=UCL.val2;
     UCForm:=UCL.val3;
@@ -221,7 +221,7 @@ local
      UCRepr,UCForm,UCT,UCL];
     for i in [1..Size(L)] do
       # =v= MULTIASSIGN =v=
-      ylabel:=AllUnipotentElementsOfS@(type,L[i]
+      ylabel:=AllUnipotentElementsOfS(type,L[i] # there was an @!!! TODO
        :SameSSPart:=SameSSPart,DataArray:=DataArray,CardOfG:=CardOfG);
       y:=ylabel.val1;
       ylabel:=ylabel.val2;
@@ -238,7 +238,7 @@ local
       VarRewrite:=false;
     fi;
     # =v= MULTIASSIGN =v=
-    UCpL:=UCComputation@("O+",d,q:Rewrite:=VarRewrite);
+    UCpL:=UCComputation("O+",d,q:Rewrite:=VarRewrite); # there was an @!!! TODO
     UCp:=UCpL.val1;
     UCpRepr:=UCpL.val2;
     UCpForm:=UCpL.val3;
@@ -246,7 +246,7 @@ local
     UCpL:=UCpL.val5;
     # =^= MULTIASSIGN =^=
     # =v= MULTIASSIGN =v=
-    UCmL:=UCComputation@("O-",d,q:Rewrite:=VarRewrite);
+    UCmL:=UCComputation("O-",d,q:Rewrite:=VarRewrite); # there was an @!!! TODO
     UCm:=UCmL.val1;
     UCmRepr:=UCmL.val2;
     UCmForm:=UCmL.val3;
@@ -255,7 +255,7 @@ local
     # =^= MULTIASSIGN =^=
     if type in ["GO+","O+"] then
       # =v= MULTIASSIGN =v=
-      UCL:=UCComputation@("O",d,q:Rewrite:=VarRewrite);
+      UCL:=UCComputation("O",d,q:Rewrite:=VarRewrite); # there was an @!!! TODO
       UC:=UCL.val1;
       UCRepr:=UCL.val2;
       UCForm:=UCL.val3;
@@ -269,7 +269,7 @@ local
     fi;
     for i in [1..Size(L)] do
       # =v= MULTIASSIGN =v=
-      ylabel:=AllUnipotentElementsOfS@(type,L[i]
+      ylabel:=AllUnipotentElementsOfS(type,L[i] # there was an @!!! TODO
        :SameSSPart:=SameSSPart,DataArray:=DataArray,CardOfG:=CardOfG);
       y:=ylabel.val1;
       ylabel:=ylabel.val2;
@@ -286,7 +286,7 @@ local
       VarRewrite:=false;
     fi;
     # =v= MULTIASSIGN =v=
-    UCpL:=UCComputation@("O+",d,q:Rewrite:=VarRewrite);
+    UCpL:=UCComputation("O+",d,q:Rewrite:=VarRewrite); # there was an @!!! TODO
     UCp:=UCpL.val1;
     UCpRepr:=UCpL.val2;
     UCpForm:=UCpL.val3;
@@ -294,7 +294,7 @@ local
     UCpL:=UCpL.val5;
     # =^= MULTIASSIGN =^=
     # =v= MULTIASSIGN =v=
-    UCmL:=UCComputation@("O-",d,q:Rewrite:=VarRewrite);
+    UCmL:=UCComputation("O-",d,q:Rewrite:=VarRewrite); # there was an @!!! TODO
     UCm:=UCmL.val1;
     UCmRepr:=UCmL.val2;
     UCmForm:=UCmL.val3;
@@ -303,7 +303,7 @@ local
     # =^= MULTIASSIGN =^=
     if type in ["GO-","O-"] then
       # =v= MULTIASSIGN =v=
-      UCL:=UCComputation@("O",d,q:Rewrite:=VarRewrite);
+      UCL:=UCComputation("O",d,q:Rewrite:=VarRewrite); # there was an @!!! TODO
       UC:=UCL.val1;
       UCRepr:=UCL.val2;
       UCForm:=UCL.val3;
@@ -317,7 +317,7 @@ local
     fi;
     for i in [1..Size(L)] do
       # =v= MULTIASSIGN =v=
-      ylabel:=AllUnipotentElementsOfS@(type,L[i]
+      ylabel:=AllUnipotentElementsOfS(type,L[i] # there was an @!!! TODO
        :SameSSPart:=SameSSPart,DataArray:=DataArray,CardOfG:=CardOfG);
       y:=ylabel.val1;
       ylabel:=ylabel.val2;
@@ -330,7 +330,7 @@ local
   elif type="Sp" then
     L:=SSClassesSp(d,q:OnlyPolynomials:=true);
     # =v= MULTIASSIGN =v=
-    UCL:=UCComputation@("Sp",d,q);
+    UCL:=UCComputation("Sp",d,q); # there was an @!!! TODO
     UC:=UCL.val1;
     UCRepr:=UCL.val2;
     UCForm:=UCL.val3;
@@ -342,7 +342,7 @@ local
     #  by 2]>;
     for i in [1..Size(L)] do
       # =v= MULTIASSIGN =v=
-      ylabel:=AllUnipotentElementsOfS@(type,L[i]
+      ylabel:=AllUnipotentElementsOfS(type,L[i] # there was an @!!! TODO
        :SameSSPart:=SameSSPart,DataArray:=DataArray,CardOfG:=CardOfG);
       y:=ylabel.val1;
       ylabel:=ylabel.val2;
@@ -359,7 +359,7 @@ local
     L1:=SSClassesSp(d,q:OnlyPolynomials:=true);
     if type="Omega+" then
       # =v= MULTIASSIGN =v=
-      UCpL:=UCComputation@("Omega+",d,q:Rewrite:=SameSSPart);
+      UCpL:=UCComputation("Omega+",d,q:Rewrite:=SameSSPart); # there was an @!!! TODO
       UCp:=UCpL.val1;
       UCpRepr:=UCpL.val2;
       UCpForm:=UCpL.val3;
@@ -367,7 +367,7 @@ local
       UCpL:=UCpL.val5;
       # =^= MULTIASSIGN =^=
       # =v= MULTIASSIGN =v=
-      UCmL:=UCComputation@("Omega-",d,q:Rewrite:=SameSSPart);
+      UCmL:=UCComputation("Omega-",d,q:Rewrite:=SameSSPart); # there was an @!!! TODO
       UCm:=UCmL.val1;
       UCmRepr:=UCmL.val2;
       UCmForm:=UCmL.val3;
@@ -376,7 +376,7 @@ local
       # =^= MULTIASSIGN =^=
     else
       # =v= MULTIASSIGN =v=
-      UCpL:=UCComputation@("O+",d,q:Rewrite:=SameSSPart);
+      UCpL:=UCComputation("O+",d,q:Rewrite:=SameSSPart); # there was an @!!! TODO
       UCp:=UCpL.val1;
       UCpRepr:=UCpL.val2;
       UCpForm:=UCpL.val3;
@@ -384,7 +384,7 @@ local
       UCpL:=UCpL.val5;
       # =^= MULTIASSIGN =^=
       # =v= MULTIASSIGN =v=
-      UCmL:=UCComputation@("O-",d,q:Rewrite:=SameSSPart);
+      UCmL:=UCComputation("O-",d,q:Rewrite:=SameSSPart); # there was an @!!! TODO
       UCm:=UCmL.val1;
       UCmRepr:=UCmL.val2;
       UCmForm:=UCmL.val3;
@@ -412,7 +412,7 @@ local
     od;
     for i in [1..Size(L)] do
       # =v= MULTIASSIGN =v=
-      ylabel:=AllUnipotentElementsOfS@(type,L[i]
+      ylabel:=AllUnipotentElementsOfS(type,L[i] # there was an @!!! TODO
        :SameSSPart:=SameSSPart,DataArray:=DataArray,CardOfG:=CardOfG);
       y:=ylabel.val1;
       ylabel:=ylabel.val2;
@@ -426,7 +426,7 @@ local
     L1:=SSClassesSp(d,q:OnlyPolynomials:=true);
     if type="Omega-" then
       # =v= MULTIASSIGN =v=
-      UCpL:=UCComputation@("Omega+",d,q:Rewrite:=SameSSPart);
+      UCpL:=UCComputation("Omega+",d,q:Rewrite:=SameSSPart); # there was an @!!! TODO
       UCp:=UCpL.val1;
       UCpRepr:=UCpL.val2;
       UCpForm:=UCpL.val3;
@@ -434,7 +434,7 @@ local
       UCpL:=UCpL.val5;
       # =^= MULTIASSIGN =^=
       # =v= MULTIASSIGN =v=
-      UCmL:=UCComputation@("Omega-",d,q:Rewrite:=SameSSPart);
+      UCmL:=UCComputation("Omega-",d,q:Rewrite:=SameSSPart); # there was an @!!! TODO
       UCm:=UCmL.val1;
       UCmRepr:=UCmL.val2;
       UCmForm:=UCmL.val3;
@@ -443,7 +443,7 @@ local
       # =^= MULTIASSIGN =^=
     else
       # =v= MULTIASSIGN =v=
-      UCpL:=UCComputation@("O+",d,q:Rewrite:=SameSSPart);
+      UCpL:=UCComputation("O+",d,q:Rewrite:=SameSSPart); # there was an @!!! TODO
       UCp:=UCpL.val1;
       UCpRepr:=UCpL.val2;
       UCpForm:=UCpL.val3;
@@ -451,7 +451,7 @@ local
       UCpL:=UCpL.val5;
       # =^= MULTIASSIGN =^=
       # =v= MULTIASSIGN =v=
-      UCmL:=UCComputation@("O-",d,q:Rewrite:=SameSSPart);
+      UCmL:=UCComputation("O-",d,q:Rewrite:=SameSSPart); # there was an @!!! TODO
       UCm:=UCmL.val1;
       UCmRepr:=UCmL.val2;
       UCmForm:=UCmL.val3;
@@ -479,7 +479,7 @@ local
     od;
     for i in [1..Size(L)] do
       # =v= MULTIASSIGN =v=
-      ylabel:=AllUnipotentElementsOfS@(type,L[i]
+      ylabel:=AllUnipotentElementsOfS(type,L[i] # there was an @!!! TODO
        :SameSSPart:=SameSSPart,DataArray:=DataArray,CardOfG:=CardOfG);
       y:=ylabel.val1;
       ylabel:=ylabel.val2;
@@ -500,16 +500,16 @@ local
     Xlabel,x->x));
 end;
 
-ClassicalConjugacyClasses@:=function(type,d,q)
+ClassicalConjugacyClasses:=function(type,d,q) # there was an @!!! TODO
 #  -> ,] ,{@ ,@}  Conjugacy classes and their class invariants ( labels ) for
 #  the standard classical group of supplied type and rank defined over field of
 #  given size ; labels are not returned for the general or special linear group
-local C,G,Orthogonal,ValidTypes@;
+local C,G,Orthogonal,ValidTypes; # there was an @!!! TODO
   Orthogonal:=Set(["Omega+","Omega-","Omega","O+","O-","O","SO+","SO-","SO",
    "GO+","GO-","GO"]);
-  ValidTypes@:=Union(Set(["SL","GL","Sp","SU","GU"]),Orthogonal);
-  if not type in ValidTypes@ then
-    Error(["Type must be one of",ValidTypes@]);
+  ValidTypes:=Union(Set(["SL","GL","Sp","SU","GU"]),Orthogonal); # there was an @!!! TODO
+  if not type in ValidTypes then # there was an @!!! TODO
+    Error(["Type must be one of",ValidTypes]); # there was an @!!! TODO
   fi;
   if not d >= 1 then
     Error("Degree must be positive");
@@ -541,16 +541,16 @@ local C,G,Orthogonal,ValidTypes@;
     return rec(val1:=C,
       val2:=_);
   else
-    return AllClasses@(type,d,q);
+    return AllClasses(type,d,q); # there was an @!!! TODO
   fi;
 end;
 
-ClassicalConjugacyClasses@:=function(G)
+ClassicalConjugacyClasses:=function(G) # there was an @!!! TODO
 #  -> ,] ,{@ ,@}  Conjugacy classes and their class invariants ( labels ) for
 #  the classical group G in its natural representation ; if G has order at most
 #  100 , or it := the general or special linear group , then labels are not
 #  returned
-local F,L,ValidTypes@,cc,d,flag,fn,tp;
+local F,L,ValidTypes,cc,d,flag,fn,tp; # there was an @!!! TODO
   F:=BaseRing(G);
   if not ISA(Type(F),FldFin) then
     Error("Base ring is not a finite field");
@@ -562,15 +562,15 @@ local F,L,ValidTypes@,cc,d,flag,fn,tp;
       val2:=_);
   fi;
   # =v= MULTIASSIGN =v=
-  tp:=ClassicalGroupType@(G);
+  tp:=ClassicalGroupType(G); # there was an @!!! TODO
   flag:=tp.val1;
   tp:=tp.val2;
   # =^= MULTIASSIGN =^=
   #   allow GL and SL for consistency
-  ValidTypes@:=Set(["GL","SL","Sp","SU","GU","Omega+","Omega-","Omega","O+",
+  ValidTypes:=Set(["GL","SL","Sp","SU","GU","Omega+","Omega-","Omega","O+", # there was an @!!! TODO
    "O-","O","SO+","SO-","SO","GO+","GO-","GO"]);
-  if not flag and tp in ValidTypes@ then
-    Error(["Type of group must be one of ",ValidTypes@]);
+  if not flag and tp in ValidTypes then # there was an @!!! TODO
+    Error(["Type of group must be one of ",ValidTypes]); # there was an @!!! TODO
   fi;
   cc:=ConjugacyClasses(G);
   if not IsBound(G.Labels_A) and not IsBound(G.Labels_S) then
@@ -580,15 +580,15 @@ local F,L,ValidTypes@,cc,d,flag,fn,tp;
   if not IsBound(G.Labels_A) then
     if IsBound(G.Labels_S) then
       if tp="Sp" then
-        fn:=tagToNameSp@;
+        fn:=tagToNameSp; # there was an @!!! TODO
       elif tp in ["GO","GO+","GO-"] then
-        fn:=tagToNameO@;
+        fn:=tagToNameO; # there was an @!!! TODO
       elif tp in ["SO","SO+","SO-"] then
-        fn:=tagToNameSO@;
+        fn:=tagToNameSO; # there was an @!!! TODO
       elif tp="GU" then
-        fn:=tagToNameGU@;
+        fn:=tagToNameGU; # there was an @!!! TODO
       elif tp="SU" then
-        fn:=tagToNameSU@;
+        fn:=tagToNameSU; # there was an @!!! TODO
       else
         Error("labels not available for this group of type",tp);
       fi;

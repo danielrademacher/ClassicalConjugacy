@@ -20,18 +20,18 @@
 #  GenericLabel, IsometryGroupClassLabel, MyClassIndex, StandardGroup,
 #  TransformMatrix
 
-DeclareGlobalFunction("GenericLabel@");
+DeclareGlobalFunction("GenericLabel"); # there was an @!!! TODO
 
-DeclareGlobalFunction("StandardGroup@");
+DeclareGlobalFunction("StandardGroup"); # there was an @!!! TODO
 
-DeclareGlobalFunction("TransformMatrix@");
+DeclareGlobalFunction("TransformMatrix"); # there was an @!!! TODO
 
 #   G is natural copy of classical group
 #   determine matrix to conjugate G to standard copy
-DetermineTransformMatrix@:=function(G)
+DetermineTransformMatrix:=function(G) # there was an @!!! TODO
 local CB,F,f,flag,form,ind,type;
   # =v= MULTIASSIGN =v=
-  type:=ClassicalGroupType@(G);
+  type:=ClassicalGroupType(G); # there was an @!!! TODO
   f:=type.val1;
   type:=type.val2;
   # =^= MULTIASSIGN =^=
@@ -75,16 +75,16 @@ local CB,F,f,flag,form,ind,type;
   return CB;
 end;
 
-InstallGlobalFunction(TransformMatrix@,
+InstallGlobalFunction(TransformMatrix, # there was an @!!! TODO
 function(G)
 if IsBound(G.TransformCB) then
     return G.TransformCB;
   else
-    return DetermineTransformMatrix@(G);
+    return DetermineTransformMatrix(G); # there was an @!!! TODO
   fi;
 end);
 
-InstallGlobalFunction(StandardGroup@,
+InstallGlobalFunction(StandardGroup, # there was an @!!! TODO
 function(type,n,q)
 local G,P,Projective;
   Projective:=ValueOption("Projective");
@@ -188,7 +188,7 @@ end);
 #   turn the matrix of an orthogonal form into an upper triangular matrix
 #   This is necessary because TransformForm (B, "orthogonalminus") fails if
 #   B = Matrix (GF (2), 2, 2, [1, 0, 1, 1])
-AdaptForm@:=function(A)
+AdaptForm:=function(A) # there was an @!!! TODO
 local i,j,n;
   n:=Length(A);
   for i in [1..n] do
@@ -201,7 +201,7 @@ local i,j,n;
 end;
 
 #   for even char, does GO-class split into two classes in Omega+?
-CaseSplits@:=function(L)
+CaseSplits:=function(L) # there was an @!!! TODO
 return Size(L) > 0 and Size(L[1]) > 0 and ForAll(L[1],x->IsEvenInt(x)) and 
    ForAll([2..4],i->Size(L[i])=0);
 end;
@@ -249,7 +249,7 @@ end;
 #  For SU, it assumes integer values from 0 to d-1, where d is the number of
 #  SU-classes which are mutually conjugate in GU.
 
-InstallGlobalFunction(GenericLabel@,
+InstallGlobalFunction(GenericLabel, # there was an @!!! TODO
 function(type,x)
 local 
    A,Arr,B,ClassLabels,ConjPol,Done,ElemF,F,FormF,Gr,L,L_omega,LabelNumber,
@@ -288,7 +288,7 @@ local
   end;
 
   #  conjugate polynomial
-  ConjPol:=ConjugatePolynomial@(e<>0);
+  ConjPol:=ConjugatePolynomial(e<>0); # there was an @!!! TODO
   # =v= MULTIASSIGN =v=
   c:=JordanForm(x);
   a:=c.val1;
@@ -367,14 +367,14 @@ local
       ElemF:=(-ConstantCoefficient(f)^-1*Submatrix(a,pos,pos,dim,dim))
        *FORCEOne(GL(dim,F));
       if not (type in ["SU","GU","Sp"]) then
-        TypeForTF:=IndicateType@(FormF);
+        TypeForTF:=IndicateType(FormF); # there was an @!!! TODO
         if IsEvenInt(q) then
-          FormF:=AdaptForm@(FormF);
+          FormF:=AdaptForm(FormF); # there was an @!!! TODO
         fi;
       fi;
       m:=TransformForm(FormF,TypeForTF);
       if TypeForTF="unitary" then
-        l:=UnipotentLabel@(GU(dim,q),m^-1*ElemF*m:type:=type);
+        l:=UnipotentLabel(GU(dim,q),m^-1*ElemF*m:type:=type); # there was an @!!! TODO
         if special then
           l:=l[1];
         fi;
@@ -390,15 +390,15 @@ local
           fi;
         else
           if IsOddInt(q) then
-            l:=UnipotentLabel@(GOPlus(dim,q),m^-1*ElemF*m:type:="GO+");
+            l:=UnipotentLabel(GOPlus(dim,q),m^-1*ElemF*m:type:="GO+"); # there was an @!!! TODO
             l:=l[1];
           else
             if omega then
-              l:=UnipotentLabel@(OmegaPlus(dim,q),m^-1*ElemF*m:type:="Omega+");
+              l:=UnipotentLabel(OmegaPlus(dim,q),m^-1*ElemF*m:type:="Omega+"); # there was an @!!! TODO
             else
-              l:=UnipotentLabel@(GOPlus(dim,q),m^-1*ElemF*m:type:="GO+");
+              l:=UnipotentLabel(GOPlus(dim,q),m^-1*ElemF*m:type:="GO+"); # there was an @!!! TODO
             fi;
-            SplitsOmega2:=CaseSplits@(l);
+            SplitsOmega2:=CaseSplits(l); # there was an @!!! TODO
           fi;
         fi;
       elif TypeForTF="orthogonal" then
@@ -411,13 +411,13 @@ local
           fi;
           l:=[[1,tsq]];
         else
-          l:=UnipotentLabel@(GO(dim,q),m^-1*ElemF*m:type:="GO");
+          l:=UnipotentLabel(GO(dim,q),m^-1*ElemF*m:type:="GO"); # there was an @!!! TODO
           if IsOddInt(q) then
             l:=l[1];
           fi;
         fi;
         if IsEvenInt(n) and not IsSquare(DeterminantMat(FormF)) then
-          l:=ChangeClassLabel@(l,F,pr);
+          l:=ChangeClassLabel(l,F,pr); # there was an @!!! TODO
         fi;
       elif TypeForTF="orthogonalminus" then
         if dim=2 then
@@ -431,20 +431,20 @@ local
           fi;
         else
           if IsOddInt(q) then
-            l:=UnipotentLabel@(GOMinus(dim,q),m^-1*ElemF*m:type:="GO-");
+            l:=UnipotentLabel(GOMinus(dim,q),m^-1*ElemF*m:type:="GO-"); # there was an @!!! TODO
             l:=l[1];
           else
             if omega then
-              l:=UnipotentLabel@(OmegaMinus(dim,q),m^-1*ElemF*m:type:="Omega-")
+              l:=UnipotentLabel(OmegaMinus(dim,q),m^-1*ElemF*m:type:="Omega-") # there was an @!!! TODO
                ;
             else
-              l:=UnipotentLabel@(GOMinus(dim,q),m^-1*ElemF*m:type:="GO-");
+              l:=UnipotentLabel(GOMinus(dim,q),m^-1*ElemF*m:type:="GO-"); # there was an @!!! TODO
             fi;
-            SplitsOmega2:=CaseSplits@(l);
+            SplitsOmega2:=CaseSplits(l); # there was an @!!! TODO
           fi;
         fi;
       elif TypeForTF="symplectic" then
-        l:=UnipotentLabel@(SP(dim,q),m^-1*ElemF*m:type:=type);
+        l:=UnipotentLabel(SP(dim,q),m^-1*ElemF*m:type:=type); # there was an @!!! TODO
       fi;
       pos:=pos+dim;
       Add(L,[0,f,l]);
@@ -496,7 +496,7 @@ local
   fi;
   L:=Multiset(L);
   if special or omega then
-    Gr:=StandardGroup@(type,n,q);
+    Gr:=StandardGroup(type,n,q); # there was an @!!! TODO
     Arr:=Filtered([1..Size(ClassLabels)],i->ClassLabels[i][1]=L);
     if omega and SplitsOmega2 then
       Arr:=Concatenation(Arr,Filtered([1..Size(ClassLabels)],i->ClassLabels[i]
@@ -511,7 +511,7 @@ local
       LabelNumber:=Arr[1];
     else
       for i in Arr do
-        if GenIsConjugate@(Gr,x,varX[i][3]:Checks:=false) then
+        if GenIsConjugate(Gr,x,varX[i][3]:Checks:=false) then # there was an @!!! TODO
           L:=ClassLabels[i];
           LabelNumber:=i;
           break i;
@@ -525,7 +525,7 @@ end);
 
 #  changed intrinsic IsometryGroupClassLabel (type :: MonStgElt, g:: GrpMatElt)
 #  -> {* *}
-IsometryGroupClassLabel@:=function(type,g)
+IsometryGroupClassLabel:=function(type,g) # there was an @!!! TODO
 local F,G,d,flag,label,mu,q,tp,trans,type,types;
   types:=["GU","Sp","O+","O-","GO+","GO-","O","GO"];
   if not type in types then
@@ -554,7 +554,7 @@ local F,G,d,flag,label,mu,q,tp,trans,type,types;
   else
     q:=Size(F);
   fi;
-  G:=StandardGroup@(type,d,q);
+  G:=StandardGroup(type,d,q); # there was an @!!! TODO
   if not g in G then
     Error("Element not in standard isometry group");
   fi;
@@ -575,21 +575,21 @@ local F,G,d,flag,label,mu,q,tp,trans,type,types;
     else Error();fi;end(tp);
     trans:=# translated case< statement
     function(xxx)
-      if xxx="Sp" then return tagToNameSp@;
-      elif xxx="O" then return tagToNameO@;
-      elif xxx="GU" then return tagToNameGU@;
+      if xxx="Sp" then return tagToNameSp; # there was an @!!! TODO
+      elif xxx="O" then return tagToNameO; # there was an @!!! TODO
+      elif xxx="GU" then return tagToNameGU; # there was an @!!! TODO
       elif xxx=default then return false;
     else Error();fi;end(tp);
     label:=trans(mu);
   else
-    label:=GenericLabel@(type,g);
+    label:=GenericLabel(type,g); # there was an @!!! TODO
   fi;
   return label;
 end;
 
 #   C is sequence of classes and L is sequence of labels;
 #    return index of conjugacy class containing element g
-MyClassIndex@:=function(G,g,C,L)
+MyClassIndex:=function(G,g,C,L) # there was an @!!! TODO
 local l,n,type;
   type:=ValueOption("type");
   if type=fail then
@@ -599,7 +599,7 @@ local l,n,type;
     Error("Element not in group");
   fi;
   # =v= MULTIASSIGN =v=
-  n:=GenericLabel@(type,g:varX:=C,ClassLabels:=L);
+  n:=GenericLabel(type,g:varX:=C,ClassLabels:=L); # there was an @!!! TODO
   l:=n.val1;
   n:=n.val2;
   # =^= MULTIASSIGN =^=
@@ -609,10 +609,10 @@ local l,n,type;
   return n;
 end;
 
-ClassicalClassMap@:=function(G,C,L)
+ClassicalClassMap:=function(G,C,L) # there was an @!!! TODO
 #  -> ,Map  C and L are output of ClassicalClasses , where C := sequence of
 #  classes and L := list of corresponding labels ; return class map for G
-local CB,D,ValidTypes@,flag,type;
+local CB,D,ValidTypes,flag,type; # there was an @!!! TODO
   type:=ValueOption("type");
   if type=fail then
     type:=false;
@@ -627,7 +627,7 @@ local CB,D,ValidTypes@,flag,type;
     fi;
     #   require forall{c : c in C | c[3] in G}: "Not all supplied classes
     #  belong to G";
-      if not ForAll(C,c->MyIsIn@(G,c[3])) then
+      if not ForAll(C,c->MyIsIn(G,c[3])) then # there was an @!!! TODO
       Error("Not all supplied classes belong to G");
     fi;
       if not Sum(List(C,c->c[2])=Size(G)) then
@@ -653,7 +653,7 @@ local CB,D,ValidTypes@,flag,type;
       type:="GO-";
     fi;
   fi;
-  ValidTypes@:=Set(["Sp","SU","GU","Omega+","Omega-","Omega","SO+","SO-","SO",
+  ValidTypes:=Set(["Sp","SU","GU","Omega+","Omega-","Omega","SO+","SO-","SO", # there was an @!!! TODO
    "GO+","GO-","GO"]);
   if IsBound(G.ClassicalType) then
     if type<>false then
@@ -665,7 +665,7 @@ local CB,D,ValidTypes@,flag,type;
     fi;
   elif type=false then
     # =v= MULTIASSIGN =v=
-    type:=GroupType@(G);
+    type:=GroupType(G); # there was an @!!! TODO
     flag:=type.val1;
     type:=type.val2;
     # =^= MULTIASSIGN =^=
@@ -673,27 +673,27 @@ local CB,D,ValidTypes@,flag,type;
       Error("For this case, you must supply type");
     fi;
   fi;
-  if not type in ValidTypes@ then
-    Error(["Type must be one of ",ValidTypes@]);
+  if not type in ValidTypes then # there was an @!!! TODO
+    Error(["Type must be one of ",ValidTypes]); # there was an @!!! TODO
   fi;
   G.ClassicalType:=type;
   if Degree(G)=2 and IsIrreducible(G)=false then
     return ClassMap(G);
   fi;
-  CB:=TransformMatrix@(G);
+  CB:=TransformMatrix(G); # there was an @!!! TODO
   if CB<>CB^0 then
     D:=List([1..Size(C)],i->[C[i][1],C[i][2],C[i][3]^CB]);
     return GroupGeneralMappingByFunction(G,[1..Size(C)],
-      g->MyClassIndex@(G,g^CB,D,L:type:=G.ClassicalType));
+      g->MyClassIndex(G,g^CB,D,L:type:=G.ClassicalType)); # there was an @!!! TODO
   else
     return GroupGeneralMappingByFunction(G,[1..Size(C)],
-      g->MyClassIndex@(G,g,C,L:type:=G.ClassicalType));
+      g->MyClassIndex(G,g,C,L:type:=G.ClassicalType)); # there was an @!!! TODO
   fi;
 end;
 
-ClassicalClassMap@:=function(G)
+ClassicalClassMap:=function(G) # there was an @!!! TODO
 #  -> ,Map  The class map for the classical group G
-local C,CB,D,F,L,ValidTypes@,_,d,flag,fn,tp;
+local C,CB,D,F,L,ValidTypes,_,d,flag,fn,tp; # there was an @!!! TODO
   if IsTrivial(G) then
     return ClassMap(G);
   fi;
@@ -701,14 +701,14 @@ local C,CB,D,F,L,ValidTypes@,_,d,flag,fn,tp;
   F:=BaseRing(G);
   if not (d=2 and Size(F) <= 4) then
     # =v= MULTIASSIGN =v=
-    tp:=ClassicalGroupType@(G);
+    tp:=ClassicalGroupType(G); # there was an @!!! TODO
     flag:=tp.val1;
     tp:=tp.val2;
     # =^= MULTIASSIGN =^=
-    ValidTypes@:=Set(["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+",
+    ValidTypes:=Set(["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+", # there was an @!!! TODO
      "SO-","SO","GO+","GO-","GO"]);
-      if not flag and tp in ValidTypes@ then
-      Error(["Type of group must be one of ",ValidTypes@]);
+      if not flag and tp in ValidTypes then # there was an @!!! TODO
+      Error(["Type of group must be one of ",ValidTypes]); # there was an @!!! TODO
     fi;
     if tp="GO" and IsEvenInt(Size(F)) then
       Error("Function does not apply to this case");
@@ -721,19 +721,19 @@ local C,CB,D,F,L,ValidTypes@,_,d,flag,fn,tp;
   if not IsBound(G.Labels_A) then
     if IsBound(G.Labels_S) then
       if tp="Sp" then
-        fn:=tagToNameSp@;
+        fn:=tagToNameSp; # there was an @!!! TODO
       elif tp in ["GO","GO+","GO-"] then
-        fn:=tagToNameO@;
+        fn:=tagToNameO; # there was an @!!! TODO
       elif tp in ["SO","SO+","SO-"] then
-        fn:=tagToNameSO@;
+        fn:=tagToNameSO; # there was an @!!! TODO
       elif tp="GU" then
-        fn:=tagToNameGU@;
+        fn:=tagToNameGU; # there was an @!!! TODO
       elif tp="SU" then
-        fn:=tagToNameSU@;
+        fn:=tagToNameSU; # there was an @!!! TODO
       else
         Error("Labels not available for this group of type",tp);
       fi;
-      G.Labels_A:=List( # {@-list:
+      G.Labels_A:=List( # {-list: # there was an @!!! TODO
         G.Labels_S,mu->fn(mu));
     else
       Info(InfoClasses,1,"No labels, so using the standard ClassMap");
@@ -744,14 +744,14 @@ local C,CB,D,F,L,ValidTypes@,_,d,flag,fn,tp;
   if Degree(G)=2 and IsIrreducible(G)=false then
     return ClassMap(G);
   fi;
-  CB:=TransformMatrix@(G);
+  CB:=TransformMatrix(G); # there was an @!!! TODO
   if CB<>CB^0 then
     D:=List([1..Size(C)],i->[C[i][1],C[i][2],C[i][3]^CB]);
     return GroupGeneralMappingByFunction(G,[1..Size(C)],
-      g->MyClassIndex@(G,g^CB,D,L:type:=G.ClassicalType));
+      g->MyClassIndex(G,g^CB,D,L:type:=G.ClassicalType)); # there was an @!!! TODO
   else
     return GroupGeneralMappingByFunction(G,[1..Size(C)],
-      g->MyClassIndex@(G,g,C,L:type:=G.ClassicalType));
+      g->MyClassIndex(G,g,C,L:type:=G.ClassicalType)); # there was an @!!! TODO
   fi;
 end;
 

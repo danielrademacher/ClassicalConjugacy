@@ -11,15 +11,15 @@
 
 #  Defines: InternalSemisimpleIsConjugate, SSIsConjugate, SwitchMatrix
 
-DeclareGlobalFunction("SSIsConjugate@");
+DeclareGlobalFunction("SSIsConjugate"); # there was an @!!! TODO
 
-DeclareGlobalFunction("SwitchMatrix@");
+DeclareGlobalFunction("SwitchMatrix"); # there was an @!!! TODO
 
 #   X* := conjugate transpose of X
 #   return Y s.t. B1=Y B2 Y*,
 #   where Y* considered as matrix in GU(n,ext<GF(q)|f>) and not in
 #  GL(n*deg(f),GF(q))
-InstallGlobalFunction(SwitchMatrix@,
+InstallGlobalFunction(SwitchMatrix, # there was an @!!! TODO
 function(B1,B2,f)
 local F,K,Y,a,d,h,i,j,k,m1,m2,n,s1,s2,suss;
   F:=BaseRing(B1);
@@ -60,7 +60,7 @@ end);
 #   works only for x1,x2 semisimple
 #   works for G = Sp, GU, SU, GO, SO, Omega
 #   exclude orthogonal groups in odd dimension and even characteristic
-InstallGlobalFunction(SSIsConjugate@,
+InstallGlobalFunction(SSIsConjugate, # there was an @!!! TODO
 function(G,x2,x1)
 local 
    A1,A2,B,B1,B2,C,ConjPol,varE,F,H,H1,IsOmega,IsOmega2,M,N,Q,R,Set1,Set2,Star,
@@ -73,7 +73,7 @@ local
   M:=MatrixAlgebra(F,n);
   t:=PolynomialRing(F).1;
   # =v= MULTIASSIGN =v=
-  Q:=DetermineForm@(G,x1);
+  Q:=DetermineForm(G,x1); # there was an @!!! TODO
   B:=Q.val1;
   type:=Q.val2;
   sgn:=Q.val3;
@@ -83,13 +83,13 @@ local
   # =^= MULTIASSIGN =^=
   if IsBound(Q) then
     # =v= MULTIASSIGN =v=
-    IsOmega2:=IsElementOf@(G,x2,type,B,Q);
+    IsOmega2:=IsElementOf(G,x2,type,B,Q); # there was an @!!! TODO
     special2:=IsOmega2.val1;
     IsOmega2:=IsOmega2.val2;
     # =^= MULTIASSIGN =^=
   else
     # =v= MULTIASSIGN =v=
-    IsOmega2:=IsElementOf@(G,x2,type,B,[]);
+    IsOmega2:=IsElementOf(G,x2,type,B,[]); # there was an @!!! TODO
     special2:=IsOmega2.val1;
     IsOmega2:=IsOmega2.val2;
     # =^= MULTIASSIGN =^=
@@ -111,7 +111,7 @@ local
   end;
 
   #  conjugate polynomial
-  ConjPol:=ConjugatePolynomial@(type="unitary");
+  ConjPol:=ConjugatePolynomial(type="unitary"); # there was an @!!! TODO
   # =v= MULTIASSIGN =v=
   r1:=JordanForm(x1);
   a1:=r1.val1;
@@ -220,7 +220,7 @@ local
       B2:=Submatrix(A2,pos,pos,d,d);
       type1:=type;
       if type<>"unitary" and type<>"symplectic" then
-        type1:=IndicateType@(B1);
+        type1:=IndicateType(B1); # there was an @!!! TODO
       fi;
       m1:=TransformForm(B1,type1:Restore:=false);
       m2:=TransformForm(B2,type1:Restore:=false);
@@ -260,7 +260,7 @@ local
         B1:=B1+TransposedMat(Submatrix(A1,pos,pos,ni,ni))*T^-1;
         B2:=B2+TransposedMat(Submatrix(A2,pos,pos,ni,ni))*T^-1;
       fi;
-      Y1:=SwitchMatrix@(B1,B2,f);
+      Y1:=SwitchMatrix(B1,B2,f); # there was an @!!! TODO
       InsertBlock(Y,Y1,pos,pos); # actually TildeY!!! TODO
       pos:=pos+ni;
     fi;
@@ -391,7 +391,7 @@ local
   #   in the omega case, if SpinorNorm(Z) ne 0, then need to be multiplied by Y
   #   such that x1 Y = Y x1 and SpinorNorm(Y) ne 0
   if IsOmega then
-    if SpinN@(varZ*FORCEOne(GL(n,F)),Q,p)<>0 then
+    if SpinN(varZ*FORCEOne(GL(n,F)),Q,p)<>0 then # there was an @!!! TODO
       if IsEvenInt(p) then
         if DeterminantMat(x1*FORCEOne(M)+1)<>0 then
           return rec(val1:=false,
@@ -538,13 +538,13 @@ local
     val2:=varZ*FORCEOne(GL(n,F)));
 end);
 
-InternalSemisimpleIsConjugate@:=function(G,g,h)
+InternalSemisimpleIsConjugate:=function(G,g,h) # there was an @!!! TODO
 #  -> ,GrpMatElt  if semisimple g and h are conjugate in classical group G ,
 #  return true and conjugating element , else false
 if not IsSemisimple(g) and IsSemisimple(h) then
     Error("Both elements must be semisimple");
   fi;
-  return SSIsConjugate@(G,g,h);
+  return SSIsConjugate(G,g,h); # there was an @!!! TODO
 end;
 
 

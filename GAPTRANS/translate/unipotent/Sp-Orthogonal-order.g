@@ -24,13 +24,13 @@
 #  SpConvertT, SpMyDimension, SpSSOrder_Odd, SpUnipotentCentraliserOrder,
 #  SpUnipotentCentraliserOrder_Even, SpUnipotentCentraliserOrder_Odd
 
-DeclareGlobalFunction("OrthogonalUnipotentCentraliserOrder@");
+DeclareGlobalFunction("OrthogonalUnipotentCentraliserOrder"); # there was an @!!! TODO
 
-DeclareGlobalFunction("SpUnipotentCentraliserOrder@");
+DeclareGlobalFunction("SpUnipotentCentraliserOrder"); # there was an @!!! TODO
 
 #   orders of centralisers in semisimple and orthogonal groups
 #   GO -- generators for semisimple piece
-GO_SSOrder_Odd@:=function(VBeta,T,q)
+GO_SSOrder_Odd:=function(VBeta,T,q) # there was an @!!! TODO
 local C,M,V,W,a,beta,d,epsilon,ord,order,type,values_V;
   order:=1;
   W:=T[1];
@@ -72,7 +72,7 @@ local C,M,V,W,a,beta,d,epsilon,ord,order,type,values_V;
   return order;
 end;
 
-GOCentraliserDimension_Odd@:=function(m)
+GOCentraliserDimension_Odd:=function(m) # there was an @!!! TODO
 local a,b,c,d,dim,i,mult,x;
   dim:=List([1..Size(m)],i->m[i][1]);
   mult:=List([1..Size(m)],i->m[i][2]);
@@ -107,7 +107,7 @@ local a,b,c,d,dim,i,mult,x;
   return Int((a+b-c+d));
 end;
 
-GO_ConvertT@:=function(T)
+GO_ConvertT:=function(T) # there was an @!!! TODO
 local V,W,a,b,m;
   V:=[];
   W:=[];
@@ -127,13 +127,13 @@ local V,W,a,b,m;
   return [W,V];
 end;
 
-OrthogonalUnipotentCentraliserOrder_Odd@:=function(type,VBeta,T,split,q)
+OrthogonalUnipotentCentraliserOrder_Odd:=function(type,VBeta,T,split,q) # there was an @!!! TODO
 local T_new,a,dim,m,o,s;
   s:=MultisetToSequence(T);
   m:=List(Set(s),x->[x,Size(Filtered(s,y->y=x))]);
-  dim:=GOCentraliserDimension_Odd@(m);
-  T_new:=GO_ConvertT@(T);
-  a:=GO_SSOrder_Odd@(VBeta,T_new,q);
+  dim:=GOCentraliserDimension_Odd(m); # there was an @!!! TODO
+  T_new:=GO_ConvertT(T); # there was an @!!! TODO
+  a:=GO_SSOrder_Odd(VBeta,T_new,q); # there was an @!!! TODO
   o:=a*q^dim;
   if type in ["GO","GO+","GO-","O","O+","O-"] then
     return o;
@@ -151,7 +151,7 @@ local T_new,a,dim,m,o,s;
 end;
 
 #   Sp generators for semisimple piece
-SpSSOrder_Odd@:=function(VBeta,T,q)
+SpSSOrder_Odd:=function(VBeta,T,q) # there was an @!!! TODO
 local M,V,W,a,beta,d,epsilon,ord,order,type,values_V;
   order:=1;
   W:=T[1];
@@ -192,7 +192,7 @@ local M,V,W,a,beta,d,epsilon,ord,order,type,values_V;
 end;
 
 #   dimension of unipotent subgroup of centraliser
-SpCentraliserDimension_Odd@:=function(m)
+SpCentraliserDimension_Odd:=function(m) # there was an @!!! TODO
 local a,b,c,d,dim,i,mult,x;
   dim:=List([1..Size(m)],i->m[i][1]);
   mult:=List([1..Size(m)],i->m[i][2]);
@@ -228,7 +228,7 @@ local a,b,c,d,dim,i,mult,x;
   return Int((a+b+c+d));
 end;
 
-SpConvertT@:=function(T)
+SpConvertT:=function(T) # there was an @!!! TODO
 local V,W,a,b,m;
   V:=[];
   W:=[];
@@ -246,18 +246,18 @@ local V,W,a,b,m;
   return [W,V];
 end;
 
-SpUnipotentCentraliserOrder_Odd@:=function(T,VBeta,q)
+SpUnipotentCentraliserOrder_Odd:=function(T,VBeta,q) # there was an @!!! TODO
 local a,dim,m,s; # TODO: T needed as reference?
   s:=MultisetToSequence(T);
   m:=List(Set(s),x->[x,Size(Filtered(s,y->y=x))]);
-  T:=SpConvertT@(T);
-  a:=SpSSOrder_Odd@(VBeta,T,q);
-  dim:=SpCentraliserDimension_Odd@(m);
+  T:=SpConvertT(T); # there was an @!!! TODO
+  a:=SpSSOrder_Odd(VBeta,T,q); # there was an @!!! TODO
+  dim:=SpCentraliserDimension_Odd(m); # there was an @!!! TODO
   return a*q^dim;
 end;
 
 #   C_G (u) where u is determined by data in T
-CentraliserDimension_Even@:=function(type,T)
+CentraliserDimension_Even:=function(type,T) # there was an @!!! TODO
 local Chi,V,W,d,dim,i,pos,value;
   W:=Concatenation(T[1],T[1],T[3],T[3]);
   Sort(W); # actually TILDEW!!! TODO
@@ -309,7 +309,7 @@ local Chi,V,W,d,dim,i,pos,value;
 end;
 
 #   centraliser structure for element determined by T
-CentraliserStructure_Even@:=function(type,T,q)
+CentraliserStructure_Even:=function(type,T,q) # there was an @!!! TODO
 local A,L,M,Minus,S,T3,V,W,a,delta,i,name,power,sign,t; # TODO: T needed as reference?
   W:=Concatenation(T[1],T[3]);
   V:=Concatenation(T[2],T[4]);
@@ -361,7 +361,7 @@ end;
 
 #   order of centraliser of unipotent element
 #   in GO / Omega^\epsilon (d, q) where q is even
-Orthogonal_MyDimension@:=function(str)
+Orthogonal_MyDimension:=function(str) # there was an @!!! TODO
 local q,r,type;
   type:=str[1];
   r:=str[2];
@@ -383,23 +383,23 @@ local q,r,type;
   fi;
 end;
 
-Orthogonal_MyBlockDimension@:=function(block)
+Orthogonal_MyBlockDimension:=function(block) # there was an @!!! TODO
 if Size(block)=0 then
     return 0;
   fi;
-  return Sum(List(block,s->Orthogonal_MyDimension@(s)));
+  return Sum(List(block,s->Orthogonal_MyDimension(s))); # there was an @!!! TODO
 end;
 
-Orthogonal_Dimension_Even@:=function(q,t)
+Orthogonal_Dimension_Even:=function(q,t) # there was an @!!! TODO
 local S,varX,Y;
-  varX:=CentraliserDimension_Even@("Omega-",t);
-  S:=CentraliserStructure_Even@("Omega-",t,q);
-  Y:=Orthogonal_MyBlockDimension@(S);
+  varX:=CentraliserDimension_Even("Omega-",t); # there was an @!!! TODO
+  S:=CentraliserStructure_Even("Omega-",t,q); # there was an @!!! TODO
+  Y:=Orthogonal_MyBlockDimension(S); # there was an @!!! TODO
   return rec(val1:=S,
     val2:=varX-Y);
 end;
 
-Orthogonal_Order@:=function(S,z,q)
+Orthogonal_Order:=function(S,z,q) # there was an @!!! TODO
 local ord,order,t,tup;
   order:=q^z;
   for t in S do
@@ -418,15 +418,15 @@ local ord,order,t,tup;
   return order;
 end;
 
-OrthogonalUnipotentCentraliserOrder_Even@:=function(type,T,q)
+OrthogonalUnipotentCentraliserOrder_Even:=function(type,T,q) # there was an @!!! TODO
 local S,k,z;
   Assert(1,IsEvenInt(q));
   # =v= MULTIASSIGN =v=
-  z:=Orthogonal_Dimension_Even@(q,T);
+  z:=Orthogonal_Dimension_Even(q,T); # there was an @!!! TODO
   S:=z.val1;
   z:=z.val2;
   # =^= MULTIASSIGN =^=
-  k:=Orthogonal_Order@(S,z,q);
+  k:=Orthogonal_Order(S,z,q); # there was an @!!! TODO
   if type="Omega-" then
     if T[Size(T)]=-1 then
       return k;
@@ -446,16 +446,16 @@ local S,k,z;
   fi;
 end;
 
-InstallGlobalFunction(OrthogonalUnipotentCentraliserOrder@,
+InstallGlobalFunction(OrthogonalUnipotentCentraliserOrder, # there was an @!!! TODO
 function(type,T,VBeta,split,q)
 if IsEvenInt(q) then
-    return OrthogonalUnipotentCentraliserOrder_Even@(type,T,q);
+    return OrthogonalUnipotentCentraliserOrder_Even(type,T,q); # there was an @!!! TODO
   else
-    return OrthogonalUnipotentCentraliserOrder_Odd@(type,VBeta,T,split,q);
+    return OrthogonalUnipotentCentraliserOrder_Odd(type,VBeta,T,split,q); # there was an @!!! TODO
   fi;
 end);
 
-SpMyDimension@:=function(str)
+SpMyDimension:=function(str) # there was an @!!! TODO
 local q,r,type;
   type:=str[1];
   r:=str[2];
@@ -477,26 +477,26 @@ local q,r,type;
   fi;
 end;
 
-SpBlockDimension@:=function(block)
+SpBlockDimension:=function(block) # there was an @!!! TODO
 if Size(block)=0 then
     return 0;
   fi;
-  return Sum(List(block,s->SpMyDimension@(s)));
+  return Sum(List(block,s->SpMyDimension(s))); # there was an @!!! TODO
 end;
 
-SpCentraliserDimension_Even@:=function(t,q)
+SpCentraliserDimension_Even:=function(t,q) # there was an @!!! TODO
 local S,varX,Y;
-  varX:=CentraliserDimension_Even@("Sp",t);
-  S:=CentraliserStructure_Even@("Sp",t,q);
-  Y:=SpBlockDimension@(S);
+  varX:=CentraliserDimension_Even("Sp",t); # there was an @!!! TODO
+  S:=CentraliserStructure_Even("Sp",t,q); # there was an @!!! TODO
+  Y:=SpBlockDimension(S); # there was an @!!! TODO
   return rec(val1:=varX-Y,
     val2:=S);
 end;
 
-SpUnipotentCentraliserOrder_Even@:=function(T,q)
+SpUnipotentCentraliserOrder_Even:=function(T,q) # there was an @!!! TODO
 local S,dim,ord,order,t,tup;
   # =v= MULTIASSIGN =v=
-  S:=SpCentraliserDimension_Even@(T,q);
+  S:=SpCentraliserDimension_Even(T,q); # there was an @!!! TODO
   dim:=S.val1;
   S:=S.val2;
   # =^= MULTIASSIGN =^=
@@ -517,12 +517,12 @@ local S,dim,ord,order,t,tup;
   return order*q^dim;
 end;
 
-InstallGlobalFunction(SpUnipotentCentraliserOrder@,
+InstallGlobalFunction(SpUnipotentCentraliserOrder, # there was an @!!! TODO
 function(T,VBeta,q)
 if IsEvenInt(q) then
-    return SpUnipotentCentraliserOrder_Even@(T,q);
+    return SpUnipotentCentraliserOrder_Even(T,q); # there was an @!!! TODO
   else
-    return SpUnipotentCentraliserOrder_Odd@(T,VBeta,q);
+    return SpUnipotentCentraliserOrder_Odd(T,VBeta,q); # there was an @!!! TODO
   fi;
 end);
 

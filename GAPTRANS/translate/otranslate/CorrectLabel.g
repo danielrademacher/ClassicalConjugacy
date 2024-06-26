@@ -7,8 +7,8 @@
 #  Defines: TurnCorrectLabel, _is_square
 
 #   return true if det (StandardSymmetricForm(n,q)) is a square, false 
- otherwise
-_is_square@:=function(n,q)
+# otherwise
+_is_square:=function(n,q)
 return ((q mod 8 in [1,3] and n mod 4=3) or (q mod 8 in [1,7] and n mod 4=1));
 end;
 
@@ -21,7 +21,7 @@ end;
 #   the one in even dim is switched whenever the global discriminant (before
 #  the correction above)
 #   is not the same as the discriminant of the standard Magma form
-TurnCorrectLabel@:=function(L,n,F)
+TurnCorrectLabel:=function(L,n,F)
 local DetForm,EvenLabelToChange,ThereIsEven,dim,discr,l,pr,q,x;
   DetForm:=1;
   #   1 if square, -1 otherwise
@@ -42,7 +42,7 @@ local DetForm,EvenLabelToChange,ThereIsEven,dim,discr,l,pr,q,x;
         if not IsSquare(discr) then
           DetForm:=DetForm*-1;
           RemoveSet(L,l); # actually TildeL!!! TODO
-          UniteSet(L,[l[1],l[2],ChangeClassLabel@(l[3],F,pr)]); # actually TildeL!!! TODO
+          UniteSet(L,[l[1],l[2],ChangeClassLabel(l[3],F,pr)]); # actually TildeL!!! TODO # there was an @!!! TODO
         fi;
       else
         ThereIsEven:=true;
@@ -68,10 +68,10 @@ local DetForm,EvenLabelToChange,ThereIsEven,dim,discr,l,pr,q,x;
       fi;
     fi;
   od;
-  if ThereIsEven and (_is_square@(n,q)xorDetForm=1) then
+  if ThereIsEven and (_is_square(n,q)xorDetForm=1) then # there was an @!!! TODO
     RemoveSet(L,EvenLabelToChange); # actually TildeL!!! TODO
     UniteSet(L,[EvenLabelToChange[1],EvenLabelToChange[2] # actually TildeL!!! TODO
-     ,ChangeClassLabel@(EvenLabelToChange[3],F,pr)]);
+     ,ChangeClassLabel(EvenLabelToChange[3],F,pr)]); # there was an @!!! TODO
   fi;
   return L;
 end;

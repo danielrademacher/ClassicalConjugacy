@@ -14,16 +14,16 @@
 #  IsGoodType, OForm, OParameters, OrthogonalUnipotentClassSize_Even, SetupRep,
 #  SpForm, SpUnipotentClassSize_Even, V_beta_even, W_even, W_even_dash, W_odd
 
-SpUnipotentClassSize_Even@:=function(G,T,q)
-return QuoInt(Size(G),SpUnipotentCentraliserOrder_Even@(T,q));
+SpUnipotentClassSize_Even:=function(G,T,q) # there was an @!!! TODO
+return QuoInt(Size(G),SpUnipotentCentraliserOrder_Even(T,q)); # there was an @!!! TODO
 end;
 
-OrthogonalUnipotentClassSize_Even@:=function(type,G,T,q)
-return QuoInt(Size(G),OrthogonalUnipotentCentraliserOrder_Even@(type,T,q));
+OrthogonalUnipotentClassSize_Even:=function(type,G,T,q) # there was an @!!! TODO
+return QuoInt(Size(G),OrthogonalUnipotentCentraliserOrder_Even(type,T,q)); # there was an @!!! TODO
 end;
 
 #   building blocks
-V_beta_even@:=function(k,q,beta)
+V_beta_even:=function(k,q,beta) # there was an @!!! TODO
 local I,J,M,MA,R,i,j;
   MA:=MatrixAlgebra(GF(q),2*k);
   if k=1 then
@@ -39,7 +39,7 @@ local I,J,M,MA,R,i,j;
       od;
     od;
     InsertBlock(R,I,1,1); # actually TildeR!!! TODO
-    J:=JordanBlock@(k,q);
+    J:=JordanBlock(k,q); # there was an @!!! TODO
     InsertBlock(R,J,k+1,k+1); # actually TildeR!!! TODO
     for i in [1..k-1] do
       R[i][k+1]:=1;
@@ -50,7 +50,7 @@ local I,J,M,MA,R,i,j;
   return R*FORCEOne(GL(2*k,q));
 end;
 
-W_even@:=function(k,q)
+W_even:=function(k,q) # there was an @!!! TODO
 local MA,i,j,w;
   MA:=MatrixAlgebra(GF(q),2*k);
   w:=Zero(MA);
@@ -67,7 +67,7 @@ local MA,i,j,w;
   return w*FORCEOne(GL(2*k,q));
 end;
 
-W_even_dash@:=function(k,q)
+W_even_dash:=function(k,q) # there was an @!!! TODO
 local MA,i,j,w;
   MA:=MatrixAlgebra(GF(q),2*k);
   w:=Zero(MA);
@@ -90,7 +90,7 @@ local MA,i,j,w;
   return w*FORCEOne(GL(2*k,q));
 end;
 
-W_odd@:=function(k,q,beta)
+W_odd:=function(k,q,beta) # there was an @!!! TODO
 local I,MA,ell,i,j,w;
   Assert(1,IsOddInt(k));
   MA:=MatrixAlgebra(GF(q),2*k);
@@ -120,7 +120,7 @@ local I,MA,ell,i,j,w;
   return w*FORCEOne(GL(2*k,q));
 end;
 
-SpForm@:=function(k,q)
+SpForm:=function(k,q) # there was an @!!! TODO
 local MA,form,i;
   MA:=MatrixAlgebra(GF(q),2*k);
   form:=Zero(MA);
@@ -132,7 +132,7 @@ end;
 
 #   "O" form is satisfied by V_beta_even
 #   "Omega" form is satisfied by W_alpha
-OForm@:=function(type,k,q,b)
+OForm:=function(type,k,q,b) # there was an @!!! TODO
 local MA,Q,i,l,nmr;
   nmr:=ValueOption("nmr");
   if nmr=fail then
@@ -167,11 +167,11 @@ local MA,Q,i,l,nmr;
   return Q;
 end;
 
-SetupRep@:=function(type,q,w,v,w_alpha,v_alpha,nmr)
+SetupRep:=function(type,q,w,v,w_alpha,v_alpha,nmr) # there was an @!!! TODO
 local 
    A,B,MA,V,V_alpha,W,W_alpha,alpha,d,form,formV,formV_alpha,formW,formW_alpha,
    r,t,z;
-  alpha:=ChooseAlpha@(q);
+  alpha:=ChooseAlpha(q); # there was an @!!! TODO
   MA:=MatrixAlgebra(GF(q),0);
   z:=Zero(MA);
   V:=z;
@@ -184,57 +184,57 @@ local
   formV_alpha:=z;
   if Size(w) > 0 then
     if nmr=-1 then
-      A:=W_even_dash@(w[1],q);
+      A:=W_even_dash(w[1],q); # there was an @!!! TODO
       if Size(w) > 1 then
         B:=DirectSumMat(List( # <-list:
-          [2..Size(w)],i->W_even@(w[i],q)));
+          [2..Size(w)],i->W_even(w[i],q))); # there was an @!!! TODO
         W:=DirectSumMat(A,B);
       else
         W:=A;
       fi;
     else
       W:=DirectSumMat(List( # <-list:
-        w,k->W_even@(k,q)));
+        w,k->W_even(k,q))); # there was an @!!! TODO
     fi;
     if type="Sp" then
       formW:=DirectSumMat(List( # <-list:
-        w,k->SpForm@(k,q)));
+        w,k->SpForm(k,q))); # there was an @!!! TODO
     else
       formW:=DirectSumMat(List( # <-list:
-        w,k->OForm@("O",k,q,0:nmr:=1)));
+        w,k->OForm("O",k,q,0:nmr:=1))); # there was an @!!! TODO
     fi;
   fi;
   if Size(v) > 0 then
     V:=DirectSumMat(List( # <-list:
-      v,k->V_beta_even@(k,q,0)));
+      v,k->V_beta_even(k,q,0))); # there was an @!!! TODO
     if type="Sp" then
       formV:=DirectSumMat(List( # <-list:
-        v,k->SpForm@(k,q)));
+        v,k->SpForm(k,q))); # there was an @!!! TODO
     else
       formV:=DirectSumMat(List( # <-list:
-        v,k->OForm@("O",k,q,0)));
+        v,k->OForm("O",k,q,0))); # there was an @!!! TODO
     fi;
   fi;
   if Size(w_alpha) > 0 then
     W_alpha:=DirectSumMat(List( # <-list:
-      w_alpha,k->W_odd@(k,q,alpha)));
+      w_alpha,k->W_odd(k,q,alpha))); # there was an @!!! TODO
     if type="Sp" then
       formW_alpha:=DirectSumMat(List( # <-list:
-        w_alpha,k->SpForm@(k,q)));
+        w_alpha,k->SpForm(k,q))); # there was an @!!! TODO
     else
       formW_alpha:=DirectSumMat(List( # <-list:
-        w_alpha,k->OForm@("Omega",k,q,alpha:nmr:=1)));
+        w_alpha,k->OForm("Omega",k,q,alpha:nmr:=1))); # there was an @!!! TODO
     fi;
   fi;
   if Size(v_alpha) > 0 then
     V_alpha:=DirectSumMat(List( # <-list:
-      v_alpha,k->V_beta_even@(k,q,alpha)));
+      v_alpha,k->V_beta_even(k,q,alpha))); # there was an @!!! TODO
     if type="Sp" then
       formV_alpha:=DirectSumMat(List( # <-list:
-        v_alpha,k->SpForm@(k,q)));
+        v_alpha,k->SpForm(k,q))); # there was an @!!! TODO
     else
       formV_alpha:=DirectSumMat(List( # <-list:
-        v_alpha,k->OForm@("O",k,q,alpha)));
+        v_alpha,k->OForm("O",k,q,alpha))); # there was an @!!! TODO
     fi;
   fi;
   t:=[W,V,W_alpha,V_alpha];
@@ -246,7 +246,7 @@ local
     val2:=form);
 end;
 
-ClassReps@:=function(type,q,T)
+ClassReps:=function(type,q,T) # there was an @!!! TODO
 local F,R,f,nmr,r,t,v,v_alpha,w,w_alpha;
   R:=[];
   F:=[];
@@ -257,7 +257,7 @@ local F,R,f,nmr,r,t,v,v_alpha,w,w_alpha;
     v_alpha:=t[4];
     nmr:=t[5];
     # =v= MULTIASSIGN =v=
-    f:=SetupRep@(type,q,w,v,w_alpha,v_alpha,nmr);
+    f:=SetupRep(type,q,w,v,w_alpha,v_alpha,nmr); # there was an @!!! TODO
     r:=f.val1;
     f:=f.val2;
     # =^= MULTIASSIGN =^=
@@ -268,7 +268,7 @@ local F,R,f,nmr,r,t,v,v_alpha,w,w_alpha;
     val2:=F);
 end;
 
-IsGoodType@:=function(type,m,w,v,w_alpha,v_alpha)
+IsGoodType:=function(type,m,w,v,w_alpha,v_alpha) # there was an @!!! TODO
 #  /out: sum of entries = m
 local b,nmr,s,t;
   t:=Concatenation(v,w,w_alpha,v_alpha);
@@ -349,7 +349,7 @@ local b,nmr,s,t;
 end;
 
 #   set up form preserved by identity element
-FormForIdentity@:=function(type,d,q)
+FormForIdentity:=function(type,d,q) # there was an @!!! TODO
 local form;
   Assert(1,IsEvenInt(q));
   if type in ["O+","Omega+"] then
@@ -365,7 +365,7 @@ end;
 #   given type, rank and even field size, write down unipotent class reps
 #   as elements of magma copy of corresponding SX (dim, q)
 #   applies to Sp, Omega
-EvenUnipotentReps@:=function(type,dim,q)
+EvenUnipotentReps:=function(type,dim,q) # there was an @!!! TODO
 #  /out: "Applies to even characteristic only";
 local 
    C,D,F,G,P,R,Rewrite,S,T,V,V_alpha,W,W_alpha,flag,forms,i,id_form,id_rep,j,k,
@@ -434,7 +434,7 @@ local
         fi;
         for l in [1..Size(V_alpha)] do
           # =v= MULTIASSIGN =v=
-          sum:=IsGoodType@(type,m,W[i],V[j],W_alpha[k],V_alpha[l]);
+          sum:=IsGoodType(type,m,W[i],V[j],W_alpha[k],V_alpha[l]); # there was an @!!! TODO
           flag:=sum.val1;
           nmr:=sum.val2;
           sum:=sum.val3;
@@ -456,7 +456,7 @@ local
     od;
   od;
   # =v= MULTIASSIGN =v=
-  forms:=ClassReps@(type,q,T);
+  forms:=ClassReps(type,q,T); # there was an @!!! TODO
   reps:=forms.val1;
   forms:=forms.val2;
   # =^= MULTIASSIGN =^=
@@ -470,7 +470,7 @@ local
   fi;
   #   add the identity element
   id_rep:=Identity(GL(dim,q));
-  id_form:=FormForIdentity@(type,dim,q);
+  id_form:=FormForIdentity(type,dim,q); # there was an @!!! TODO
   reps:=Concatenation(reps,[id_rep]);
   forms:=Concatenation(forms,[id_form]);
   if type="Sp" then
@@ -505,9 +505,9 @@ local
   for i in [1..Size(reps)] do
     # rewritten select statement
     if type="Sp" then
-      size:=SpUnipotentClassSize_Even@(G,T[i],q);
+      size:=SpUnipotentClassSize_Even(G,T[i],q); # there was an @!!! TODO
     else
-      size:=OrthogonalUnipotentClassSize_Even@(type,G,T[i],q);
+      size:=OrthogonalUnipotentClassSize_Even(type,G,T[i],q); # there was an @!!! TODO
     fi;
     if Rewrite then
       Add(C,[Order(R[i]),size,R[i]]);
@@ -523,7 +523,7 @@ local
 end;
 
 #   s, t, delta parameters for element of T
-OParameters@:=function(type,T)
+OParameters:=function(type,T) # there was an @!!! TODO
 local S,V,W,delta,s,t;
   W:=Concatenation(T[1],T[1],T[3],T[3]);
   Sort(W); # actually TildeW!!! TODO
@@ -549,7 +549,7 @@ end;
 
 #   given type and description of class over algebraically closed field,
 #   how many classes does it split into over finite field?
-ClassesSplit@:=function(type,T)
+ClassesSplit:=function(type,T) # there was an @!!! TODO
 local W,delta,s,t;
   W:=Concatenation(T[1],T[3]);
   if Size((Concatenation(T[2],T[4])))=0 and ForAll(W,w->IsEvenInt(w)) then
@@ -564,7 +564,7 @@ local W,delta,s,t;
     fi;
   fi;
   # =v= MULTIASSIGN =v=
-  delta:=OParameters@(type,T);
+  delta:=OParameters(type,T); # there was an @!!! TODO
   s:=delta.val1;
   t:=delta.val2;
   delta:=delta.val3;

@@ -108,3 +108,7 @@ IndicateType := function(B) end;
 IsSemisimple := function(g) end;
 Rep := function(T) end;
 GroupGeneralMappingByFunction := function(a,b,c) end;
+SpUnipotentCentraliserOrder := function(T, VBeta, q) end;
+Hilbert90 := function(alpha, q) end;
+Ceiling := function(x) return Int(Ceil(Float(x))); end;
+NonSquare := function(x) end;

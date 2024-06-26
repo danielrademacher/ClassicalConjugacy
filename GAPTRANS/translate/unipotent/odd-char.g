@@ -12,12 +12,12 @@
 #  Defines: MyReflection, Original_Reflection, Original_s,
 #  OrthogonalUnipotentClassSize_Odd, OrthogonalUnipotentReps, TestSplit
 
-OrthogonalUnipotentClassSize_Odd@:=function(G,type,T,VBeta,split,q)
-return QuoInt(Size(G),OrthogonalUnipotentCentraliserOrder@(type,T,VBeta,split,q)
+OrthogonalUnipotentClassSize_Odd:=function(G,type,T,VBeta,split,q) # there was an @!!! TODO
+return QuoInt(Size(G),OrthogonalUnipotentCentraliserOrder(type,T,VBeta,split,q) # there was an @!!! TODO
    );
 end;
 
-TestSplit@:=function(Data,K,q,S,phi)
+TestSplit:=function(Data,K,q,S,phi) # there was an @!!! TODO
 local Beta,K,Split,i,j,split;
   Split:=[];
   K:=List(K,x->QuoInt((x-1),2));
@@ -25,7 +25,7 @@ local Beta,K,Split,i,j,split;
     Beta:=Data[i];
     split:=false;
     for j in [1..Size(Beta)] do
-      split:=(Beta[j]*((-1)^(K[1]+K[j])*Beta[1])^-1)@@phi in S;
+      split:=(Beta[j]*((-1)^(K[1]+K[j])*Beta[1])^-1)phi in S; # there was an @!!! TODO
       if not split then
         break j;
       fi;
@@ -36,7 +36,7 @@ local Beta,K,Split,i,j,split;
 end;
 
 #   reflection for Magma form
-MyReflection@:=function(n,q)
+MyReflection:=function(n,q) # there was an @!!! TODO
 local MA,i,r;
   MA:=MatrixAlgebra(GF(q),n);
   r:=Zero(MA);
@@ -49,7 +49,7 @@ local MA,i,r;
 end;
 
 #   reflection in group preserving supplied orthogonal form
-Original_Reflection@:=function(form)
+Original_Reflection:=function(form) # there was an @!!! TODO
 local H,Q,V;
   Q:=SymmetricToQuadraticForm(form);
   V:=QuadraticSpace(Q);
@@ -59,12 +59,12 @@ local H,Q,V;
 end;
 
 #   element in SO but not in Omega
-Original_s@:=function(form)
+Original_s:=function(form) # there was an @!!! TODO
 local H,Q,V;
   Q:=SymmetricToQuadraticForm(form);
   V:=QuadraticSpace(Q);
   H:=IsometryGroup(V);
-  Assert(1,i:=ForAny([1..Ngens(H)],i->MySpinorNorm@(H.i,form)=1));
+  Assert(1,i:=ForAny([1..Ngens(H)],i->MySpinorNorm(H.i,form)=1)); # there was an @!!! TODO
   return H.i;
 end;
 
@@ -73,7 +73,7 @@ end;
 #   default for: n odd G = SO(n, q) and n even G = GO(n, q)
 #   Special: reps in SOPlus(n, q), SOMinus(n, q)
 #   Perfect: reps in Omega(n, q)
-OrthogonalUnipotentReps@:=function(n,q,epsilon)
+OrthogonalUnipotentReps:=function(n,q,epsilon) # there was an @!!! TODO
 local 
    A,B,B_val,C,C_form,D,F,Forms,Fstar,G,L,LL,M,P,Params,Perfect,Reps,Rewrite,S,
    SP,Shapes,Special,Split,Squares,T,VBeta,varX,Y,alpha,form_A,form_B,form_type,
@@ -112,7 +112,7 @@ local
   Fstar:=phi.val1;
   phi:=phi.val2;
   # =^= MULTIASSIGN =^=
-  Squares:=SubStructure(Fstar,(w^2)@@phi);
+  Squares:=SubStructure(Fstar,PreImage(phi, (w^2)));
   #   assert {x  @ phi : x in Squares} eq {x^2: x in F | x ne 0};
   if Perfect=true then
     Special:=true;
@@ -132,7 +132,7 @@ local
   type:="Omega";
   total:=0;
   omega:=Set([]);
-  alpha:=NonSquare@(F);
+  alpha:=NonSquare(F); # there was an @!!! TODO
   Reps:=[];
   Forms:=[];
   Shapes:=[];
@@ -154,25 +154,25 @@ local
       if IsEvenInt(t) then
         k:=QuoInt(t,2);
         one:=Zero(M);
-        one:=A_beta_even@(2*k,q,0,type);
+        one:=A_beta_even(2*k,q,0,type); # there was an @!!! TODO
         one:=DirectSumMat(List([1..QuoInt(m,2)],i->one));
         A:=DirectSumMat(A,one);
         B_val:=Concatenation(B_val,List([1..(QuoInt(m,2))],i->[2*k,0]));
-        one:=A_beta_even_form@(2*k,q,type);
+        one:=A_beta_even_form(2*k,q,type); # there was an @!!! TODO
         one:=DirectSumMat(List([1..QuoInt(m,2)],i->one));
         form_A:=DirectSumMat(form_A,one);
       else
         k:=QuoInt((t-1),2);
         two:=Zero(M);
         if m > 1 then
-          temp:=A_beta_odd@(k,q,-1*FORCEOne(F),-2*FORCEOne(F),type);
+          temp:=A_beta_odd(k,q,-1*FORCEOne(F),-2*FORCEOne(F),type); # there was an @!!! TODO
           temp:=DirectSumMat(List([1..m-1],i->temp));
           two:=DirectSumMat(two,temp);
         fi;
         B:=DirectSumMat(B,two);
         B_val:=Concatenation(B_val,List([1..(m-1)],i->[t,1]));
         if m > 1 then
-          two:=A_beta_odd_form@(k,q,2,type);
+          two:=A_beta_odd_form(k,q,2,type); # there was an @!!! TODO
           two:=DirectSumMat(List([1..m-1],i->two));
         fi;
         form_B:=DirectSumMat(form_B,two);
@@ -193,16 +193,16 @@ local
       else
         L:=[1];
       fi;
-      list:=BackTrack@(List([1..Size(odd)],i->Size(L)));
+      list:=BackTrack(List([1..Size(odd)],i->Size(L))); # there was an @!!! TODO
       varX:=List(Filtered(T,t->IsOddInt(t))
-       ,t->List(L,beta->A_beta_odd@(QuoInt(t,2),q,-beta,-2*beta,type)));
+       ,t->List(L,beta->A_beta_odd(QuoInt(t,2),q,-beta,-2*beta,type))); # there was an @!!! TODO
       params:=List(Filtered(T,t->IsOddInt(t)),t->List(L,beta->[t,beta]));
       Y:=List(Filtered(T,t->IsOddInt(t))
-       ,t->List(L,beta->A_beta_odd_form@(QuoInt(t,2),q,2*beta,type)));
+       ,t->List(L,beta->A_beta_odd_form(QuoInt(t,2),q,2*beta,type))); # there was an @!!! TODO
       C:=List(list,l->DirectSumMat(List( # <-list:
         [1..Size(varX)],i->varX[i][l[i]])));
       params:=List(list,l->List([1..Size(varX)],i->params[i][l[i]]));
-      Split:=TestSplit@(List(list,i->L[i]),odd,q,Squares,phi);
+      Split:=TestSplit(List(list,i->L[i]),odd,q,Squares,phi); # there was an @!!! TODO
       C_form:=List(list,l->DirectSumMat(List( # <-list:
         [1..Size(varX)],i->Y[i][l[i]])));
       C:=List(C,c->DirectSumMat([c,A]));
@@ -287,13 +287,13 @@ local
       tr:=TransformForm(Forms[i],form_type:Restore:=false);
     fi;
     if epsilon=1 and Size(special) > 0 then
-      orig_t:=Original_Reflection@(Forms[i]);
+      orig_t:=Original_Reflection(Forms[i]); # there was an @!!! TODO
       if Rewrite then
         t:=orig_t^tr;
       fi;
     fi;
     if Perfect then
-      orig_s:=Original_s@(Forms[i]);
+      orig_s:=Original_s(Forms[i]); # there was an @!!! TODO
       if Rewrite then
         s:=orig_s^tr;
       fi;
@@ -415,7 +415,7 @@ local
   C:=[];
   D:=[];
   for i in [1..Size(original)] do
-    size:=OrthogonalUnipotentClassSize_Odd@(G,type,shapes[i],VBeta[i],i in 
+    size:=OrthogonalUnipotentClassSize_Odd(G,type,shapes[i],VBeta[i],i in  # there was an @!!! TODO
      Split,q);
     if Rewrite then
       Add(C,[Order(reps[i]),size,reps[i]]);

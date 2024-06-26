@@ -8,15 +8,15 @@
 
 #  Defines: GLCentralizer, StdEm
 
-DeclareGlobalFunction("GLCentralizer@");
+DeclareGlobalFunction("GLCentralizer");
 
 #  matrix in E = F_q^r --> matrix in F_q
-StdEm@:=function(A,F)
+StdEm:=function(A,F)
 return WriteMatrixOverSmallerField(A,F);
 end;
 
 #   x is an element of G = GL(d, q); determine its centraliser
-InstallGlobalFunction(GLCentralizer@,
+InstallGlobalFunction(GLCentralizer,
 function(G,x)
 #  /out:need StdEm
 local 
@@ -57,7 +57,7 @@ local
     if m > 1 then
       varE:=ExtStructure(F,lvarSet[j][1]:Optimize:=false);
       mu:=Multiplicity(c,lvarSet[j]);
-      u:=StdEm@(MatrixByEntries(varE,1,1,[PrimitiveElement(varE)]),F);
+      u:=StdEm(MatrixByEntries(varE,1,1,[PrimitiveElement(varE)]),F); # there was an @!!! TODO
       pos:=1;
       if j > 1 then
         pos:=pos+Sum(List([1..j-1],i->Degree(lvarSet[i][1])*lvarSet[i][2]
@@ -120,7 +120,7 @@ local
   # =^= MULTIASSIGN =^=
   H:=SubStructure(gl,Gen);
   H:=H^((C^-1*B)*FORCEOne(gl));
-  order:=GLCentralizerOrder@(gl,x:JF:=c);
+  order:=GLCentralizerOrder(gl,x:JF:=c); # there was an @!!! TODO
   H.FactoredOrder:=order;
   H.Order:=Int(order);
   return rec(val1:=H,

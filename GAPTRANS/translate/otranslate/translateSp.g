@@ -13,7 +13,7 @@
 
 #   The sign of the unipotent or negative unipotent of type <e,m> in GF(q)
 #   The argument u is true for unipotents, false for the negative of unipotents
-sgnSp@:=function(u,e,m,q)
+sgnSp:=function(u,e,m,q)
 local val;
   if not IsEvenInt(e) then
     Print("e must be even");
@@ -72,7 +72,7 @@ local val;
 end;
 
 #   From Milnor symplectic signed partitions to Giovanni De Franceschi names
-tagToNameSp@:=function(mu)
+tagToNameSp:=function(mu)
 local F,a0,e,f,label,lambda,m,polpart,pp,q,ss,tag,tp,z;
   tag:=[];
   F:=BaseRing(mu[1][1]);
@@ -108,7 +108,7 @@ local F,a0,e,f,label,lambda,m,polpart,pp,q,ss,tag,tp,z;
         UniteSet(label,[e,0*FORCEOne(F)]^^(QuoInt(m,2))); # actually Tildelabel!!! TODO
       else
         a0:=Coefficient(f,0);
-        ss:=sgnSp@(a0<>1*FORCEOne(F),e,m,q);
+        ss:=sgnSp(a0<>1*FORCEOne(F),e,m,q); # there was an @!!! TODO
         if ss=1 then
           if e > 0 then
             UniteSet(label,[e,1*FORCEOne(F)]^^m); # actually Tildelabel!!! TODO
@@ -136,7 +136,7 @@ local F,a0,e,f,label,lambda,m,polpart,pp,q,ss,tag,tp,z;
 end;
 
 #   From Giovanni De Franceschi names to Milnor symplectic signed partitions
-nameToTagSp@:=function(nm)
+nameToTagSp:=function(nm)
 local F,a0,alpha,e,eam,f,m,mm,mu,prev,ptn,q,ss,tag,term,tp;
   tag:=# {@-list:
   [];
@@ -169,10 +169,10 @@ local F,a0,alpha,e,eam,f,m,mm,mu,prev,ptn,q,ss,tag,term,tp;
         Add(ptn,[e,2*m]);
       else
         a0:=Coefficient(f,0);
-        ss:=sgnSp@(a0<>1*FORCEOne(F),e,m,q);
+        ss:=sgnSp(a0<>1*FORCEOne(F),e,m,q); # there was an @!!! TODO
         if e=prev[1] then
           mm:=prev[2]+m;
-          ss:=sgnSp@(a0<>1*FORCEOne(F),e,mm,q);
+          ss:=sgnSp(a0<>1*FORCEOne(F),e,mm,q); # there was an @!!! TODO
           #   replace the top of the stack
           ptn[Size(ptn)]:=[-ss*e,mm];
           prev:=[0,0];

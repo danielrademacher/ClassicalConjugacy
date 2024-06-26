@@ -18,10 +18,10 @@
 #  IsClassicalIsConjugateApplicable, MatrixInCentralizerEQ,
 #  MatrixInCentralizerNE, ValidTypes
 
-DeclareGlobalFunction("GenIsConjugate@");
+DeclareGlobalFunction("GenIsConjugate"); # there was an @!!! TODO
 
 #   are g and h both semisimple or unipotent?
-HaveSameType@:=function(g,h)
+HaveSameType:=function(g,h) # there was an @!!! TODO
 if IsUnipotent(g) then
     return IsUnipotent(h);
   elif IsSemisimple(g) then
@@ -32,10 +32,10 @@ end;
 
 #   do g and h have same label in the isometry group?
 #   called only for mixed elements
-HaveSameLabel@:=function(G,g,h)
+HaveSameLabel:=function(G,g,h) # there was an @!!! TODO
 local flag,type;
   # =v= MULTIASSIGN =v=
-  type:=ClassicalGroupType@(G);
+  type:=ClassicalGroupType(G); # there was an @!!! TODO
   flag:=type.val1;
   type:=type.val2;
   # =^= MULTIASSIGN =^=
@@ -51,12 +51,12 @@ local flag,type;
   if type in ["GU","SU"] then
     type:="GU";
   fi;
-  return IsometryGroupClassLabel@(type,g)=IsometryGroupClassLabel@(type,h);
+  return IsometryGroupClassLabel(type,g)=IsometryGroupClassLabel@(type,h); # there was an @!!! TODO
 end;
 
 #   returns an element in the centralizer of a block with max determinant order
 #   case f not equal to f*
-MatrixInCentralizerNE@:=function(F,f,pos,A1,d,deg,c3,type)
+MatrixInCentralizerNE:=function(F,f,pos,A1,d,deg,c3,type) # there was an @!!! TODO
 local B1,varE,Star,e,j1,j2,l,lm,pos1,suss,y,z;
   # rewritten select statement
   if type="unitary" then
@@ -85,7 +85,7 @@ local B1,varE,Star,e,j1,j2,l,lm,pos1,suss,y,z;
     pos1:=pos1+1;
   od;
   #   z is the unipotent part (the centralizer is the same)
-  y:=ElementOfMaxDeterminant@(z,c3[2],IdentityMatrix(varE,d),"linear");
+  y:=ElementOfMaxDeterminant(z,c3[2],IdentityMatrix(varE,d),"linear"); # there was an @!!! TODO
   suss:=BlockMatrix(d,d,Concatenation(List([1..d],
     j1->List([1..d],
       j2->Sum(List([1..deg],k->CompanionMat(f)^(k-1)*Eltseq(y[j1][j2],F)[k])))))
@@ -97,7 +97,7 @@ end;
 
 #   returns an element in the centralizer of a block with max determinant order
 #   case f=f*
-MatrixInCentralizerEQ@:=function(F,f,pos,sgn,A1,d,deg,c3,type)
+MatrixInCentralizerEQ:=function(F,f,pos,sgn,A1,d,deg,c3,type) # there was an @!!! TODO
 local B1,B2,varE,H,H1,S,Star,T,_,e,forgetvar1,j1,j2,l,lm,m,pos1,suss,y;
   # rewritten select statement
   if type="unitary" then
@@ -151,7 +151,7 @@ local B1,B2,varE,H,H1,S,Star,T,_,e,forgetvar1,j1,j2,l,lm,m,pos1,suss,y;
   od;
   #   y is the unipotent part (the centralizer is the same)
   y:=m^-1*y*m;
-  S:=ElementOfMaxDeterminant@(y,StandardHermitianForm(d,varE)
+  S:=ElementOfMaxDeterminant(y,StandardHermitianForm(d,varE) # there was an @!!! TODO
    ,IdentityMatrix(varE,d),"unitary");
   S:=m*S*m^-1;
   suss:=BlockMatrix(d,d,Concatenation(List([1..d],
@@ -167,7 +167,7 @@ end;
 #  x1;
 #   works for G = Sp, GU, SU, GO, SO, Omega (in every basis)
 #   we exclude orthogonal groups in odd dimension and even characteristic
-InstallGlobalFunction(GenIsConjugate@,
+InstallGlobalFunction(GenIsConjugate, # there was an @!!! TODO
 function(G,x2,x1)
 local 
    A,A1,A2,ArrayElements,B,B1,B2,C,Cent,Checks,ConjPol,DetS,Dety,DoesNotSplit,F,
@@ -181,11 +181,11 @@ local
     Checks:=true;
   fi;
   if Checks then
-    if not HaveSameType@(x2,x1) then
+    if not HaveSameType(x2,x1) then # there was an @!!! TODO
       return rec(val1:=false,
         val2:=_);
     fi;
-    if not HaveSameLabel@(G,x2,x1) then
+    if not HaveSameLabel(G,x2,x1) then # there was an @!!! TODO
       return rec(val1:=false,
         val2:=_);
     fi;
@@ -200,7 +200,7 @@ local
   M:=MatrixAlgebra(F,n);
   t:=PolynomialRing(F).1;
   # =v= MULTIASSIGN =v=
-  is_abelian:=DetermineForm@(G,x1);
+  is_abelian:=DetermineForm(G,x1); # there was an @!!! TODO
   B:=is_abelian.val1;
   type:=is_abelian.val2;
   sgn:=is_abelian.val3;
@@ -211,7 +211,7 @@ local
   # =^= MULTIASSIGN =^=
   if is_abelian then
     #      if x2 notin G then
-    if not MyIsIn@(G,x2) then
+    if not MyIsIn(G,x2) then # there was an @!!! TODO
       Error("Element is not in input group");
     else
       #   trivial case
@@ -225,13 +225,13 @@ local
     fi;
   elif IsBound(Q) then
     # =v= MULTIASSIGN =v=
-    IsOmega2:=IsElementOf@(G,x2,type,B,Q);
+    IsOmega2:=IsElementOf(G,x2,type,B,Q); # there was an @!!! TODO
     special2:=IsOmega2.val1;
     IsOmega2:=IsOmega2.val2;
     # =^= MULTIASSIGN =^=
   else
     # =v= MULTIASSIGN =v=
-    IsOmega2:=IsElementOf@(G,x2,type,B,[]);
+    IsOmega2:=IsElementOf(G,x2,type,B,[]); # there was an @!!! TODO
     special2:=IsOmega2.val1;
     IsOmega2:=IsOmega2.val2;
     # =^= MULTIASSIGN =^=
@@ -253,7 +253,7 @@ local
   end;
 
   #  conjugate polynomial
-  ConjPol:=ConjugatePolynomial@(type="unitary");
+  ConjPol:=ConjugatePolynomial(type="unitary"); # there was an @!!! TODO
   # =v= MULTIASSIGN =v=
   r1:=JordanForm(x1);
   a1:=r1.val1;
@@ -270,7 +270,7 @@ local
     return rec(val1:=false,
       val2:=_);
   fi;
-  c:=FixJordanForm@(r1,t);
+  c:=FixJordanForm(r1,t); # there was an @!!! TODO
   varX:=ZeroMatrix(F,0,0);
   #   X: form in which is easier to compute the centralizer
   i:=1;
@@ -357,7 +357,7 @@ local
       B2:=Submatrix(A2,pos,pos,d,d);
       type1:=type;
       if type<>"unitary" and type<>"symplectic" then
-        type1:=IndicateType@(B1);
+        type1:=IndicateType(B1); # there was an @!!! TODO
       fi;
       m1:=TransformForm(B1,type1:Restore:=false);
       m2:=TransformForm(B2,type1:Restore:=false);
@@ -385,7 +385,7 @@ local
         #    Y1 is not unipotent, but -ConstantCoefficient (f)^-1*Y1 is. Result
         #  z is the same
         # =v= MULTIASSIGN =v=
-        z:=InternalUnipotentIsConjugate@(H,(-ConstantCoefficient(f)^-1*Y1)
+        z:=InternalUnipotentIsConjugate(H,(-ConstantCoefficient(f)^-1*Y1) # there was an @!!! TODO
          *FORCEOne(Generic(H)),(-ConstantCoefficient(f)^-1*Y2)
          *FORCEOne(Generic(H)));
         vero:=z.val1;
@@ -430,7 +430,7 @@ local
         B2:=B2+TransposedMat(Submatrix(A2,pos,pos,ni,ni))*T^-1;
       fi;
       if IsSemisimple(Submatrix(varX,pos,pos,ni,ni)) then
-        Y1:=SwitchMatrix@(B1,B2,f);
+        Y1:=SwitchMatrix(B1,B2,f); # there was an @!!! TODO
         InsertBlock(Y,Y1,pos,pos); # actually TildeY!!! TODO
       else
         K:=ExtStructure(F,f);
@@ -463,7 +463,7 @@ local
         MyH:=GU(d,K);
         MyH.ClassicalType:="GU";
         # =v= MULTIASSIGN =v=
-        z:=InternalUnipotentIsConjugate@(MyH,(m1^-1*suss*m1)
+        z:=InternalUnipotentIsConjugate(MyH,(m1^-1*suss*m1) # there was an @!!! TODO
          *FORCEOne(Generic(MyH)),(m2^-1*suss*m2)*FORCEOne(Generic(MyH)));
         forgetvar1:=z.val1;
         z:=z.val2;
@@ -509,13 +509,13 @@ local
               Add(ArrayElements,[w^(p^e-1)*IdentityMatrix(F,1),w^(p^e-1)]);
             else
               m:=TransformForm(B1,"unitary":Restore:=false);
-              y:=ElementOfMaxDeterminant@(y,B1,m,"unitary");
+              y:=ElementOfMaxDeterminant(y,B1,m,"unitary"); # there was an @!!! TODO
               Add(ArrayElements,[y,DeterminantMat(y)]);
             fi;
             pos:=pos+d;
           elif f<>ConjPol(f) then
             # =v= MULTIASSIGN =v=
-            Dety:=MatrixInCentralizerNE@(F,f,pos,A1,d,deg,c3,type);
+            Dety:=MatrixInCentralizerNE(F,f,pos,A1,d,deg,c3,type); # there was an @!!! TODO
             suss:=Dety.val1;
             Dety:=Dety.val2;
             # =^= MULTIASSIGN =^=
@@ -523,7 +523,7 @@ local
             pos:=pos+2*d*deg;
           else
             # =v= MULTIASSIGN =v=
-            DetS:=MatrixInCentralizerEQ@(F,f,pos,sgn,A1,d,deg,c3,type);
+            DetS:=MatrixInCentralizerEQ(F,f,pos,sgn,A1,d,deg,c3,type); # there was an @!!! TODO
             suss:=DetS.val1;
             DetS:=DetS.val2;
             # =^= MULTIASSIGN =^=
@@ -576,7 +576,7 @@ local
                then
               m:=TransformForm(B1,"orthogonalplus":Restore:=false);
               # =v= MULTIASSIGN =v=
-              C:=ElementOfMaxDeterminant@(y,B1,m,"orthogonalplus");
+              C:=ElementOfMaxDeterminant(y,B1,m,"orthogonalplus"); # there was an @!!! TODO
               y:=C.val1;
               forgetvar2:=C.val2;
               C:=C.val3;
@@ -585,7 +585,7 @@ local
             else
               m:=TransformForm(B1,"orthogonalminus":Restore:=false);
               # =v= MULTIASSIGN =v=
-              C:=ElementOfMaxDeterminant@(y,B1,m,"orthogonalminus");
+              C:=ElementOfMaxDeterminant(y,B1,m,"orthogonalminus"); # there was an @!!! TODO
               y:=C.val1;
               forgetvar2:=C.val2;
               C:=C.val3;
@@ -607,7 +607,7 @@ local
    Y
   #   such that x1 Y = Y x1 and SpinorNorm (Y) ne 0
   if IsOmega then
-    if SpinN@(varZ*FORCEOne(GL(n,F)),Q,p)<>0 then
+    if SpinN(varZ*FORCEOne(GL(n,F)),Q,p)<>0 then # there was an @!!! TODO
       if IsEvenInt(p) then
         if c1[1][1]<>t+1 then
           return rec(val1:=false,
@@ -616,25 +616,25 @@ local
           Y:=IdentityMatrix(F,n);
           d:=Sum(c1[1][2]);
           B1:=Submatrix(A1,1,1,d,d);
-          type1:=IndicateType@(B1);
+          type1:=IndicateType(B1); # there was an @!!! TODO
           if type1="orthogonalplus" then
             m:=TransformForm(B1,"orthogonalplus":Restore:=false);
             minv:=m^-1;
             MyH:=GOPlus(d,F);
             MyH.ClassicalType:="GO+";
-            Cent:=InternalUnipotentCentralizer@(MyH,(minv*Submatrix(varX,1,1,d,
+            Cent:=InternalUnipotentCentralizer(MyH,(minv*Submatrix(varX,1,1,d, # there was an @!!! TODO
              d)*m)*FORCEOne(GL(d,F)));
           else
             m:=TransformForm(B1,"orthogonalminus":Restore:=false);
             minv:=m^-1;
             MyH:=GOMinus(d,F);
             MyH.ClassicalType:="GO-";
-            Cent:=InternalUnipotentCentralizer@(MyH,(minv*Submatrix(varX,1,1,d,
+            Cent:=InternalUnipotentCentralizer(MyH,(minv*Submatrix(varX,1,1,d, # there was an @!!! TODO
              d)*m)*FORCEOne(GL(d,F)));
           fi;
           split:=false;
           for i in [1..Ngens(Cent)] do
-            if SpinN@(m*Cent.i*minv,B1,p)=1 then
+            if SpinN(m*Cent.i*minv,B1,p)=1 then # there was an @!!! TODO
               split:=true;
               InsertBlock(Y,m*Cent.i*minv,1,1); # actually TildeY!!! TODO
               break i;
@@ -669,22 +669,22 @@ local
                  ,y))<>Set([1]) then
                 split:=true;
                 if IsBound((C)) and C[1]=i then
-                  y:=ElementOfSpinorNorm1@(X1,B1:special:=true,C:=C[2],m:=C[3])
+                  y:=ElementOfSpinorNorm1(X1,B1:special:=true,C:=C[2],m:=C[3]) # there was an @!!! TODO
                    ;
                 else
-                  y:=ElementOfSpinorNorm1@(X1,B1:special:=true);
+                  y:=ElementOfSpinorNorm1(X1,B1:special:=true); # there was an @!!! TODO
                 fi;
                 InsertBlock(Y,y,pos,pos); # actually TildeY!!! TODO
               else
                 if IsBound((C)) and C[1]=i then
                   # =v= MULTIASSIGN =v=
-                  ThereIs:=ElementOfSpinorNorm1@(X1,B1:C:=C[2],m:=C[3]);
+                  ThereIs:=ElementOfSpinorNorm1(X1,B1:C:=C[2],m:=C[3]); # there was an @!!! TODO
                   y:=ThereIs.val1;
                   ThereIs:=ThereIs.val2;
                   # =^= MULTIASSIGN =^=
                 else
                   # =v= MULTIASSIGN =v=
-                  ThereIs:=ElementOfSpinorNorm1@(X1,B1);
+                  ThereIs:=ElementOfSpinorNorm1(X1,B1); # there was an @!!! TODO
                   y:=ThereIs.val1;
                   ThereIs:=ThereIs.val2;
                   # =^= MULTIASSIGN =^=
@@ -708,10 +708,10 @@ local
               c1[i][2],y->IsOddInt(y)) then
               split:=true;
               if f<>ConjPol(f) then
-                suss:=MatrixInCentralizerNE@(F,f,pos,A1,d,deg,c1[i],type);
+                suss:=MatrixInCentralizerNE(F,f,pos,A1,d,deg,c1[i],type); # there was an @!!! TODO
                 InsertBlock(Y,suss,pos,pos); # actually TildeY!!! TODO
               else
-                suss:=MatrixInCentralizerEQ@(F,f,pos,sgn,A1,d,deg,c1[i],type);
+                suss:=MatrixInCentralizerEQ(F,f,pos,sgn,A1,d,deg,c1[i],type); # there was an @!!! TODO
                 InsertBlock(Y,suss,pos,pos); # actually TildeY!!! TODO
               fi;
             else
@@ -744,9 +744,9 @@ local
     val2:=varZ*FORCEOne(GL(n,F)));
 end);
 
-ValidTypes@:=Set(["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+",
+ValidTypes:=Set(["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+", # there was an @!!! TODO
  "SO-","SO","GO+","GO-","GO"]);
-IsClassicalIsConjugateApplicable@:=function(G,g,h)
+IsClassicalIsConjugateApplicable:=function(G,g,h) # there was an @!!! TODO
 #  -> ,BoolElt  Does the ClassicalIsConjugate intrinsic function apply to this
 #  group
 local F,V,apply,d,even,flag,form,form_type,type;
@@ -756,12 +756,12 @@ local F,V,apply,d,even,flag,form,form_type,type;
     return false;
   fi;
   # =v= MULTIASSIGN =v=
-  type:=ClassicalGroupType@(G);
+  type:=ClassicalGroupType(G); # there was an @!!! TODO
   flag:=type.val1;
   type:=type.val2;
   # =^= MULTIASSIGN =^=
-  if not flag or not (type in ValidTypes@) or not 
-     MyIsIn@(G,g:Add:=Set(["SL","GL"])) or not MyIsIn@(G,h:Add:=Set(["SL","GL"])
+  if not flag or not (type in ValidTypes) or not  # there was an @!!! TODO
+     MyIsIn(G,g:Add:=Set(["SL","GL"])) or not MyIsIn@(G,h:Add:=Set(["SL","GL"]) # there was an @!!! TODO
      ) then
     return false;
   fi;
@@ -789,14 +789,14 @@ local F,V,apply,d,even,flag,form,form_type,type;
   return true;
 end;
 
-ClassicalIsConjugate@:=function(G,g,h)
+ClassicalIsConjugate:=function(G,g,h) # there was an @!!! TODO
 #  -> ,BoolElt ,GrpMatElt  If g and h are conjugate in classical group G ,
 #  return true and a conjugating element , else false
 local CB,F,Gr,d,flag,type,x;
   if not Generic(Parent(g))=Generic(G) and Generic(Parent(h))=Generic(G) then
     Error("Elements not in input group");
   fi;
-  if not MyIsIn@(G,g:Add:=Set(["GL","SL"])) and MyIsIn@(G,h:Add:=Set(["GL","SL"]
+  if not MyIsIn(G,g:Add:=Set(["GL","SL"])) and MyIsIn@(G,h:Add:=Set(["GL","SL"] # there was an @!!! TODO
      )) then
     Error("Elements not in input group");
   fi;
@@ -818,12 +818,12 @@ local CB,F,Gr,d,flag,type,x;
     return IsConjugate(G,g,h);
   fi;
   # =v= MULTIASSIGN =v=
-  type:=ClassicalGroupType@(G);
+  type:=ClassicalGroupType(G); # there was an @!!! TODO
   flag:=type.val1;
   type:=type.val2;
   # =^= MULTIASSIGN =^=
-  if not flag and type in ValidTypes@ then
-    Error(["Type of group must be one of ",ValidTypes@]);
+  if not flag and type in ValidTypes then # there was an @!!! TODO
+    Error(["Type of group must be one of ",ValidTypes]); # there was an @!!! TODO
   fi;
   if IsOddInt(d) and IsEvenInt(Size(F)) and type="GO" then
     Error("Function does not apply to this case");
@@ -831,13 +831,13 @@ local CB,F,Gr,d,flag,type,x;
   if type in ["SL","GL"] then
     if type="SL" then
       # =v= MULTIASSIGN =v=
-      x:=SLIsConjugate@(G,g,h);
+      x:=SLIsConjugate(G,g,h); # there was an @!!! TODO
       flag:=x.val1;
       x:=x.val2;
       # =^= MULTIASSIGN =^=
     else
       # =v= MULTIASSIGN =v=
-      x:=GLIsConjugate@(G,g,h);
+      x:=GLIsConjugate(G,g,h); # there was an @!!! TODO
       flag:=x.val1;
       x:=x.val2;
       # =^= MULTIASSIGN =^=
@@ -850,24 +850,24 @@ local CB,F,Gr,d,flag,type,x;
         val2:=_);
     fi;
   fi;
-  CB:=TransformMatrix@(G);
+  CB:=TransformMatrix(G); # there was an @!!! TODO
   Gr:=G^CB;
   Gr.ClassicalType:=G.ClassicalType;
   if (IsSemisimple(g) and IsSemisimple(h)) then
     # =v= MULTIASSIGN =v=
-    x:=SSIsConjugate@(Gr,g^CB,h^CB);
+    x:=SSIsConjugate(Gr,g^CB,h^CB); # there was an @!!! TODO
     flag:=x.val1;
     x:=x.val2;
     # =^= MULTIASSIGN =^=
   elif (IsUnipotent(g) and IsUnipotent(h)) then
     # =v= MULTIASSIGN =v=
-    x:=InternalUnipotentIsConjugate@(Gr,g^CB,h^CB);
+    x:=InternalUnipotentIsConjugate(Gr,g^CB,h^CB); # there was an @!!! TODO
     flag:=x.val1;
     x:=x.val2;
     # =^= MULTIASSIGN =^=
   else
     # =v= MULTIASSIGN =v=
-    x:=GenIsConjugate@(Gr,g^CB,h^CB);
+    x:=GenIsConjugate(Gr,g^CB,h^CB); # there was an @!!! TODO
     flag:=x.val1;
     x:=x.val2;
     # =^= MULTIASSIGN =^=

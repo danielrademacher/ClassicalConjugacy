@@ -8,14 +8,14 @@
 
 #  Defines: ClassesForFixedSemisimple
 
-ClassesForFixedSemisimple@:=function(G,x)
+ClassesForFixedSemisimple:=function(G,x) # there was an @!!! TODO
 #  -> ,] ,{@ ,@}  Given a semisimple element x of classical group G which
 #  preserves a form , return representatives and labels of conjugacy classes in
 #  G with semisimple part x
 local 
    B,C,ConjPol,DataArray,F,IsOmega,L1,MaxMult,Q,Star,ThereIsNot,UC,UCForm,UCL,
    UCRepr,UCT,UCm,UCmForm,UCmL,UCmRepr,UCmT,UCp,UCpForm,UCpL,UCpRepr,UCpT,
-   ValidTypes@,varX,X_labels,Y,_,a,c,e,f,fd,flag,forgetvar1,forgetvar2,gp_type,
+   ValidTypes,varX,X_labels,Y,_,a,c,e,f,fd,flag,forgetvar1,forgetvar2,gp_type, # there was an @!!! TODO
    i,j,m,n,p,q,s,sgn,special,type,type1,y,z;
   if not IsSemisimple(x) then
     Error("Input element is not semisimple");
@@ -24,7 +24,7 @@ local
     Error("Input element is not in group");
   fi;
   #   require x in G: "Element not in group";
-  if not MyIsIn@(G,x) then
+  if not MyIsIn(G,x) then # there was an @!!! TODO
     Error("Input element is not in group");
   fi;
   if IsTrivial(G) then
@@ -44,17 +44,17 @@ local
     fi;
   fi;
   # =v= MULTIASSIGN =v=
-  gp_type:=GroupType@(G);
+  gp_type:=GroupType(G); # there was an @!!! TODO
   flag:=gp_type.val1;
   gp_type:=gp_type.val2;
   # =^= MULTIASSIGN =^=
   if flag and gp_type in ["GL","SL"] then
     Error("Input group is one of GL or SL");
   fi;
-  ValidTypes@:=Set(["Sp","SU","GU","Omega+","Omega-","Omega","SO+","SO-","SO",
+  ValidTypes:=Set(["Sp","SU","GU","Omega+","Omega-","Omega","SO+","SO-","SO", # there was an @!!! TODO
    "GO+","GO-","GO"]);
-  if not flag and gp_type in ValidTypes@ then
-    Error(["Type must be one of ",ValidTypes@]);
+  if not flag and gp_type in ValidTypes then # there was an @!!! TODO
+    Error(["Type must be one of ",ValidTypes]); # there was an @!!! TODO
   fi;
   n:=Degree(G);
   F:=BaseRing(G);
@@ -64,7 +64,7 @@ local
   #   data for unipotent classes is computed just once
   #   and passed as argument to AllUnipotentElementsOfS
   # =v= MULTIASSIGN =v=
-  Q:=DetermineForm@(G,x);
+  Q:=DetermineForm(G,x); # there was an @!!! TODO
   B:=Q.val1;
   type:=Q.val2;
   sgn:=Q.val3;
@@ -93,7 +93,7 @@ local
   end;
 
   #  conjugate polynomial
-  ConjPol:=ConjugatePolynomial@(type="unitary");
+  ConjPol:=ConjugatePolynomial(type="unitary"); # there was an @!!! TODO
   # =v= MULTIASSIGN =v=
   c:=JordanForm(x);
   forgetvar1:=c.val1;
@@ -132,7 +132,7 @@ local
       type1:="SU";
     fi;
     # =v= MULTIASSIGN =v=
-    UCL:=UCComputation@("GU",MaxMult,q);
+    UCL:=UCComputation("GU",MaxMult,q); # there was an @!!! TODO
     UC:=UCL.val1;
     UCRepr:=UCL.val2;
     UCForm:=UCL.val3;
@@ -143,7 +143,7 @@ local
   elif type="symplectic" then
     type1:="Sp";
     # =v= MULTIASSIGN =v=
-    UCL:=UCComputation@("Sp",MaxMult,q);
+    UCL:=UCComputation("Sp",MaxMult,q); # there was an @!!! TODO
     UC:=UCL.val1;
     UCRepr:=UCL.val2;
     UCForm:=UCL.val3;
@@ -161,7 +161,7 @@ local
     fi;
     if IsOmega and IsEvenInt(p) then
       # =v= MULTIASSIGN =v=
-      UCpL:=UCComputation@("Omega+",MaxMult,q);
+      UCpL:=UCComputation("Omega+",MaxMult,q); # there was an @!!! TODO
       UCp:=UCpL.val1;
       UCpRepr:=UCpL.val2;
       UCpForm:=UCpL.val3;
@@ -169,7 +169,7 @@ local
       UCpL:=UCpL.val5;
       # =^= MULTIASSIGN =^=
       # =v= MULTIASSIGN =v=
-      UCmL:=UCComputation@("Omega-",MaxMult,q);
+      UCmL:=UCComputation("Omega-",MaxMult,q); # there was an @!!! TODO
       UCm:=UCmL.val1;
       UCmRepr:=UCmL.val2;
       UCmForm:=UCmL.val3;
@@ -178,7 +178,7 @@ local
       # =^= MULTIASSIGN =^=
     else
       # =v= MULTIASSIGN =v=
-      UCpL:=UCComputation@("O+",MaxMult,q);
+      UCpL:=UCComputation("O+",MaxMult,q); # there was an @!!! TODO
       UCp:=UCpL.val1;
       UCpRepr:=UCpL.val2;
       UCpForm:=UCpL.val3;
@@ -186,7 +186,7 @@ local
       UCpL:=UCpL.val5;
       # =^= MULTIASSIGN =^=
       # =v= MULTIASSIGN =v=
-      UCmL:=UCComputation@("O-",MaxMult,q);
+      UCmL:=UCComputation("O-",MaxMult,q); # there was an @!!! TODO
       UCm:=UCmL.val1;
       UCmRepr:=UCmL.val2;
       UCmForm:=UCmL.val3;
@@ -196,7 +196,7 @@ local
     fi;
     if not special and IsOddInt(p) then
       # =v= MULTIASSIGN =v=
-      UCL:=UCComputation@("O",MaxMult,q);
+      UCL:=UCComputation("O",MaxMult,q); # there was an @!!! TODO
       UC:=UCL.val1;
       UCRepr:=UCL.val2;
       UCForm:=UCL.val3;
@@ -218,7 +218,7 @@ local
     fi;
     if IsOmega and IsEvenInt(p) then
       # =v= MULTIASSIGN =v=
-      UCpL:=UCComputation@("Omega+",MaxMult,q);
+      UCpL:=UCComputation("Omega+",MaxMult,q); # there was an @!!! TODO
       UCp:=UCpL.val1;
       UCpRepr:=UCpL.val2;
       UCpForm:=UCpL.val3;
@@ -226,7 +226,7 @@ local
       UCpL:=UCpL.val5;
       # =^= MULTIASSIGN =^=
       # =v= MULTIASSIGN =v=
-      UCmL:=UCComputation@("Omega-",MaxMult,q);
+      UCmL:=UCComputation("Omega-",MaxMult,q); # there was an @!!! TODO
       UCm:=UCmL.val1;
       UCmRepr:=UCmL.val2;
       UCmForm:=UCmL.val3;
@@ -235,7 +235,7 @@ local
       # =^= MULTIASSIGN =^=
     else
       # =v= MULTIASSIGN =v=
-      UCpL:=UCComputation@("O+",MaxMult,q);
+      UCpL:=UCComputation("O+",MaxMult,q); # there was an @!!! TODO
       UCp:=UCpL.val1;
       UCpRepr:=UCpL.val2;
       UCpForm:=UCpL.val3;
@@ -243,7 +243,7 @@ local
       UCpL:=UCpL.val5;
       # =^= MULTIASSIGN =^=
       # =v= MULTIASSIGN =v=
-      UCmL:=UCComputation@("O-",MaxMult,q);
+      UCmL:=UCComputation("O-",MaxMult,q); # there was an @!!! TODO
       UCm:=UCmL.val1;
       UCmRepr:=UCmL.val2;
       UCmForm:=UCmL.val3;
@@ -253,7 +253,7 @@ local
     fi;
     if not special and IsOddInt(p) then
       # =v= MULTIASSIGN =v=
-      UCL:=UCComputation@("O",MaxMult,q);
+      UCL:=UCComputation("O",MaxMult,q); # there was an @!!! TODO
       UC:=UCL.val1;
       UCRepr:=UCL.val2;
       UCForm:=UCL.val3;
@@ -274,7 +274,7 @@ local
       type1:="Omega";
     fi;
     # =v= MULTIASSIGN =v=
-    UCpL:=UCComputation@("O+",MaxMult,q);
+    UCpL:=UCComputation("O+",MaxMult,q); # there was an @!!! TODO
     UCp:=UCpL.val1;
     UCpRepr:=UCpL.val2;
     UCpForm:=UCpL.val3;
@@ -282,7 +282,7 @@ local
     UCpL:=UCpL.val5;
     # =^= MULTIASSIGN =^=
     # =v= MULTIASSIGN =v=
-    UCmL:=UCComputation@("O-",MaxMult,q);
+    UCmL:=UCComputation("O-",MaxMult,q); # there was an @!!! TODO
     UCm:=UCmL.val1;
     UCmRepr:=UCmL.val2;
     UCmForm:=UCmL.val3;
@@ -290,7 +290,7 @@ local
     UCmL:=UCmL.val5;
     # =^= MULTIASSIGN =^=
     # =v= MULTIASSIGN =v=
-    UCL:=UCComputation@("O",MaxMult,q);
+    UCL:=UCComputation("O",MaxMult,q); # there was an @!!! TODO
     UC:=UCL.val1;
     UCRepr:=UCL.val2;
     UCForm:=UCL.val3;
@@ -301,7 +301,7 @@ local
      UCRepr,UCForm,UCT,UCL];
   fi;
   # =v= MULTIASSIGN =v=
-  X_labels:=AllUnipotentElementsOfS@(type1,L1:SameSSPart:=true,
+  X_labels:=AllUnipotentElementsOfS(type1,L1:SameSSPart:=true, # there was an @!!! TODO
    DataArray:=DataArray);
   varX:=X_labels.val1;
   X_labels:=X_labels.val2;
@@ -316,7 +316,7 @@ local
     y:=varX[i][3];
     if IsSemisimple(y) then
       # =v= MULTIASSIGN =v=
-      z:=InternalSemisimpleIsConjugate@(G,x,m*y*m^-1);
+      z:=InternalSemisimpleIsConjugate(G,x,m*y*m^-1); # there was an @!!! TODO
       flag:=z.val1;
       z:=z.val2;
       # =^= MULTIASSIGN =^=

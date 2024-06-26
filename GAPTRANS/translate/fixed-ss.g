@@ -16,13 +16,13 @@
 #  Defines: AddClass, AllUnipotentElementsOfS, ChangeClassLabel, ChangeLabel,
 #  LabelHomogenize
 
-DeclareGlobalFunction("AllUnipotentElementsOfS@");
+DeclareGlobalFunction("AllUnipotentElementsOfS"); # there was an @!!! TODO
 
-DeclareGlobalFunction("ChangeClassLabel@");
+DeclareGlobalFunction("ChangeClassLabel"); # there was an @!!! TODO
 
 #   make a label for an el. div. of type 1 or 2
 #   similar to that for el. div. of type 0
-LabelHomogenize@:=function(L,F,type)
+LabelHomogenize:=function(L,F,type) # there was an @!!! TODO
 local L1,varZ;
   if type in ["SU","GU"] then
     L1:=Multiset(List(L,a->a));
@@ -36,7 +36,7 @@ local L1,varZ;
 end;
 
 #   return the label of the other class in GO with same Jordan form
-InstallGlobalFunction(ChangeClassLabel@,
+InstallGlobalFunction(ChangeClassLabel, # there was an @!!! TODO
 function(L,F,pr)
 local arr_dim,set_dim,setl,x;
   setl:=L;
@@ -60,12 +60,12 @@ end);
 #   change the label of a unipotent element in GO (n, q) for odd n
 #   by switching all the discriminants
 #   if DoIt eq false, then return L without changing it
-ChangeLabel@:=function(L,F,pr,DoIt)
+ChangeLabel:=function(L,F,pr,DoIt) # there was an @!!! TODO
 local setl;
   if not DoIt then
     return L;
   else
-    setl:=ChangeClassLabel@(L[3],F,pr);
+    setl:=ChangeClassLabel(L[3],F,pr); # there was an @!!! TODO
     return [L[1],L[2],Multiset(setl)];
   fi;
 end;
@@ -73,7 +73,7 @@ end;
 #   return an element in GO with determinant -1 in the centralizer
 #   of the semisimple part defined by c, where c, L are the lists
 #   described in AllUnipotentElementsOfS
-AddClass@:=function(type,L,c,m,F,n)
+AddClass:=function(type,L,c,m,F,n) # there was an @!!! TODO
 local C,varE,IsOmega,Y,_,d,done,e,f,forgetvar1,i,k,l,pos,pr,q,w,y,z;
   IsOmega:=ValueOption("IsOmega");
   if IsOmega=fail then
@@ -233,7 +233,7 @@ end;
 #   _, _, _, _, Forms := UnipotentClasses ("GO", n, q);
 #   for odd n and odd q, the elements in Forms have square determinant
 #   this is checked in UnipotentClasses
-InstallGlobalFunction(AllUnipotentElementsOfS@,
+InstallGlobalFunction(AllUnipotentElementsOfS, # there was an @!!! TODO
 function(type,L)
 local 
    AddClasses,AddClassesOmega,B,C,Card,CardOfG,ConjClasses,ConjLabel,ConjPol,
@@ -275,7 +275,7 @@ local
   fi;
   pr:=PrimitiveElement(F);
   t:=PolynomialRing(F).1;
-  ConjPol:=ConjugatePolynomial@(unitary=q);
+  ConjPol:=ConjugatePolynomial(unitary=q); # there was an @!!! TODO
   #   add information if L is incomplete
   information:=false;
   if Size(L[1])=4 then
@@ -290,7 +290,7 @@ local
         if Degree(f)=1 then
           y:=[f,x[2],0,IdentityMatrix(F,1)];
         else
-          y:=[f,x[2],2,FormForCompanionMatrix@(f,type)];
+          y:=[f,x[2],2,FormForCompanionMatrix(f,type)]; # there was an @!!! TODO
         fi;
       else
         y:=[f,x[2],1,IdentityMatrix(F,2)];
@@ -543,7 +543,7 @@ local
   #   CardOfG: cardinality of the group of isometries
   #   computed if not passed as parameter
   if Type(CardOfG)=RngIntElt then
-    CardOfG:=IsometryGroupCardinality@(type,n,q);
+    CardOfG:=IsometryGroupCardinality(type,n,q); # there was an @!!! TODO
   fi;
   #   TypeOfMinus := sign of the form correspondent to the el.div. t+1
   #   TypeOfPlus := sign of the form correspondent to the el.div. t-1
@@ -564,7 +564,7 @@ local
       if type in ["GU","SU"] then
         M:=MatrixAlgebra(F,d);
         ord:=Order(w);
-        card:=CardinalityOfClassicalGroup@("GU",d,q);
+        card:=CardinalityOfClassicalGroup("GU",d,q); # there was an @!!! TODO
         if SameSSPart then
           Repr:=UC[d];
           T:=UCT[d];
@@ -578,7 +578,7 @@ local
           label:=UCL[d];
         fi;
         label:=List( # {@-list:
-          label,l->LabelHomogenize@(l,F,type));
+          label,l->LabelHomogenize(l,F,type)); # there was an @!!! TODO
         label:=List( # {@-list:
           label,l->[0,f,l]);
         if type="SU" then
@@ -610,9 +610,9 @@ local
                 UCpL[QuoInt(d,2)],l->[0,f,l]);
             fi;
             if is_omega then
-              card:=CardinalityOfClassicalGroup@("Omega+",d,q);
+              card:=CardinalityOfClassicalGroup("Omega+",d,q); # there was an @!!! TODO
             else
-              card:=CardinalityOfClassicalGroup@("GO+",d,q);
+              card:=CardinalityOfClassicalGroup("GO+",d,q); # there was an @!!! TODO
             fi;
             S:=List([1..Size(Repr)],j->[Repr[j][1],[Repr[j][2],card],Repr[j][3]
              ,Form[j],Repr[j][1],label[j]]);
@@ -638,9 +638,9 @@ local
                 UCmL[QuoInt(d,2)],l->[0,f,l]);
             fi;
             if is_omega then
-              card:=CardinalityOfClassicalGroup@("Omega-",d,q);
+              card:=CardinalityOfClassicalGroup("Omega-",d,q); # there was an @!!! TODO
             else
-              card:=CardinalityOfClassicalGroup@("GO-",d,q);
+              card:=CardinalityOfClassicalGroup("GO-",d,q); # there was an @!!! TODO
             fi;
             S:=List([1..Size(Repr)],j->[Repr[j][1],[Repr[j][2],card],Repr[j][3]
              ,Form[j],label[j]]);
@@ -691,7 +691,7 @@ local
             IsMinus:=true;
           fi;
         fi;
-        card:=CardinalityOfClassicalGroup@(type1,d,q);
+        card:=CardinalityOfClassicalGroup(type1,d,q); # there was an @!!! TODO
         if SameSSPart then
           S:=[];
           StdForm:=StandardSymmetricForm(d,q:Minus:=IsMinus,Variant:="Default")
@@ -752,7 +752,7 @@ local
               label:=List( # {@-list:
                 UCpL[QuoInt(d,2)],l->[0,f,l[1]]);
             fi;
-            card:=CardinalityOfClassicalGroup@("GO+",d,q);
+            card:=CardinalityOfClassicalGroup("GO+",d,q); # there was an @!!! TODO
             if w=1 then
               lvarSp:=List([1..Size(Repr)],j->[Repr[j][1],[Repr[j][2],card]
                ,Repr[j][3],Form[j],T[j],label[j]]);
@@ -775,7 +775,7 @@ local
               label:=List( # {@-list:
                 UCmL[QuoInt(d,2)],l->[0,f,l[1]]);
             fi;
-            card:=CardinalityOfClassicalGroup@("GO-",d,q);
+            card:=CardinalityOfClassicalGroup("GO-",d,q); # there was an @!!! TODO
             if w=1 then
               Sm:=List([1..Size(Repr)],j->[Repr[j][1],[Repr[j][2],card],Repr[j]
                [3],Form[j],T[j],label[j]]);
@@ -807,20 +807,20 @@ local
             DoIt:=q mod 4=3 and d mod 4=3;
             #   equivalent condition to not IsSquare (Determinant
             #  (delta*Form[j]))
-            card:=CardinalityOfClassicalGroup@("GO",d,q);
+            card:=CardinalityOfClassicalGroup("GO",d,q); # there was an @!!! TODO
             if w=1 then
               lvarSp:=List([1..Size(Repr)],j->[Repr[j][1],[Repr[j][2],card]
-               ,Repr[j][3],delta*Form[j],T[j],ChangeLabel@(label[j],F,pr,DoIt)])
+               ,Repr[j][3],delta*Form[j],T[j],ChangeLabel(label[j],F,pr,DoIt)]) # there was an @!!! TODO
                ;
               Sm:=List([1..Size(Repr)],j->[Repr[j][1],[Repr[j][2],card],Repr[j]
-               [3],delta*pr*Form[j],T[j],ChangeLabel@(label[j],F,pr,not DoIt)])
+               [3],delta*pr*Form[j],T[j],ChangeLabel(label[j],F,pr,not DoIt)]) # there was an @!!! TODO
                ;
             else
               lvarSp:=List([1..Size(Repr)],j->[2*Repr[j][1],[Repr[j][2],card]
-               ,-Repr[j][3],delta*Form[j],T[j],ChangeLabel@(label[j],F,pr,DoIt)]
+               ,-Repr[j][3],delta*Form[j],T[j],ChangeLabel(label[j],F,pr,DoIt)] # there was an @!!! TODO
                );
               Sm:=List([1..Size(Repr)],j->[2*Repr[j][1],[Repr[j][2],card]
-               ,-Repr[j][3],delta*pr*Form[j],T[j],ChangeLabel@(label[j]
+               ,-Repr[j][3],delta*pr*Form[j],T[j],ChangeLabel(label[j] # there was an @!!! TODO
                ,F,pr,not DoIt)]);
             fi;
           fi;
@@ -848,7 +848,7 @@ local
               label:=List( # {@-list:
                 UCpL[QuoInt(d,2)],l->[0,f,l[1]]);
             fi;
-            card:=CardinalityOfClassicalGroup@("GO+",d,q);
+            card:=CardinalityOfClassicalGroup("GO+",d,q); # there was an @!!! TODO
             if w=1 then
               S:=List([1..Size(Repr)],j->[Repr[j][1],[Repr[j][2],card],Repr[j]
                [3],Form[j],T[j],label[j]]);
@@ -873,7 +873,7 @@ local
               label:=List( # {@-list:
                 UCmL[QuoInt(d,2)],l->[0,f,l[1]]);
             fi;
-            card:=CardinalityOfClassicalGroup@("GO-",d,q);
+            card:=CardinalityOfClassicalGroup("GO-",d,q); # there was an @!!! TODO
             if w=1 then
               S:=List([1..Size(Repr)],j->[Repr[j][1],[Repr[j][2],card],Repr[j]
                [3],Form[j],T[j],label[j]]);
@@ -921,7 +921,7 @@ local
                 T:=UCpT[QuoInt(d,2)];
                 label:=List( # {@-list:
                   UCpL[QuoInt(d,2)],l->[0,f,l[1]]);
-                card:=CardinalityOfClassicalGroup@("GO+",d,q);
+                card:=CardinalityOfClassicalGroup("GO+",d,q); # there was an @!!! TODO
                 if SameSSPart then
                   StdForm:=StandardSymmetricForm(d,q:Variant:="Default");
                   for j in [1..Size(Repr)] do
@@ -940,7 +940,7 @@ local
                 T:=UCmT[QuoInt(d,2)];
                 label:=List( # {@-list:
                   UCmL[QuoInt(d,2)],l->[0,f,l[1]]);
-                card:=CardinalityOfClassicalGroup@("GO-",d,q);
+                card:=CardinalityOfClassicalGroup("GO-",d,q); # there was an @!!! TODO
                 if SameSSPart then
                   StdForm:=StandardSymmetricForm(d,q:Minus:=true,
                    Variant:="Default");
@@ -970,7 +970,7 @@ local
                 label:=List( # {@-list:
                   UCpL[QuoInt(d,2)],l->[0,f,l[1]]);
               fi;
-              card:=CardinalityOfClassicalGroup@("GO+",d,q);
+              card:=CardinalityOfClassicalGroup("GO+",d,q); # there was an @!!! TODO
               lvarSp:=List([1..Size(Repr)],j->[ord*Repr[j][1],[Repr[j][2],card]
                ,w*Repr[j][3]*FORCEOne(M),Form[j],T[j],label[j]]);
               if SameSSPart then
@@ -988,7 +988,7 @@ local
                 label:=List( # {@-list:
                   UCmL[QuoInt(d,2)],l->[0,f,l[1]]);
               fi;
-              card:=CardinalityOfClassicalGroup@("GO-",d,q);
+              card:=CardinalityOfClassicalGroup("GO-",d,q); # there was an @!!! TODO
               Sm:=List([1..Size(Repr)],j->[ord*Repr[j][1],[Repr[j][2],card]
                ,w*Repr[j][3]*FORCEOne(M),Form[j],T[j],label[j]]);
             fi;
@@ -1011,7 +1011,7 @@ local
                 #   multiplication by coeff needed to have
                 #  Discriminant(StdForm) = square
                 StdForm:=coeff*StandardSymmetricForm(d,q:Variant:="Default");
-                card:=CardinalityOfClassicalGroup@("GO",d,q);
+                card:=CardinalityOfClassicalGroup("GO",d,q); # there was an @!!! TODO
                 for j in [1..Size(Repr)] do
                   m:=TransformForm(Form[j],"orthogonal":Restore:=false);
                   Add(S,[ord*Repr[j][1],[Repr[j][2],card],w*Repr[j][3]
@@ -1048,7 +1048,7 @@ local
                 UCL[QuoInt((d+1),2)],l->[0,f,l[1]]);
             fi;
             if not SameSSPart or type<>"Omega" then
-              card:=CardinalityOfClassicalGroup@(type1,d,q);
+              card:=CardinalityOfClassicalGroup(type1,d,q); # there was an @!!! TODO
               S:=List([1..Size(Repr)],j->[ord*Repr[j][1],[Repr[j][2],card]
                ,w*Repr[j][3]*FORCEOne(M),Form[j],T[j],label[j]]);
             fi;
@@ -1073,11 +1073,11 @@ local
          ;
       fi;
       # =v= MULTIASSIGN =v=
-      T:=UnipotentClasses@("GL",d,(Size(F))^h);
+      T:=UnipotentClasses("GL",d,(Size(F))^h); # there was an @!!! TODO
       Repr:=T.val1;
       T:=T.val2;
       # =^= MULTIASSIGN =^=
-      card:=CardinalityOfClassicalGroup@("GL",d,(Size(F))^h);
+      card:=CardinalityOfClassicalGroup("GL",d,(Size(F))^h); # there was an @!!! TODO
       for i in [1..Size(Repr)] do
         Y:=BlockMatrix(d,d,Concatenation(List([1..d],
           j1->List([1..d],
@@ -1091,7 +1091,7 @@ local
           Y:=DirectSumMat(Y,TransposedMat(Y^-1));
         fi;
         ord1:=Repr[i][1]*ord;
-        label:=[1,f*ConjPol(f),LabelHomogenize@(T[i],F,type)];
+        label:=[1,f*ConjPol(f),LabelHomogenize(T[i],F,type)]; # there was an @!!! TODO
         Add(S,[ord1,[Repr[i][2],card],Y,Form,Gcd(T[i]),label]);
       od;
       Add(R,S);
@@ -1110,17 +1110,17 @@ local
       w:=K.1;
       ord:=Order(w);
       if type in ["GU","SU"] then
-        card:=CardinalityOfClassicalGroup@("GU",d,q^h);
+        card:=CardinalityOfClassicalGroup("GU",d,q^h); # there was an @!!! TODO
       else
-        card:=CardinalityOfClassicalGroup@("GU",d,q^(QuoInt(h,2)));
+        card:=CardinalityOfClassicalGroup("GU",d,q^(QuoInt(h,2))); # there was an @!!! TODO
       fi;
       for P1 in P do
         if SameSSPart then
           u:=DirectSumMat(List( # <-list:
-            P1,j->GUUnipotentBlock@(j,K)));
+            P1,j->GUUnipotentBlock(j,K))); # there was an @!!! TODO
           B:=DirectSumMat(List( # <-list:
             P1,j->ReverseRows(IdentityMatrix(K,j))));
-          card1:=UnipotentCentralizerOrder@("GU",GU(d,K),u,B:JF:=P1);
+          card1:=UnipotentCentralizerOrder("GU",GU(d,K),u,B:JF:=P1); # there was an @!!! TODO
           m:=TransformForm(B,"unitary":Restore:=false);
           u:=m^-1*u*m;
           Y:=BlockMatrix(d,d,Concatenation(List([1..d],
@@ -1133,10 +1133,10 @@ local
           od;
         else
           Y:=DirectSumMat(List( # <-list:
-            P1,j->GUUnipotentBlock@(j,K)));
+            P1,j->GUUnipotentBlock(j,K))); # there was an @!!! TODO
           B:=DirectSumMat(List( # <-list:
             P1,j->ReverseRows(IdentityMatrix(K,j))));
-          card1:=UnipotentCentralizerOrder@("GU",GU(d,K),Y,B:JF:=P1);
+          card1:=UnipotentCentralizerOrder("GU",GU(d,K),Y,B:JF:=P1); # there was an @!!! TODO
           Y:=w*Y;
           Y:=BlockMatrix(d,d,Concatenation(List([1..d],
             j1->List([1..d],
@@ -1151,7 +1151,7 @@ local
           od;
         fi;
         ord1:=ord*p^Ceiling(Log(p,Maximum(P1)));
-        label:=[2,f,LabelHomogenize@(P1,F,type)];
+        label:=[2,f,LabelHomogenize(P1,F,type)]; # there was an @!!! TODO
         Add(S,[ord1,[Int((card/card1)),card],Y,Form,Gcd(P1),label]);
       od;
       Add(R,S);
@@ -1203,7 +1203,7 @@ local
       #   modify AddClasses: we want AddClass in the centralizer
       #   of the semisimple part to maintain the same semisimple part
       if SameSSPart then
-        s:=AddClass@(type,L,c1,m,F,Length(Repr));
+        s:=AddClass(type,L,c1,m,F,Length(Repr)); # there was an @!!! TODO
       else
         s:=AddClasses;
       fi;
@@ -1239,11 +1239,11 @@ local
       s:=AddClasses;
       SplitClassesOmega:=false;
       if type in ["Omega+","Omega","Omega-"] then
-        SplitClassesOmega:=CheckSplitOmega@(c,F,L);
+        SplitClassesOmega:=CheckSplitOmega(c,F,L); # there was an @!!! TODO
         #   modify AddClasses: we want AddClass in the centralizer
         #   of the semisimple part to maintain the same ss part
         if SameSSPart then
-          z:=AddClass@(type,L,c1,m,F,Length(Repr):IsOmega:=true);
+          z:=AddClass(type,L,c1,m,F,Length(Repr):IsOmega:=true); # there was an @!!! TODO
         else
           z:=AddClassesOmega;
         fi;
@@ -1254,7 +1254,7 @@ local
         QuoInt(card,#NOP
         ):=2;
         if SameSSPart then
-          s:=AddClass@(type,L,c1,m,F,Length(Repr));
+          s:=AddClass(type,L,c1,m,F,Length(Repr)); # there was an @!!! TODO
         fi;
         if SplitClassesOmega then
           QuoInt(card,#NOP

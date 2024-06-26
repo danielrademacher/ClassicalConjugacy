@@ -17,7 +17,7 @@
 #  Defines: ClassicalCentralizer, FixJordanForm, GenCentralizer,
 #  IsClassicalCentralizerApplicable, ValidTypes
 
-DeclareGlobalFunction("FixJordanForm@");
+DeclareGlobalFunction("FixJordanForm"); # there was an @!!! TODO
 
 #   modify the standard Magma description of the elementary divisors
 #   Now c is a sequence [<f_i, [m_i1, ... , m_ij] > : i], where the m_i1, ... ,
@@ -26,7 +26,7 @@ DeclareGlobalFunction("FixJordanForm@");
 #  f_i
 #   Moreover, the polynomials t+1 and t-1 are put at the beginning of the
 #  sequence.
-InstallGlobalFunction(FixJordanForm@,
+InstallGlobalFunction(FixJordanForm, # there was an @!!! TODO
 function(r,t)
 local c,d,i,y;
   i:=0;
@@ -66,7 +66,7 @@ end);
 #   returns Centralizer (G, x) with assigned Order and FactoredOrder
 #   Does not work for orthogonal groups in even characteristic and odd 
  dimension
-GenCentralizer@:=function(G,x)
+GenCentralizer:=function(G,x) # there was an @!!! TODO
 local 
    A,A1,AddDeterminant,ArrayDet,ArrayInv,As,B,B1,Card,Cent,ConjPol,CorrectSp,
    DetC,varE,F,FirstHasDim1,GCD,H,H1,IsOmega,K,M,MyH,Q,R,S,SetGen,SetGen1,Split,
@@ -84,7 +84,7 @@ local
   Card:=Factorization(1);
   FirstHasDim1:=false;
   # =v= MULTIASSIGN =v=
-  is_abelian:=DetermineForm@(G,x);
+  is_abelian:=DetermineForm(G,x); # there was an @!!! TODO
   B:=is_abelian.val1;
   type:=is_abelian.val2;
   sgn:=is_abelian.val3;
@@ -111,14 +111,14 @@ local
   end;
 
   #  conjugate polynomial
-  ConjPol:=ConjugatePolynomial@(type="unitary");
+  ConjPol:=ConjugatePolynomial(type="unitary"); # there was an @!!! TODO
   # =v= MULTIASSIGN =v=
   r:=JordanForm(x);
   a:=r.val1;
   b:=r.val2;
   r:=r.val3;
   # =^= MULTIASSIGN =^=
-  c:=FixJordanForm@(r,t);
+  c:=FixJordanForm(r,t); # there was an @!!! TODO
   SetGen:=[];
   #   generators for the centralizer
   varX:=ZeroMatrix(F,0,0);
@@ -233,9 +233,9 @@ local
         if special then
           MyH:=SU(d,F);
           MyH.ClassicalType:="SU";
-          Cent:=InternalUnipotentCentralizer@(MyH,(mInv*U1*m)*FORCEOne(GL(d,F)))
+          Cent:=InternalUnipotentCentralizer(MyH,(mInv*U1*m)*FORCEOne(GL(d,F))) # there was an @!!! TODO
            ;
-          Add(AddDeterminant,ElementOfMaxDeterminant@(U1,B1,m,"unitary"));
+          Add(AddDeterminant,ElementOfMaxDeterminant(U1,B1,m,"unitary")); # there was an @!!! TODO
           for j in [1..Ngens(Cent)] do
             Y1:=InsertBlock(Y,m*Cent.j*mInv,pos,pos);
             Y1:=b1^-1*Y1*b1;
@@ -244,7 +244,7 @@ local
         else
           MyH:=GU(d,F);
           MyH.ClassicalType:="GU";
-          Cent:=InternalUnipotentCentralizer@(MyH,(mInv*U1*m)*FORCEOne(GL(d,F)))
+          Cent:=InternalUnipotentCentralizer(MyH,(mInv*U1*m)*FORCEOne(GL(d,F))) # there was an @!!! TODO
            ;
           for j in [1..Ngens(Cent)] do
             Y1:=InsertBlock(Y,m*Cent.j*mInv,pos,pos);
@@ -257,7 +257,7 @@ local
         m:=TransformForm(B1,"symplectic":Restore:=false);
         MyH:=SP(d,F);
         MyH.ClassicalType:="Sp";
-        Cent:=InternalUnipotentCentralizer@(MyH,(m^-1*U1*m)*FORCEOne(GL(d,F)));
+        Cent:=InternalUnipotentCentralizer(MyH,(m^-1*U1*m)*FORCEOne(GL(d,F))); # there was an @!!! TODO
         for j in [1..Ngens(Cent)] do
           Y1:=InsertBlock(Y,m*Cent.j*m^-1,pos,pos);
           Add(SetGen,b1^-1*Y1*b1);
@@ -277,14 +277,14 @@ local
             Add(SetGen,Y1);
           fi;
         else
-          type1:=IndicateType@(B1);
+          type1:=IndicateType(B1); # there was an @!!! TODO
           m:=TransformForm(B1,type1:Restore:=false);
           if type1="orthogonalplus" then
             if special or (IsOmega and IsOddInt(p)) then
               if i=ind then
                 MyH:=SOPlus(d,F);
                 MyH.ClassicalType:="SO+";
-                Cent:=InternalUnipotentCentralizer@(MyH,(m^-1*U1*m)
+                Cent:=InternalUnipotentCentralizer(MyH,(m^-1*U1*m) # there was an @!!! TODO
                  *FORCEOne(GL(d,F)));
                 for j in [1..Ngens(Cent)] do
                   Y1:=InsertBlock(Y,m*Cent.j*m^-1,pos,pos);
@@ -294,7 +294,7 @@ local
               else
                 MyH:=GOPlus(d,F);
                 MyH.ClassicalType:="GO+";
-                Cent:=InternalUnipotentCentralizer@(MyH,(m^-1*U1*m)
+                Cent:=InternalUnipotentCentralizer(MyH,(m^-1*U1*m) # there was an @!!! TODO
                  *FORCEOne(GL(d,F)));
                 for j in [1..Ngens(Cent)] do
                   Y1:=InsertBlock(Y,m*Cent.j*m^-1,pos,pos);
@@ -308,7 +308,7 @@ local
             else
               MyH:=GOPlus(d,F);
               MyH.ClassicalType:="GO+";
-              Cent:=InternalUnipotentCentralizer@(MyH,(m^-1*U1*m)
+              Cent:=InternalUnipotentCentralizer(MyH,(m^-1*U1*m) # there was an @!!! TODO
                *FORCEOne(GL(d,F)));
               for j in [1..Ngens(Cent)] do
                 Y1:=InsertBlock(Y,m*Cent.j*m^-1,pos,pos);
@@ -321,7 +321,7 @@ local
               if i=ind then
                 MyH:=SOMinus(d,F);
                 MyH.ClassicalType:="SO-";
-                Cent:=InternalUnipotentCentralizer@(MyH,(m^-1*U1*m)
+                Cent:=InternalUnipotentCentralizer(MyH,(m^-1*U1*m) # there was an @!!! TODO
                  *FORCEOne(GL(d,F)));
                 for j in [1..Ngens(Cent)] do
                   Y1:=InsertBlock(Y,m*Cent.j*m^-1,pos,pos);
@@ -331,7 +331,7 @@ local
               else
                 MyH:=GOMinus(d,F);
                 MyH.ClassicalType:="GO-";
-                Cent:=InternalUnipotentCentralizer@(MyH,(m^-1*U1*m)
+                Cent:=InternalUnipotentCentralizer(MyH,(m^-1*U1*m) # there was an @!!! TODO
                  *FORCEOne(GL(d,F)));
                 for j in [1..Ngens(Cent)] do
                   Y1:=InsertBlock(Y,m*Cent.j*m^-1,pos,pos);
@@ -345,7 +345,7 @@ local
             else
               MyH:=GOMinus(d,F);
               MyH.ClassicalType:="GO-";
-              Cent:=InternalUnipotentCentralizer@(MyH,(m^-1*U1*m)
+              Cent:=InternalUnipotentCentralizer(MyH,(m^-1*U1*m) # there was an @!!! TODO
                *FORCEOne(GL(d,F)));
               for j in [1..Ngens(Cent)] do
                 Y1:=InsertBlock(Y,m*Cent.j*m^-1,pos,pos);
@@ -358,7 +358,7 @@ local
               if i=ind then
                 MyH:=SO(d,F);
                 MyH.ClassicalType:="SO";
-                Cent:=InternalUnipotentCentralizer@(MyH,(m^-1*U1*m)
+                Cent:=InternalUnipotentCentralizer(MyH,(m^-1*U1*m) # there was an @!!! TODO
                  *FORCEOne(GL(d,F)));
                 for j in [1..Ngens(Cent)] do
                   Y1:=InsertBlock(Y,m*Cent.j*m^-1,pos,pos);
@@ -368,7 +368,7 @@ local
               else
                 MyH:=GO(d,F);
                 MyH.ClassicalType:="GO";
-                Cent:=InternalUnipotentCentralizer@(MyH,(m^-1*U1*m)
+                Cent:=InternalUnipotentCentralizer(MyH,(m^-1*U1*m) # there was an @!!! TODO
                  *FORCEOne(GL(d,F)));
                 for j in [1..Ngens(Cent)] do
                   Y1:=InsertBlock(Y,m*Cent.j*m^-1,pos,pos);
@@ -382,7 +382,7 @@ local
             else
               MyH:=GO(d,F);
               MyH.ClassicalType:="GO";
-              Cent:=InternalUnipotentCentralizer@(MyH,(m^-1*U1*m)
+              Cent:=InternalUnipotentCentralizer(MyH,(m^-1*U1*m) # there was an @!!! TODO
                *FORCEOne(GL(d,F)));
               for j in [1..Ngens(Cent)] do
                 Y1:=InsertBlock(Y,m*Cent.j*m^-1,pos,pos);
@@ -412,9 +412,9 @@ local
       if special and type="unitary" then
         MyH:=SL(d,varE);
         MyH.ClassicalType:="SL";
-        Cent:=InternalUnipotentCentralizer@(MyH,y*FORCEOne(GL(d,varE)));
+        Cent:=InternalUnipotentCentralizer(MyH,y*FORCEOne(GL(d,varE))); # there was an @!!! TODO
         # =v= MULTIASSIGN =v=
-        GCD:=ElementOfMaxDeterminant@(y,c[i][2],IdentityMatrix(varE,d),"linear")
+        GCD:=ElementOfMaxDeterminant(y,c[i][2],IdentityMatrix(varE,d),"linear") # there was an @!!! TODO
          ;
         y:=GCD.val1;
         GCD:=GCD.val2;
@@ -437,7 +437,7 @@ local
       else
         MyH:=GL(d,varE);
         MyH.ClassicalType:="GL";
-        Cent:=InternalUnipotentCentralizer@(MyH,y*FORCEOne(GL(d,varE)));
+        Cent:=InternalUnipotentCentralizer(MyH,y*FORCEOne(GL(d,varE))); # there was an @!!! TODO
       fi;
       for j in [1..Ngens(Cent)] do
         a:=Cent.j;
@@ -505,9 +505,9 @@ local
       if special and type="unitary" then
         MyH:=SU(d,varE);
         MyH.ClassicalType:="SU";
-        Cent:=InternalUnipotentCentralizer@(MyH,y*FORCEOne(GL(d,varE)));
+        Cent:=InternalUnipotentCentralizer(MyH,y*FORCEOne(GL(d,varE))); # there was an @!!! TODO
         # =v= MULTIASSIGN =v=
-        GCD:=ElementOfMaxDeterminant@(y,StandardHermitianForm(d,varE)
+        GCD:=ElementOfMaxDeterminant(y,StandardHermitianForm(d,varE) # there was an @!!! TODO
          ,IdentityMatrix(varE,d),"unitary");
         S:=GCD.val1;
         GCD:=GCD.val2;
@@ -528,7 +528,7 @@ local
       else
         MyH:=GU(d,varE);
         MyH.ClassicalType:="GU";
-        Cent:=InternalUnipotentCentralizer@(MyH,y*FORCEOne(GL(d,varE)));
+        Cent:=InternalUnipotentCentralizer(MyH,y*FORCEOne(GL(d,varE))); # there was an @!!! TODO
       fi;
       for j in [1..Ngens(Cent)] do
         S:=m*Cent.j*m^-1;
@@ -578,13 +578,13 @@ local
   #   x and z^-1xz (if x in Omega) or xz and z^-1x (if x not in Omega),
   #   with z = element in the centralizer of SO with spinor norm 1
   if IsOmega then
-    Split:=z:=ForAny(SetGen,y->SpinN@(y*FORCEOne(GL(n,F)),Q,p)=1);
+    Split:=z:=ForAny(SetGen,y->SpinN(y*FORCEOne(GL(n,F)),Q,p)=1); # there was an @!!! TODO
     if Split then
       SetGen1:=SetGen;
       SetGen:=[];
       zm:=z^-1;
       for y in SetGen1 do
-        if SpinN@(y*FORCEOne(GL(n,F)),Q,p)=0 then
+        if SpinN(y*FORCEOne(GL(n,F)),Q,p)=0 then # there was an @!!! TODO
           Add(SetGen,y);
           Add(SetGen,zm*y*z);
         else
@@ -614,9 +614,9 @@ local
   return H;
 end;
 
-ValidTypes@:=Set(["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+",
+ValidTypes:=Set(["SL","GL","Sp","SU","GU","Omega+","Omega-","Omega","SO+", # there was an @!!! TODO
  "SO-","SO","GO+","GO-","GO"]);
-IsClassicalCentralizerApplicable@:=function(G,g)
+IsClassicalCentralizerApplicable:=function(G,g) # there was an @!!! TODO
 #  -> ,BoolElt  Does the ClassicalCentralizer intrinsic function apply to this
 #  group
 local F,V,apply,d,even,flag,form,form_type,type;
@@ -626,12 +626,12 @@ local F,V,apply,d,even,flag,form,form_type,type;
     return false;
   fi;
   # =v= MULTIASSIGN =v=
-  type:=ClassicalGroupType@(G);
+  type:=ClassicalGroupType(G); # there was an @!!! TODO
   flag:=type.val1;
   type:=type.val2;
   # =^= MULTIASSIGN =^=
-  if not flag or not (type in ValidTypes@) or not 
-     MyIsIn@(G,g:Add:=Set(["SL","GL"])) then
+  if not flag or not (type in ValidTypes) or not  # there was an @!!! TODO
+     MyIsIn(G,g:Add:=Set(["SL","GL"])) then # there was an @!!! TODO
     return false;
   fi;
   even:=Characteristic(F)=2;
@@ -658,14 +658,14 @@ local F,V,apply,d,even,flag,form,form_type,type;
   return true;
 end;
 
-ClassicalCentralizer@:=function(G,g)
+ClassicalCentralizer:=function(G,g) # there was an @!!! TODO
 #  -> ,GrpMat  Centralizer of g in classical group G
 local CB,F,Gr,varZ,d,flag,type;
   if not (Generic(Parent(g))=Generic(G)) then
     Error("Input element is not in group");
   fi;
   #   require g in G: "Element not in group";
-  if not MyIsIn@(G,g:Add:=Set(["GL","SL"])) then
+  if not MyIsIn(G,g:Add:=Set(["GL","SL"])) then # there was an @!!! TODO
     Error("Input element is not in group");
   fi;
   if IsCentral(G,g) then
@@ -677,12 +677,12 @@ local CB,F,Gr,varZ,d,flag,type;
     return Centraliser(G,g);
   fi;
   # =v= MULTIASSIGN =v=
-  type:=ClassicalGroupType@(G);
+  type:=ClassicalGroupType(G); # there was an @!!! TODO
   flag:=type.val1;
   type:=type.val2;
   # =^= MULTIASSIGN =^=
-  if not flag and type in ValidTypes@ then
-    Error(["Type of group must be one of ",ValidTypes@]);
+  if not flag and type in ValidTypes then # there was an @!!! TODO
+    Error(["Type of group must be one of ",ValidTypes]); # there was an @!!! TODO
   fi;
   if IsOddInt(d) and IsEvenInt(Size(F)) and type="GO" then
     Error("Function does not apply to this case");
@@ -693,20 +693,20 @@ local CB,F,Gr,varZ,d,flag,type;
     #  Murray algorithm
     #   so back to our implementation of GLCentraliser
     return # rewritten select statement
-    function(xxx)if xxx then return SLCentralizer@(G,g);else return 
-     GLCentralizer@(G,g);fi;end(type="SL");
+    function(xxx)if xxx then return SLCentralizer(G,g);else return  # there was an @!!! TODO
+     GLCentralizer(G,g);fi;end(type="SL"); # there was an @!!! TODO
     #   return type eq "SL" select SLCentralizer (G, g) else Centralizer (G, g)
      ;
   fi;
-  CB:=TransformMatrix@(G);
+  CB:=TransformMatrix(G); # there was an @!!! TODO
   Gr:=G^CB;
   Gr.ClassicalType:=G.ClassicalType;
   if IsSemisimple(g) then
     varZ:=SSCentralizer(Gr,g^CB);
   elif IsUnipotent(g) then
-    varZ:=InternalUnipotentCentralizer@(Gr,g^CB);
+    varZ:=InternalUnipotentCentralizer(Gr,g^CB); # there was an @!!! TODO
   else
-    varZ:=GenCentralizer@(Gr,g^CB);
+    varZ:=GenCentralizer(Gr,g^CB); # there was an @!!! TODO
   fi;
   return varZ^(CB^-1);
 end;
